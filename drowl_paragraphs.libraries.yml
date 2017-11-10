@@ -1,0 +1,11 @@
+drowl-paragraphs-backend:
+  version: 1.x
+  css:
+    theme:
+      css/drowl_paragraphs.backend.css: {}
+    component:
+      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css': { type: external }
+  js:
+    js/drowl_paragraphs.backend.js: {}
+  dependencies:
+    - core/jquery

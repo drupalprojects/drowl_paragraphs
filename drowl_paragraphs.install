@@ -1,0 +1,21 @@
+<?php
+
+///**
+// * Implements hook_install().
+// */
+//function drowl_paragraphs_install() {
+//  $entityFieldManager = Drupal::service('entity_field.manager');
+//  $fieldDefinitionListener = \Drupal::service('field_definition.listener');
+//  $definition = $entityFieldManager->getFieldStorageDefinitions('drowl_paragraphs_settings')['columns'];
+//  $fieldDefinitionListener->onFieldDefinitionCreate($definition);
+//}
+//
+///**
+// * Implements hook_uninstall().
+// */
+//function drowl_paragraphs_uninstall() {
+//  $entityFieldManager = Drupal::service('entity_field.manager');
+//  $fieldDefinitionListener = \Drupal::service('field_definition.listener');
+//  $definition = $entityFieldManager->getFieldStorageDefinitions('drowl_paragraphs_settings')['columns'];
+//  $fieldDefinitionListener->onFieldDefinitionDelete($definition);
+//}

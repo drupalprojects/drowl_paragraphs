@@ -1,0 +1,14 @@
+<?php
+/**
+* @file
+* DROWL paragraphs enhancements.
+*/
+
+
+function drowl_paragraphs_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+  $field_definition = $context['items']->getFieldDefinition();
+  if ($context['widget']->getPluginId() == 'paragraphs') {
+    // Add backend css / js libraries:
+    $element['#attached']['library'][] =  'drowl_paragraphs/drowl-paragraphs-backend';
+  }
+}
