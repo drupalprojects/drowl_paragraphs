@@ -24,21 +24,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-
-    // Load drowl_paragraphs.toppincs.inc file for reading topping data.
-    module_load_include('inc', 'drowl_paragraphs');
-
     // $item is where the current saved values are stored.
     $item =& $items[$delta];
-
-//    $element += array(
-//      '#type' => 'fieldset',
-//    );
-
-    // Eg. Markup field
-    // array(
-    //   '#markup' => 'Some arbitrary markup.',
-    // );
 
     // Common options:
     $cols_options = [
@@ -70,16 +57,16 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     ];
 
     $percentage_negative_options = [
-      '-10' => '-10%',
-      '-20' => '-20%',
-      '-30' => '-30%',
-      '-40' => '-40%',
-      '-50' => '-50%',
-      '-60' => '-60%',
-      '-70' => '-70%',
-      '-80' => '-80%',
-      '-90' => '-90%',
       '-100' => '-100%',
+      '-90' => '-90%',
+      '-80' => '-80%',
+      '-70' => '-70%',
+      '-60' => '-60%',
+      '-50' => '-50%',
+      '-40' => '-40%',
+      '-30' => '-30%',
+      '-20' => '-20%',
+      '-10' => '-10%',
     ];
 
     $distance_options = [
@@ -93,256 +80,235 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
       'xxl' => 'xxl',
     ];
 
-    $element['paragraphs_settings'] = array(
-      '#type' => 'vertical_tabs',
-      '#default_tab' => 'edit-vt_layout',
-    );
-
     // ===================================
-    // Layout group
+    // Layout
     // ===================================
-    $element['vt_layout'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Layout'),
-      '#group' => 'paragraphs_settings',
-      '#open' => TRUE,
-    );
-
-    $element['vt_layout']['layout'] = array(
-      '#type' => 'horizontal_tabs',
-      '#tree' => TRUE,
-      '#prefix' => '<div id="layout-wrapper">',
-      '#suffix' => '</div>',
-    );
-
+    
     // Small Devices
-    $element['vt_layout']['layout']['sm'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Small'),
-    );
-    $element['vt_layout']['layout']['sm']['columns'] = [
+//    $element = array(
+//      '#type' => 'item',
+//      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i>' . $this->t('Small'),
+//    );
+//
+    $element['layout_sm_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns'),
+      '#title' => $this->t('Columns') . ' (small)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->columns) ? $item->columns : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-sm-columns'),
     ];
-    $element['vt_layout']['layout']['sm']['advanced'] = array(
-      '#type' => 'fieldset',
-      '#title' => $this->t('Advanced Settings'),
-    );
-    $element['vt_layout']['layout']['sm']['advanced']['indent'] = [
+    $element['layout_sm_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation'),
+      '#title' => $this->t('Indentation') . ' (small)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->indent) ? $item->indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_sm_indent) ? $item->layout_sm_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-sm-indent'),
     ];
-    $element['vt_layout']['layout']['sm']['advanced']['reverse_indent'] = [
+    $element['layout_sm_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation') . ' (small)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->reverse_indent) ? $item->reverse_indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_sm_reverse_indent) ? $item->layout_sm_reverse_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-sm-reverse-indent'),
     ];
-
-
-    // Medium Devices
-    $element['vt_layout']['layout']['md'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Medium'),
-    );
-    $element['vt_layout']['layout']['md']['columns'] = [
+//
+//
+//    // Medium Devices
+////    $element = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Medium'),
+////    );
+    $element['layout_md_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns'),
+      '#title' => $this->t('Columns') . ' (medium)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->columns) ? $item->columns : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-md-columns'),
     ];
-    $element['vt_layout']['layout']['md']['advanced'] = array(
-      '#type' => 'fieldset',
-      '#title' => $this->t('Advanced Settings'),
-    );
-    $element['vt_layout']['layout']['md']['advanced']['indent'] = [
+    $element['layout_md_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation'),
+      '#title' => $this->t('Indentation') . ' (medium)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->indent) ? $item->indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_md_indent) ? $item->layout_md_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-md-indent'),
     ];
-    $element['vt_layout']['layout']['md']['advanced']['reverse_indent'] = [
+    $element['layout_md_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation') . ' (medium)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->reverse_indent) ? $item->reverse_indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_md_reverse_indent) ? $item->layout_md_reverse_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-md-reverse-indent'),
     ];
-
-    // Large Devices
-    $element['vt_layout']['layout']['lg'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Large'),
-    );
-    $element['vt_layout']['layout']['lg']['columns'] = [
+//
+//    // Large Devices
+////    $element = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Large'),
+////    );
+    $element['layout_lg_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns'),
+      '#title' => $this->t('Columns') . ' (large)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->columns) ? $item->columns : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-columns'),
     ];
-    $element['vt_layout']['layout']['lg']['advanced'] = array(
-      '#type' => 'fieldset',
-      '#title' => $this->t('Advanced Settings'),
-    );
-    $element['vt_layout']['layout']['lg']['advanced']['indent'] = [
+    $element['layout_lg_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation'),
+      '#title' => $this->t('Indentation') . ' (large)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->indent) ? $item->indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_lg_indent) ? $item->layout_lg_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-indent'),
     ];
-    $element['vt_layout']['layout']['lg']['advanced']['reverse_indent'] = [
+    $element['layout_lg_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation') . ' (large)',
       '#options' => $cols_options,
-      '#default_value' => isset($item->reverse_indent) ? $item->reverse_indent : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_lg_reverse_indent) ? $item->layout_lg_reverse_indent : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#suffix' => '/12',
+      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-reverse-indent'),
     ];
 
 
-    $element['vt_layout']['layout']['distances'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Distances'),
-      '#description' => $this->t('Set margins and paddings for this container.'),
-    );
-    $element['vt_layout']['layout']['distances']['margin_top'] = [
+////    $element = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Distances'),
+////      '#description' => $this->t('Set margins and paddings for this container.'),
+////    );
+    $element['layout_margin_top'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin top'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->margin_top) ? $item->margin_top : 'none',
+      '#default_value' => isset($item->layout_margin_top) ? $item->layout_margin_top : 'none',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-margin-top'),
     ];
-    $element['vt_layout']['layout']['distances']['margin_right'] = [
+    $element['layout_margin_right'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin right'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->margin_right) ? $item->margin_right : 'default',
+      '#default_value' => isset($item->layout_margin_right) ? $item->layout_margin_right : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-margin-right'),
     ];
-    $element['vt_layout']['layout']['distances']['margin_bottom'] = [
+    $element['layout_margin_bottom'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin bottom'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->margin_bottom) ? $item->margin_bottom : 'default',
+      '#default_value' => isset($item->layout_margin_bottom) ? $item->layout_margin_bottom : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-margin-bottom'),
     ];
-    $element['vt_layout']['layout']['distances']['margin_left'] = [
+    $element['layout_margin_left'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin left'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->margin_left) ? $item->margin_left : 'default',
+      '#default_value' => isset($item->layout_margin_left) ? $item->layout_margin_left : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-margin-left'),
     ];
 
-    $element['vt_layout']['layout']['distances']['padding_top'] = [
+    $element['layout_padding_top'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding top'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->padding_top) ? $item->padding_top : 'default',
+      '#default_value' => isset($item->layout_padding_top) ? $item->layout_padding_top : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-padding-top'),
     ];
-    $element['vt_layout']['layout']['distances']['padding_right'] = [
+    $element['layout_padding_right'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding right'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->padding_right) ? $item->padding_right : 'default',
+      '#default_value' => isset($item->layout_padding_right) ? $item->layout_padding_right : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-padding-right'),
     ];
-    $element['vt_layout']['layout']['distances']['padding_bottom'] = [
+    $element['layout_padding_bottom'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding bottom'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->padding_bottom) ? $item->padding_bottom : 'default',
+      '#default_value' => isset($item->layout_padding_bottom) ? $item->layout_padding_bottom : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-padding-bottom'),
     ];
-    $element['vt_layout']['layout']['distances']['padding_left'] = [
+    $element['layout_padding_left'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding left'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->padding_left) ? $item->padding_left : 'default',
+      '#default_value' => isset($item->layout_padding_left) ? $item->layout_padding_left : 'default',
+      '#wrapper_attributes' => array('class' => 'form-item--layout-padding-left'),
     ];
 
 
 
-    $element['vt_layout']['layout']['misc'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Other settings'),
-    );
-    $element['vt_layout']['layout']['misc']['min_height'] = [
+////    $element = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Other settings'),
+////    );
+    $element['layout_min_height'] = [
       '#type' => 'select',
       '#title' => $this->t('Minimum height'),
       '#options' => $percentage_options,
-      '#default_value' => isset($item->min_height) ? $item->min_height : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_min_height) ? $item->layout_min_height : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#description' => $this->t('TODO'),
+      '#description' => $this->t('The minimum height of the element. Mostly used to set the rows items height equally.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-min-height'),
     ];
-    $element['vt_layout']['layout']['misc']['section_width'] = [
+    $element['layout_section_width'] = [
       '#type' => 'select',
       '#title' => $this->t('Section width'),
       '#options' => [
         'viewport_width' => $this->t('Viewport width'),
         'page_width' => $this->t('Page width'),
       ],
-      '#default_value' => isset($item->fullsize) ? $item->fullsize : NULL,
-      '#empty_option' => $this->t('Unset'),
+      '#default_value' => isset($item->layout_section_width) ? $item->layout_section_width : NULL,
+      '#empty_option' => $this->t('- None -'),
       '#empty_value' => NULL,
       '#required' => FALSE,
-      '#description' => $this->t('TODO'),
+      '#description' => $this->t('The width of the element. Viewport width = screen width, Page width = content width.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-section-width'),
     ];
+//
+//    // ===================================
+//    // Styling group
+//    // ===================================
+////    $element = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Style'),
+////      '#group' => 'paragraphs_settings',
+////    );
 
-    // ===================================
-    // Styling group
-    // ===================================
-    $element['vt_style'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Style'),
-      '#group' => 'paragraphs_settings',
-    );
-
-    $element['vt_style']['style'] = array(
-      '#type' => 'horizontal_tabs',
-      '#tree' => TRUE,
-      '#prefix' => '<div id="style-wrapper">',
-      '#suffix' => '</div>',
-    );
-
-    $element['vt_style']['style']['boxstyle'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Box style'),
-    );
-    $element['vt_style']['style']['boxstyle']['boxstyle'] = [
+    $element['style_boxstyle'] = [
       '#type' => 'select',
       '#title' => $this->t('Box style'),
       '#options' => [
@@ -355,26 +321,30 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         'success' => $this->t('Success'),
       ],
       '#required' => TRUE,
-      '#default_value' => isset($item->boxstyle) ? $item->boxstyle : 'default',
+      '#default_value' => isset($item->style_boxstyle) ? $item->style_boxstyle : 'default',
       '#description' => $this->t('Predefined styling of this container.'),
+      '#wrapper_attributes' => array('class' => 'form-item--style-boxstyle'),
     ];
 
 
-    $element['vt_style']['style']['animations'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Animations'),
-    );
+////    $element['animations'] = array(
+////      '#type' => 'item',
+////      '#title' => $this->t('Animations'),
+////    );
 
 
     $animations_allowed_count = 4;
     for ($i=1; $i <= $animations_allowed_count; $i++) {
+//      $element['animations'] = [
+//        '#type' => 'item',
+//        '#title' => $this->t('Animations'),
+//      ];
+//      $element['style_animation_' . $i] = [
+//        '#type' => 'item',
+//        '#title' => $this->t('Animation') . ' ' . $i,
+//      ];
 
-      $element['vt_style']['style']['animations'][$i] = [
-        '#type' => 'details',
-        '#title' => $this->t('Animation') . ' ' . $i,
-      ];
-
-      $element['vt_style']['style']['animations'][$i]['events'] = [
+      $element['style_animation_' . $i . '_events'] = [
         '#type' => 'select',
         '#title' => $this->t('Event'),
         '#options' => [
@@ -385,42 +355,18 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         ],
         '#required' => FALSE,
         '#multiple' => FALSE,
-        '#default_value' => isset($item->events) ? $item->events : NULL,
+        '#empty_option' => $this->t('- None -'),
+        '#default_value' => isset($item->{'style_animation_'.$i.'_events'}) ? $item->{'style_animation_'.$i.'_events'} : NULL,
         '#description' => '<ul>
           <li><strong>' . $this->t('Entering the viewport') . ':</strong> ' . $this->t('Animates if the element enters the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Leaving the viewport') . ':</strong> ' . $this->t('Animates if the element leaves the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Hover the element') . ':</strong> ' . $this->t('Animation starts when entering the element with the cursor.') . '</li>
           <li><strong>' . $this->t('Hover the (outer) section') . ':</strong> ' . $this->t('Animation starts when entering the outer section with the cursor.') . '</li>
         </ul>',
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-events'),
       ];
-      $element['vt_style']['style']['animations'][$i]['offset'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Offset'),
-        '#options' => array_merge($percentage_negative_options, $percentage_options),
-        '#default_value' => isset($item->offset) ? $item->offset : NULL,
-        '#empty_option' => $this->t('Unset'),
-        '#empty_value' => NULL,
-        '#required' => FALSE,
-        '#description' => $this->t('Offset for the animation to start.'),
-        '#states' => [
-          'visible' => [
-            'select[name="field_vt_style_animations_events"]' => [
-              'value' => [
-                'enter_viewport',
-                'leave_viewport'
-              ]
-            ]
-          ]
-        ]
-      ];
-      $element['vt_style']['style']['animations'][$i]['delay'] = [
-        '#title' => t('Delay'),
-        '#type' => 'textfield',
-        '#default_value' => isset($item->delay) ? $item->delay : '',
-        '#suffix' => 'ms',
-        '#description' => $this->t('Pause the animation, before running.'),
-      ];
-      $element['vt_style']['style']['animations'][$i]['animation'] = [
+
+      $element['style_animation_' . $i . '_animation'] = [
         '#type' => 'select',
         '#title' => $this->t('Animation'),
         '#options' => [
@@ -531,18 +477,49 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         ],
         '#required' => FALSE,
         '#multiple' => FALSE,
-        '#default_value' => isset($item->animation) ? $item->animation : NULL,
+        '#empty_option' => $this->t('- None -'),
+        '#default_value' => isset($item->{'style_animation_'.$i.'_animation'}) ? $item->{'style_animation_'.$i.'_animation'} : NULL,
         '#description' => $this->t('Choose the animation to run on the event.'),
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
+      ];
+
+      $element['style_animation_' . $i . '_offset'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Viewport animation offset trigger'),
+        '#options' => array_merge($percentage_negative_options, $percentage_options),
+        '#default_value' => isset($item->{'style_animation_'.$i.'_offset'}) ? $item->{'style_animation_'.$i.'_offset'} : NULL,
+        '#empty_option' => $this->t('- None -'),
+        '#empty_value' => NULL,
+        '#required' => FALSE,
+        '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
+        '#states' => [
+          'visible' => [
+            'select[name="field_vt_style_animations_events"]' => [
+              'value' => [
+                'enter_viewport',
+                'leave_viewport'
+              ]
+            ]
+          ]
+        ],
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
+      ];
+
+      $element['style_animation_' . $i . '_delay'] = [
+        '#title' => t('Animation start delay'),
+        '#type' => 'number',
+        '#min' => '0',
+        '#step' => '1',
+        '#default_value' => isset($item->{'style_animation_'.$i.'_delay'}) ? $item->{'style_animation_'.$i.'_delay'} : 0,
+        '#field_suffix' => 'ms',
+        '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s)'),
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
     }
-
-    $element['vt_style']['style']['textstyle'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Text style'),
-    );
-    $element['vt_style']['style']['textstyle']['textstyle'] = [
+//
+    $element['style_textstyle'] = [
       '#type' => 'select',
-      '#title' => $this->t('Text style'),
+      '#title' => $this->t('Text alignment / style'),
       '#options' => [
         'default' => $this->t('default'),
         'text_left' => $this->t('Left aligned'),
@@ -559,25 +536,36 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
       ],
       '#required' => TRUE,
       '#multiple' => FALSE,
-      '#default_value' => isset($item->textstyle) ? $item->textstyle : 'default',
-      '#description' => $this->t('TODO'),
+      '#default_value' => isset($item->style_textstyle) ? $item->style_textstyle : 'default',
+      '#description' => $this->t('The text alignment / style, if this element contains text.'),
+      '#wrapper_attributes' => array('class' => 'form-item--style-textstyle'),
     ];
 
     // ===================================
     // Expert settings group
     // ===================================
-    $element['vt_expert'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('Expert'),
-      '#group' => 'paragraphs_settings',
-    );
-    $element['vt_expert']['classes_additional'] = array(
+//    $element['vt_expert'] = array(
+//      '#type' => 'details',
+//      '#title' => $this->t('Expert'),
+//    );
+    $element['classes_additional'] = array(
       '#title' => t('Additional classes'),
       '#type' => 'textfield',
       '#default_value' => isset($item->classes_additional) ? $item->classes_additional : '',
       '#description' => $this->t('<strong>Experts:</strong> Enter special CSS classes to apply separated by space.'),
+      '#wrapper_attributes' => array('class' => 'form-item--classes-additional'),
     );
+
+    // If cardinality is 1, ensure a label is output for the field by wrapping
+    // it in a details element.
+    if ($this->fieldDefinition->getFieldStorageDefinition()->getCardinality() == 1) {
+      $element += array(
+        '#type' => 'details',
+        '#open' => FALSE,
+      );
+    }
 
     return $element;
   }
+
 }
