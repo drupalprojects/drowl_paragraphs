@@ -285,8 +285,8 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
    * {@inheritdoc}
    */
   public function fieldSettingsForm(array $form, FormStateInterface $form_state) {
-    $output = array();
-    return $output;
+    $element = array();
+    return $element;
   }
 
 
@@ -295,14 +295,14 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
    */
   public function preSave() {
     // Sanitize classes_additional:
-//    $classes_additional = $this->get('classes_additional')->getValue();
-//    $classes_additional_sanitized = '';
-//    if(!empty($classes_additional)){
-//      $classes_additional_array = explode(' ', trim($classes_additional));
-//      foreach($classes_additional_array as $class){
-//        $classes_additional_sanitized .= ' ' . trim(\Drupal\Component\Utility\Html::getClass(trim($class)));
-//      }
-//    }
-//    $this->get('classes_additional')->setValue(trim($classes_additional_sanitized));
+    $classes_additional = $this->get('classes_additional')->getValue();
+    $classes_additional_sanitized = '';
+    if(!empty($classes_additional)){
+      $classes_additional_array = explode(' ', trim($classes_additional));
+      foreach($classes_additional_array as $class){
+        $classes_additional_sanitized .= ' ' . trim(\Drupal\Component\Utility\Html::getClass(trim($class)));
+      }
+    }
+    $this->get('classes_additional')->setValue(trim($classes_additional_sanitized));
   }
 }

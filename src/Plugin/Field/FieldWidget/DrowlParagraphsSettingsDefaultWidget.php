@@ -18,7 +18,43 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetInterface {
+class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return array(
+        'open' => FALSE
+      ) + parent::defaultSettings();
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $element = parent::settingsForm($form, $form_state);
+    $element['open'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Display element open by default.'),
+      '#default_value' => $this->getSetting('open'),
+    );
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = parent::settingsSummary();
+    if ($this->getSetting('open')) {
+      $summary[] = $this->t('Display element open by default.');
+    } else {
+      $summary[] = $this->t('Display element closed by default.');
+    }
+    return $summary;
+
+  }
 
   /**
    * {@inheritdoc}
@@ -597,7 +633,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     if ($this->fieldDefinition->getFieldStorageDefinition()->getCardinality() == 1) {
       $element += array(
         '#type' => 'details',
-        '#open' => FALSE,
+        '#open' => $this->getSetting('open') ? TRUE : FALSE,
       );
     }
 
