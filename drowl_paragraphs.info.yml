@@ -4,6 +4,9 @@ description: 'DROWL Paragraphs enhancements like settings fields and other UX / 
 core: 8.x
 
 # Dependencies
-dependences:
+dependencies:
   - field
   - paragraphs
+  - field_group
+
+php: 7.0

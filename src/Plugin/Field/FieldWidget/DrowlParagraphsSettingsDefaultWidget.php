@@ -70,7 +70,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     ];
 
     $distance_options = [
-      'default' => $this->t('Default'),
       'xxs' => 'xxs',
       'xs' => 'xs',
       's' => 's',
@@ -83,208 +82,225 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     // ===================================
     // Layout
     // ===================================
-    
-    // Small Devices
-//    $element = array(
-//      '#type' => 'item',
-//      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i>' . $this->t('Small'),
-//    );
-//
-    $element['layout_sm_columns'] = [
+
+    $element['layout'] = array(
+      '#type' => 'horizontal_tabs',
+      '#theme_wrappers' => array('horizontal_tabs'),
+      '#title' => $this->t('Layout'),
+      '#tree' => TRUE,
+    );
+
+    $element['layout']['sm'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Small devices'),
+      '#group' => 'layout'
+    );
+
+    $element['layout']['sm']['layout_sm_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns') . ' (small)',
+      '#title' => $this->t('Columns'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-columns'),
     ];
-    $element['layout_sm_indent'] = [
+    $element['layout']['sm']['layout_sm_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation') . ' (small)',
+      '#title' => $this->t('Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_sm_indent) ? $item->layout_sm_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-indent'),
     ];
-    $element['layout_sm_reverse_indent'] = [
+    $element['layout']['sm']['layout_sm_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation') . ' (small)',
+      '#title' => $this->t('Reverse Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_sm_reverse_indent) ? $item->layout_sm_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-reverse-indent'),
     ];
-//
-//
-//    // Medium Devices
-////    $element = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Medium'),
-////    );
-    $element['layout_md_columns'] = [
+    //
+    //
+    //    // Medium Devices
+    $element['layout']['md'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Medium devices'),
+      '#group' => 'layout'
+    );
+    $element['layout']['md']['layout_md_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns') . ' (medium)',
+      '#title' => $this->t('Columns'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-columns'),
     ];
-    $element['layout_md_indent'] = [
+    $element['layout']['md']['layout_md_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation') . ' (medium)',
+      '#title' => $this->t('Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_md_indent) ? $item->layout_md_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-indent'),
     ];
-    $element['layout_md_reverse_indent'] = [
+    $element['layout']['md']['layout_md_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation') . ' (medium)',
+      '#title' => $this->t('Reverse Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_md_reverse_indent) ? $item->layout_md_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-reverse-indent'),
     ];
-//
-//    // Large Devices
-////    $element = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Large'),
-////    );
-    $element['layout_lg_columns'] = [
+    //
+    //    // Large Devices
+    $element['layout']['lg'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Large devices'),
+      '#group' => 'layout'
+    );
+    $element['layout']['lg']['layout_lg_columns'] = [
       '#type' => 'select',
-      '#title' => $this->t('Columns') . ' (large)',
+      '#title' => $this->t('Columns'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-columns'),
     ];
-    $element['layout_lg_indent'] = [
+    $element['layout']['lg']['layout_lg_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation') . ' (large)',
+      '#title' => $this->t('Indentation') ,
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_lg_indent) ? $item->layout_lg_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-indent'),
     ];
-    $element['layout_lg_reverse_indent'] = [
+    $element['layout']['lg']['layout_lg_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation') . ' (large)',
+      '#title' => $this->t('Reverse Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_lg_reverse_indent) ? $item->layout_lg_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
+      '#empty_value' => 0,
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-reverse-indent'),
     ];
 
 
-////    $element = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Distances'),
-////      '#description' => $this->t('Set margins and paddings for this container.'),
-////    );
-    $element['layout_margin_top'] = [
+    $element['layout']['spacing'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Spacing'),
+      '#group' => 'layout'
+    );
+    $element['layout']['spacing']['layout_margin_top'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin top'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_margin_top) ? $item->layout_margin_top : 'none',
+      '#default_value' => isset($item->layout_margin_top) ? $item->layout_margin_top : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-margin-top'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_margin_right'] = [
+    $element['layout']['spacing']['layout_margin_right'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin right'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_margin_right) ? $item->layout_margin_right : 'default',
+      '#default_value' => isset($item->layout_margin_right) ? $item->layout_margin_right : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-margin-right'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_margin_bottom'] = [
+    $element['layout']['spacing']['layout_margin_bottom'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin bottom'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_margin_bottom) ? $item->layout_margin_bottom : 'default',
+      '#default_value' => isset($item->layout_margin_bottom) ? $item->layout_margin_bottom : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-margin-bottom'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_margin_left'] = [
+    $element['layout']['spacing']['layout_margin_left'] = [
       '#type' => 'select',
       '#title' => $this->t('Margin left'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_margin_left) ? $item->layout_margin_left : 'default',
+      '#default_value' => isset($item->layout_margin_left) ? $item->layout_margin_left : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-margin-left'),
+      '#empty_option' => $this->t('Default'),
     ];
 
-    $element['layout_padding_top'] = [
+    $element['layout']['spacing']['layout_padding_top'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding top'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_padding_top) ? $item->layout_padding_top : 'default',
+      '#default_value' => isset($item->layout_padding_top) ? $item->layout_padding_top : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-padding-top'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_padding_right'] = [
+    $element['layout']['spacing']['layout_padding_right'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding right'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_padding_right) ? $item->layout_padding_right : 'default',
+      '#default_value' => isset($item->layout_padding_right) ? $item->layout_padding_right : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-padding-right'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_padding_bottom'] = [
+    $element['layout']['spacing']['layout_padding_bottom'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding bottom'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_padding_bottom) ? $item->layout_padding_bottom : 'default',
+      '#default_value' => isset($item->layout_padding_bottom) ? $item->layout_padding_bottom : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-padding-bottom'),
+      '#empty_option' => $this->t('Default'),
     ];
-    $element['layout_padding_left'] = [
+    $element['layout']['spacing']['layout_padding_left'] = [
       '#type' => 'select',
       '#title' => $this->t('Padding left'),
       '#options' => $distance_options,
-      '#default_value' => isset($item->layout_padding_left) ? $item->layout_padding_left : 'default',
+      '#default_value' => isset($item->layout_padding_left) ? $item->layout_padding_left : '',
       '#wrapper_attributes' => array('class' => 'form-item--layout-padding-left'),
+      '#empty_option' => $this->t('Default'),
     ];
 
 
-
-////    $element = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Other settings'),
-////    );
-    $element['layout_min_height'] = [
+    $element['layout']['other'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Other'),
+      '#group' => 'layout'
+    );
+    $element['layout']['other']['layout_min_height'] = [
       '#type' => 'select',
       '#title' => $this->t('Minimum height'),
       '#options' => $percentage_options,
-      '#default_value' => isset($item->layout_min_height) ? $item->layout_min_height : NULL,
+      '#default_value' => isset($item->layout_min_height) ? $item->layout_min_height : 0,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
       '#required' => FALSE,
       '#description' => $this->t('The minimum height of the element. Mostly used to set the rows items height equally.'),
       '#wrapper_attributes' => array('class' => 'form-item--layout-min-height'),
+      '#empty_value' => 0,
     ];
-    $element['layout_section_width'] = [
+    $element['layout']['other']['layout_section_width'] = [
       '#type' => 'select',
       '#title' => $this->t('Section width'),
       '#options' => [
@@ -293,22 +309,36 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
       ],
       '#default_value' => isset($item->layout_section_width) ? $item->layout_section_width : NULL,
       '#empty_option' => $this->t('- None -'),
-      '#empty_value' => NULL,
       '#required' => FALSE,
       '#description' => $this->t('The width of the element. Viewport width = screen width, Page width = content width.'),
       '#wrapper_attributes' => array('class' => 'form-item--layout-section-width'),
     ];
-//
-//    // ===================================
-//    // Styling group
-//    // ===================================
-////    $element = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Style'),
-////      '#group' => 'paragraphs_settings',
-////    );
+    $element['layout_help'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Help') . ':',
+      '#markup' => $this->t('Help'),
+      '#attributes' => ['class' => ['layout-help']],
+    ];
+    //
+    //    // ===================================
+    //    // Styling group
+    //    // ===================================
 
-    $element['style_boxstyle'] = [
+
+    $element['style'] = array(
+      '#type' => 'horizontal_tabs',
+      '#theme_wrappers' => array('horizontal_tabs'),
+      '#title' => $this->t('Style'),
+      '#tree' => TRUE,
+    );
+
+    $element['style']['style_boxstyle'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Box style'),
+      '#group' => 'style'
+    );
+
+    $element['style']['style_boxstyle']['style_boxstyle'] = [
       '#type' => 'select',
       '#title' => $this->t('Box style'),
       '#options' => [
@@ -317,34 +347,28 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         'transparent-dark' => $this->t('Transparent dark'),
         'info' => $this->t('Info'),
         'warning' => $this->t('Warning'),
-        'altert' => $this->t('Alarm'),
+        'alert' => $this->t('Alarm'),
         'success' => $this->t('Success'),
       ],
-      '#required' => TRUE,
-      '#default_value' => isset($item->style_boxstyle) ? $item->style_boxstyle : 'default',
+      '#empty_option' => $this->t('- None -'),
+      '#default_value' => isset($item->style_boxstyle) ? $item->style_boxstyle : '',
       '#description' => $this->t('Predefined styling of this container.'),
       '#wrapper_attributes' => array('class' => 'form-item--style-boxstyle'),
     ];
 
-
-////    $element['animations'] = array(
-////      '#type' => 'item',
-////      '#title' => $this->t('Animations'),
-////    );
-
-
+    $element['style']['animations'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Animations'),
+      '#group' => 'layout'
+    );
     $animations_allowed_count = 4;
     for ($i=1; $i <= $animations_allowed_count; $i++) {
-//      $element['animations'] = [
-//        '#type' => 'item',
-//        '#title' => $this->t('Animations'),
-//      ];
-//      $element['style_animation_' . $i] = [
-//        '#type' => 'item',
-//        '#title' => $this->t('Animation') . ' ' . $i,
-//      ];
+      $element['style']['animations']['style_animation_' . $i] = [
+        '#type' => 'details',
+        '#title' => $this->t('Animation') . ' ' . $i,
+      ];
 
-      $element['style_animation_' . $i . '_events'] = [
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_events'] = [
         '#type' => 'select',
         '#title' => $this->t('Event'),
         '#options' => [
@@ -356,7 +380,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         '#required' => FALSE,
         '#multiple' => FALSE,
         '#empty_option' => $this->t('- None -'),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_events'}) ? $item->{'style_animation_'.$i.'_events'} : NULL,
+        '#default_value' => isset($item->{'style_animation_'.$i.'_events'}) ? $item->{'style_animation_'.$i.'_events'} : '',
         '#description' => '<ul>
           <li><strong>' . $this->t('Entering the viewport') . ':</strong> ' . $this->t('Animates if the element enters the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Leaving the viewport') . ':</strong> ' . $this->t('Animates if the element leaves the viewport (by scrolling).') . '</li>
@@ -366,7 +390,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-events'),
       ];
 
-      $element['style_animation_' . $i . '_animation'] = [
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_animation'] = [
         '#type' => 'select',
         '#title' => $this->t('Animation'),
         '#options' => [
@@ -478,18 +502,17 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         '#required' => FALSE,
         '#multiple' => FALSE,
         '#empty_option' => $this->t('- None -'),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_animation'}) ? $item->{'style_animation_'.$i.'_animation'} : NULL,
+        '#default_value' => isset($item->{'style_animation_'.$i.'_animation'}) ? $item->{'style_animation_'.$i.'_animation'} : '',
         '#description' => $this->t('Choose the animation to run on the event.'),
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
       ];
 
-      $element['style_animation_' . $i . '_offset'] = [
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_offset'] = [
         '#type' => 'select',
         '#title' => $this->t('Viewport animation offset trigger'),
         '#options' => array_merge($percentage_negative_options, $percentage_options),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_offset'}) ? $item->{'style_animation_'.$i.'_offset'} : NULL,
+        '#default_value' => isset($item->{'style_animation_'.$i.'_offset'}) ? $item->{'style_animation_'.$i.'_offset'} : '',
         '#empty_option' => $this->t('- None -'),
-        '#empty_value' => NULL,
         '#required' => FALSE,
         '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
         '#states' => [
@@ -505,7 +528,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
       ];
 
-      $element['style_animation_' . $i . '_delay'] = [
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_delay'] = [
         '#title' => t('Animation start delay'),
         '#type' => 'number',
         '#min' => '0',
@@ -516,12 +539,16 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
     }
-//
-    $element['style_textstyle'] = [
+
+    $element['style']['style_textstyle'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Box style'),
+      '#group' => 'style'
+    );
+    $element['style']['style_textstyle']['style_textstyle'] = [
       '#type' => 'select',
       '#title' => $this->t('Text alignment / style'),
       '#options' => [
-        'default' => $this->t('default'),
         'text_left' => $this->t('Left aligned'),
         'text_right' => $this->t('Right aligned'),
         'text_center' => $this->t('Centered'),
@@ -534,9 +561,10 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
           'columns_5' => t('5 Spalten'),
         ),
       ],
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#multiple' => FALSE,
-      '#default_value' => isset($item->style_textstyle) ? $item->style_textstyle : 'default',
+      '#empty_option' => $this->t('Default'),
+      '#default_value' => isset($item->style_textstyle) ? $item->style_textstyle : '',
       '#description' => $this->t('The text alignment / style, if this element contains text.'),
       '#wrapper_attributes' => array('class' => 'form-item--style-textstyle'),
     ];
@@ -544,17 +572,25 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     // ===================================
     // Expert settings group
     // ===================================
-//    $element['vt_expert'] = array(
-//      '#type' => 'details',
-//      '#title' => $this->t('Expert'),
-//    );
-    $element['classes_additional'] = array(
+    $element['style']['expert'] = array(
+      '#type' => 'details',
+      '#title' => '<i class="fa fa-address-book" aria-hidden="true"></i> ' . $this->t('Expert'),
+      '#group' => 'style'
+    );
+    $element['style']['expert']['classes_additional'] = array(
       '#title' => t('Additional classes'),
       '#type' => 'textfield',
       '#default_value' => isset($item->classes_additional) ? $item->classes_additional : '',
       '#description' => $this->t('<strong>Experts:</strong> Enter special CSS classes to apply separated by space.'),
       '#wrapper_attributes' => array('class' => 'form-item--classes-additional'),
     );
+
+    $element['style_help'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Help') . ':',
+      '#markup' => $this->t('Help'),
+      '#attributes' => ['class' => ['style-help']],
+    ];
 
     // If cardinality is 1, ensure a label is output for the field by wrapping
     // it in a details element.
@@ -568,4 +604,25 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase implements WidgetI
     return $element;
   }
 
+  public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
+    // #webksde#JP20171115: Due to unknown reasons (or a core bug?) the form can't handle
+    // nested values from field groups etc. So the values have to be a flat key => value array.
+    // - Changing #tree to true or false didn't help also we already tested with clean core installation etc.
+    // - Perhaps this is expected behaviour an this function exists to create a flat array?
+    // - Presumably part of the reason might be that in many cases there is
+    //     only the main $element which we already transform into a field group because we need more fields
+    // - No suiting issue was found yet. If this hack creates follow-up issues we should perhaps create one.
+
+    // Turn the nested array structure into a flat key => value array.
+    $values_flat = [];
+    if(!empty($values)){
+      foreach($values as $delta => $field){
+        $it = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($field));
+        foreach($it as $k => $v) {
+          $values_flat[$delta][$k] = $v;
+        }
+      }
+    }
+    return $values_flat;
+  }
 }
