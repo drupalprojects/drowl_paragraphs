@@ -9,3 +9,14 @@ drowl-paragraphs-backend:
     js/drowl_paragraphs.backend.js: {}
   dependencies:
     - core/jquery
+drowl-paragraphs-frontend:
+  version: 1.x
+  css:
+    theme:
+      css/drowl_paragraphs.frontend.css: {}
+    component:
+      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css': { type: external }
+  js:
+    js/drowl_paragraphs.frontend.js: {}
+  dependencies:
+    - core/jquery

@@ -1,14 +1,199 @@
 <?php
 /**
-* @file
-* DROWL paragraphs enhancements.
-*/
+ * @file
+ * DROWL paragraphs enhancements.
+ */
 
 
 function drowl_paragraphs_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
   $field_definition = $context['items']->getFieldDefinition();
   if ($context['widget']->getPluginId() == 'paragraphs') {
     // Add backend css / js libraries:
-    $element['#attached']['library'][] =  'drowl_paragraphs/drowl-paragraphs-backend';
+    $element['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-backend';
   }
+}
+
+function drowl_paragraphs_preprocess_paragraph(&$variables) {
+  // Add frontend library for paragraphs display:
+  $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-frontend';
+  #
+  // Create classes from paragraph_settings field
+  if (!empty($variables['paragraph'])) {
+    $paragraph = $variables['paragraph'];
+    if ($paragraph->hasField('field_paragraph_settings')) {
+      if ($paragraph->get('field_paragraph_settings')
+          ->getFieldDefinition()
+          ->getType() == 'drowl_paragraphs_settings') {
+        $paragraphSettingsArray = $paragraph->get('field_paragraph_settings')
+          ->getValue();
+        if (!empty($paragraphSettingsArray[0])) {
+          $ps = $paragraphSettingsArray[0];
+
+          /*
+           * EXAMPLE:
+          array(
+            'layout_sm_columns' => '12',
+            'layout_sm_indent' => '2',
+            'layout_sm_reverse_indent' => '3',
+            'layout_md_columns' => '4',
+            'layout_md_indent' => '5',
+            'layout_md_reverse_indent' => '6',
+            'layout_lg_columns' => '7',
+            'layout_lg_indent' => '8',
+            'layout_lg_reverse_indent' => '9',
+            'layout_margin_top' => 'xxs',
+            'layout_margin_right' => 'xs',
+            'layout_margin_bottom' => 's',
+            'layout_margin_left' => 'm',
+            'layout_padding_top' => 'l',
+            'layout_padding_right' => 'xl',
+            'layout_padding_bottom' => 'xxl',
+            'layout_padding_left' => 'xxs',
+            'style_animation_1_events' => 'enter_viewport',
+            'style_animation_1_offset' => '1',
+            'style_animation_1_delay' => '4',
+            'style_animation_1_animation' => 'bounce',
+            'style_animation_2_events' => 'leave_viewport',
+            'style_animation_2_offset' => '17',
+            'style_animation_2_delay' => '5',
+            'style_animation_2_animation' => 'bounceInDown',
+            'style_animation_3_events' => 'hover_section',
+            'style_animation_3_offset' => '0',
+            'style_animation_3_delay' => '6',
+            'style_animation_3_animation' => 'tada',
+            'style_animation_4_events' => 'hover_element',
+            'style_animation_4_offset' => '0',
+            'style_animation_4_delay' => '87',
+            'style_animation_4_animation' => 'bounceInDown',
+            'layout_min_height' => '10',
+            'layout_section_width' => 'viewport_width',
+            'style_boxstyle' => 'default',
+            'style_textstyle' => 'lead',
+            'classes_additional' => 'class-123 abc',
+          );
+          */
+
+          if (!empty($ps['layout_sm_columns'])) {
+            $variables['layout_attributes']['class']['columns'] = 'columns';
+            $variables['layout_attributes']['class'][] = 'small-' . $ps['layout_sm_columns'];
+          }
+          if (!empty($ps['layout_sm_indent'])) {
+            $variables['layout_attributes']['class'][] = 'small-offset-' . $ps['layout_sm_indent'];
+          }
+          if (!empty($ps['layout_sm_reverse_indent'])) {
+            $variables['layout_attributes']['class'][] = 'small-rev-offset-' . $ps['layout_sm_reverse_indent'];
+          }
+          if (!empty($ps['layout_md_columns'])) {
+            $variables['layout_attributes']['class']['columns'] = 'columns';
+            $variables['layout_attributes']['class'][] = 'medium-' . $ps['layout_md_columns'];
+          }
+          if (!empty($ps['layout_md_indent'])) {
+            $variables['layout_attributes']['class'][] = 'medium-offset-' . $ps['layout_md_indent'];
+          }
+          if (!empty($ps['layout_md_reverse_indent'])) {
+            $variables['layout_attributes']['class'][] = 'medium-rev-offset-' . $ps['layout_md_reverse_indent'];
+          }
+          if (!empty($ps['layout_lg_columns'])) {
+            $variables['layout_attributes']['class']['columns'] = 'columns';
+            $variables['layout_attributes']['class'][] = 'large-' . $ps['layout_lg_columns'];
+          }
+          if (!empty($ps['layout_lg_indent'])) {
+            $variables['layout_attributes']['class'][] = 'large-offset-' . $ps['layout_lg_indent'];
+          }
+          if (!empty($ps['layout_lg_reverse_indent'])) {
+            $variables['layout_attributes']['class'][] = 'large-rev-offset-' . $ps['layout_lg_reverse_indent'];
+          }
+
+          if (!empty($ps['layout_margin_top'])) {
+            $variables['layout_attributes']['class'][] = 'mt-' . $ps['layout_margin_top'];
+          }
+          if (!empty($ps['layout_margin_right'])) {
+            $variables['layout_attributes']['class'][] = 'mr-' . $ps['layout_margin_right'];
+          }
+          if (!empty($ps['layout_margin_bottom'])) {
+            $variables['layout_attributes']['class'][] = 'mb-' . $ps['layout_margin_bottom'];
+          }
+          if (!empty($ps['layout_margin_left'])) {
+            $variables['layout_attributes']['class'][] = 'ml-' . $ps['layout_margin_left'];
+          }
+
+          if (!empty($ps['layout_padding_top'])) {
+            $variables['attributes']['class'][] = 'pt-' . $ps['layout_padding_top'];
+          }
+          if (!empty($ps['layout_padding_right'])) {
+            $variables['attributes']['class'][] = 'pr-' . $ps['layout_padding_right'];
+          }
+          if (!empty($ps['layout_padding_bottom'])) {
+            $variables['attributes']['class'][] = 'pb' . $ps['layout_padding_bottom'];
+          }
+          if (!empty($ps['layout_padding_left'])) {
+            $variables['attributes']['class'][] = 'pl-' . $ps['layout_padding_left'];
+          }
+
+
+          $animations = [];
+          $animations_allowed_count = 4;
+          for ($i = 1; $i <= $animations_allowed_count; $i++) {
+            if (!empty($ps['style_animation_' . $i . '_events'] && !empty($ps['style_animation_' . $i . '_animation']))) {
+              $animations[] = array(
+                'event' => $ps['style_animation_' . $i . '_events'],
+                'animation' => $ps['style_animation_' . $i . '_animation'],
+                'offset' => $ps['style_animation_' . $i . '_offset'],
+                'delay' => $ps['style_animation_' . $i . '_delay'],
+              );
+            }
+          }
+          if (!empty($animations)) {
+            $variables['attributes']['class']['animated'] = 'animated';
+            $variables['attributes']['data-animations'] = '[' . \Drupal\Component\Serialization\Json::encode($animations) . ']';
+          }
+
+          if (!empty($ps['layout_min_height'])) {
+            $variables['layout_attributes']['class'][] = 'min-height-' . $ps['layout_min_height'];
+          }
+          if (!empty($ps['layout_section_width'])) {
+            $variables['layout_attributes']['class'][] = 'section-width-' . $ps['layout_section_width'];
+          }
+
+          if (!empty($ps['style_boxstyle'])) {
+            $variables['attributes']['class'][] = 'box-style box-style--' . $ps['style_boxstyle'];
+          }
+          if (!empty($ps['style_textstyle'])) {
+            $variables['content_attributes']['class'][] = $ps['style_textstyle'];
+          }
+
+          if (!empty($ps['classes_additional'])) {
+            $variables['attributes']['class'][] = 'section-width-' . $ps['classes_additional'];
+          }
+        }
+      }
+      else {
+        trigger_error('Field field_paragraph_settings exists but is not of type "drowl_paragraphs_settings". Ignoring.', E_USER_NOTICE);
+      }
+    }
+
+
+    if ($paragraph->hasField('field_paragraphs_paragraphs')) {
+      // has subparagraphs field
+      $subParagraphs = $paragraph->get('field_paragraphs_paragraphs');
+      if ($subParagraphs->getFieldDefinition()
+          ->getTargetEntityTypeId() == 'paragraph') {
+        if (!empty($subParagraphs)) {
+          foreach ($subParagraphs as $subParagraph) {
+            $subParagraphEntity = $subParagraph->getEntity();
+            $subParagraphSettingsArray = $subParagraphEntity->get('field_paragraph_settings')
+              ->getValue();
+            if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
+              $variables['is_row'] = 'TRUE';
+              $variables['attributes']['class'][] = 'has-layout';
+            }
+          }
+        }
+      }
+      else {
+        trigger_error('Field field_paragraphs_paragraphs exists but its elements are not of type "paragraph". Ignoring.', E_USER_NOTICE);
+      }
+    }
+  }
+  kint($variables);
 }
