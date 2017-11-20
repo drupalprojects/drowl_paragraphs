@@ -13,18 +13,20 @@
   "require": {
     "ryanve/verge": "master"
   },
-  "ryanve/verge": {
-    "type": "package",
-    "package": {
-      "name": "ryanve/verge",
-      "type": "drupal-library",
-      "version": "master",
-      "dist": {
-        "url": "https://github.com/ryanve/verge/archive/master.zip",
-        "type": "zip"
-      },
-      "require": {
-        "composer/installers": "~1.0"
+  "repositories": {
+    "ryanve/verge": {
+      "type": "package",
+      "package": {
+        "name": "ryanve/verge",
+        "type": "drupal-library",
+        "version": "master",
+        "dist": {
+          "url": "https://github.com/ryanve/verge/archive/master.zip",
+          "type": "zip"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        }
       }
     }
   }

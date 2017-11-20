@@ -18,11 +18,11 @@
             var animationOffset = animationObj.offset;
             var animationDelay = animationObj.delay;
             switch(animationEvent) {
-              case n:
+              case '':
 
                 break;
-              case n:
-                    code block
+              case '':
+
                 break;
               }
                 animatedParagraph.addClass(animationAnimation);

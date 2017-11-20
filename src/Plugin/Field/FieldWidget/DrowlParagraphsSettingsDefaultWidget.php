@@ -585,8 +585,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#states' => [
           'visible' => [
             'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'_events"]' => ['value' => [
-              'enter_viewport',
-              'leave_viewport'
+              'enter-viewport',
+              'leave-viewport'
             ]]
           ]
         ],
