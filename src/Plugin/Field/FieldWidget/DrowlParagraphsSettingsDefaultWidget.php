@@ -19,12 +19,13 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
+
   /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
     return array(
-        'open' => FALSE
+        'open' => FALSE,
       ) + parent::defaultSettings();
   }
 
@@ -49,7 +50,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $summary = parent::settingsSummary();
     if ($this->getSetting('open')) {
       $summary[] = $this->t('Display element open by default.');
-    } else {
+    }
+    else {
       $summary[] = $this->t('Display element closed by default.');
     }
     return $summary;
@@ -236,7 +238,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['lg']['layout_lg_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Indentation') ,
+      '#title' => $this->t('Indentation'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_lg_indent) ? $item->layout_lg_indent : NULL,
       '#empty_option' => $this->t('- None -'),
@@ -346,7 +348,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['layout']['other'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-ellipsis-h" aria-hidden="true"></i><span class="tab-label">' . $this->t('Other') . '</span>',
-      '#group' => 'layout'
+      '#group' => 'layout',
     );
     $element['layout']['other']['layout_min_height'] = [
       '#type' => 'select',
@@ -394,7 +396,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['style']['style_boxstyle'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-paint-brush" aria-hidden="true"></i><span class="tab-label">' . $this->t('Box Style') . '</span>',
-      '#group' => 'style'
+      '#group' => 'style',
     );
     $element['style']['style_boxstyle']['style_boxstyle'] = [
       '#type' => 'select',
@@ -425,7 +427,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set animations for this container, based on specific events.'),
     );
     $animations_allowed_count = 4;
-    for ($i=1; $i <= $animations_allowed_count; $i++) {
+    for ($i = 1; $i <= $animations_allowed_count; $i++) {
       $element['style']['animations']['style_animation_' . $i] = [
         '#type' => 'details',
         '#title' => $this->t('Animation') . ' ' . $i,
@@ -436,13 +438,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#options' => [
           'enter-viewport' => $this->t('Entering the viewport'),
           'leave-viewport' => $this->t('Leaving the viewport'),
-          'hover-element' => $this->t('Hover the element'),
-          'hover-section' => $this->t('Hover the (outer) section'),
+          'hover' => $this->t('Hover the element.'),
         ],
         '#required' => FALSE,
         '#multiple' => FALSE,
         '#empty_option' => $this->t('- None -'),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_events'}) ? $item->{'style_animation_'.$i.'_events'} : '',
+        '#default_value' => isset($item->{'style_animation_' . $i . '_events'}) ? $item->{'style_animation_' . $i . '_events'} : '',
         '#description' => '<ul>
           <li><strong>' . $this->t('Entering the viewport') . ':</strong> ' . $this->t('Animates if the element enters the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Leaving the viewport') . ':</strong> ' . $this->t('Animates if the element leaves the viewport (by scrolling).') . '</li>
@@ -564,12 +565,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#required' => FALSE,
         '#multiple' => FALSE,
         '#empty_option' => $this->t('- None -'),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_animation'}) ? $item->{'style_animation_'.$i.'_animation'} : '',
+        '#default_value' => isset($item->{'style_animation_' . $i . '_animation'}) ? $item->{'style_animation_' . $i . '_animation'} : '',
         '#description' => $this->t('Choose the animation to run on the event.'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'"]' => ['filled' => TRUE]
-          ]
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '"]' => ['filled' => TRUE],
+          ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
       ];
@@ -577,18 +578,20 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_offset'] = [
         '#type' => 'select',
         '#title' => $this->t('Viewport animation offset trigger'),
-        '#options' => array_merge($percentage_negative_options, $percentage_options),
-        '#default_value' => isset($item->{'style_animation_'.$i.'_offset'}) ? $item->{'style_animation_'.$i.'_offset'} : '',
+        '#options' => array_merge($percentage_negative_options, ['0' => '0'], $percentage_options),
+        '#default_value' => isset($item->{'style_animation_' . $i . '_offset'}) ? $item->{'style_animation_' . $i . '_offset'} : 0,
         '#empty_option' => $this->t('- None -'),
         '#required' => FALSE,
         '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'_events"]' => ['value' => [
-              'enter-viewport',
-              'leave-viewport'
-            ]]
-          ]
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '_events"]' => [
+              'value' => [
+                'enter-viewport',
+                'leave-viewport',
+              ],
+            ],
+          ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
       ];
@@ -598,13 +601,13 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#type' => 'number',
         '#min' => '0',
         '#step' => '1',
-        '#default_value' => isset($item->{'style_animation_'.$i.'_delay'}) ? $item->{'style_animation_'.$i.'_delay'} : 0,
+        '#default_value' => isset($item->{'style_animation_' . $i . '_delay'}) ? $item->{'style_animation_' . $i . '_delay'} : 0,
         '#field_suffix' => 'ms',
         '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s)'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'"]' => ['filled' => TRUE]
-          ]
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '"]' => ['filled' => TRUE],
+          ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
@@ -613,7 +616,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['style']['style_textstyle'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-align-left" aria-hidden="true"></i><span class="tab-label">' . $this->t('Text Style') . '</span>',
-      '#group' => 'style'
+      '#group' => 'style',
     );
     $element['style']['style_textstyle']['style_textstyle'] = [
       '#type' => 'select',
@@ -645,7 +648,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['style']['expert'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-user-secret" aria-hidden="true"></i><span class="tab-label">' . $this->t('Expert') . '</span>',
-      '#group' => 'style'
+      '#group' => 'style',
     );
     $element['style']['expert']['classes_additional'] = array(
       '#title' => t('Additional classes'),
@@ -657,7 +660,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
 
     // If cardinality is 1, ensure a label is output for the field by wrapping
     // it in a details element.
-    if ($this->fieldDefinition->getFieldStorageDefinition()->getCardinality() == 1) {
+    if ($this->fieldDefinition->getFieldStorageDefinition()
+        ->getCardinality() == 1) {
       $element += array(
         '#type' => 'details',
         '#open' => $this->getSetting('open') ? TRUE : FALSE,
@@ -670,10 +674,10 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     // Turn the nested array structure into a flat key => value array.
     $values_flat = [];
-    if(!empty($values)){
-      foreach($values as $delta => $field){
+    if (!empty($values)) {
+      foreach ($values as $delta => $field) {
         $it = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($field));
-        foreach($it as $k => $v) {
+        foreach ($it as $k => $v) {
           $values_flat[$delta][$k] = $v;
         }
       }

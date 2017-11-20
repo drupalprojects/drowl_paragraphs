@@ -148,7 +148,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
             }
           }
           if (!empty($animations)) {
-            $variables['attributes']->addClass('animated');
+            $variables['attributes']->addClass('has-animation');
             $variables['attributes']->setAttribute('data-animations', \Drupal\Component\Serialization\Json::encode($animations));
           }
 
@@ -160,6 +160,10 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           }
           if (!empty($ps['layout_reverse_order'])) {
             $variables['attributes']->addClass('reverse-layout-order');
+          }
+          if(empty($ps['layout_sm_columns']) && (!empty($ps['layout_md_columns']) || !empty($ps['layout_lg_columns']))){
+            // add small-12 (full width on small devices) - otherwise the "auto width"-feature will
+            $variables['layout_attributes']->addClass('small-12');
           }
 
           if (!empty($ps['style_boxstyle'])) {

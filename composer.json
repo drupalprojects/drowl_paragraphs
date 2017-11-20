@@ -11,8 +11,7 @@
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
   "require": {
-    "ryanve/verge": "master",
-    "drupal/drowl_paragraphs": "1.x-dev@dev"
+    "ryanve/verge": "master"
   },
   "repositories": {
     "ryanve/verge": {
