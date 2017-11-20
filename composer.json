@@ -13,7 +13,7 @@
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
   "require": {
-    "ryanve-verge": "^1.10"
+    "ryanve-verge": "^1.10.2"
   },
   "repositories": [
     {
