@@ -142,6 +142,12 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'varchar',
       'length' => 64,
     );
+    $output['columns']['layout_reverse_order'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => TRUE,
+    );
+
     $output['columns']['style_boxstyle'] = array(
       'type' => 'varchar',
       'length' => 64,
@@ -243,6 +249,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       ->setRequired(FALSE);
     $properties['layout_section_width'] = DataDefinition::create('string')
       ->setLabel(t('Section width'))
+      ->setRequired(FALSE);
+    $properties['layout_reverse_order'] = DataDefinition::create('string')
+      ->setLabel(t('Reverse order'))
       ->setRequired(FALSE);
     $properties['style_boxstyle'] = DataDefinition::create('string')
       ->setLabel(t('Box style'))

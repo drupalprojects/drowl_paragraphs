@@ -1,0 +1,36 @@
+{
+  "name": "drupal/drowl_paragraphs",
+  "type": "drupal-module",
+  "description": "DROWL Paragraphs enhancements like settings fields and other UX / UI / Helper stuff.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/drowl_paragraphs",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/drowl_paragraphs",
+    "source": "http://cgit.drupalcode.org/drowl_paragraphs"
+  },
+  "require": {
+    "ryanve/verge": "^1.10.2"
+  },
+  "repositories": {
+    "font-awesome": {
+      "type": "package",
+      "package": {
+        "name": "ryanve/verge",
+        "version": "v1.10.2",
+        "type": "drupal-library",
+        "extra": {
+          "installer-name": "fontawesome"
+        },
+        "dist": {
+          "url": "https://github.com/ryanve/verge/archive/1.10.2.zip",
+          "type": "zip"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        }
+      }
+    }
+  }
+}

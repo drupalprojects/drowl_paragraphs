@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Database\Database;
+
 //#webksde#JP20171114: This should'nt be needed I think?
 ///**
 // * Implements hook_install().
@@ -20,3 +22,30 @@
 //  $definition = $entityFieldManager->getFieldStorageDefinitions('drowl_paragraphs_settings')['columns'];
 //  $fieldDefinitionListener->onFieldDefinitionDelete($definition);
 //}
+
+/**
+ * Add schema column layout_reverse_order.
+ */
+function drowl_paragraphs_update_8001(){
+  $spec = array(
+    'type' => 'int',
+    'size' => 'tiny',
+    'unsigned' => TRUE,
+  );
+  $schema = Database::getConnection()->schema();
+  $schema->addField('paragraph__field_paragraph_settings', 'field_paragraph_settings_layout_reverse_order', $spec);
+  $schema->addField('paragraph_revision__field_paragraph_settings', 'field_paragraph_settings_layout_reverse_order', $spec);
+}
+
+/**
+ * Add schema column layout_reverse_order (revision).
+ */
+function drowl_paragraphs_update_8002(){
+  $spec = array(
+    'type' => 'int',
+    'size' => 'tiny',
+    'unsigned' => TRUE,
+  );
+  $schema = Database::getConnection()->schema();
+  $schema->addField('paragraph_revision__field_paragraph_settings', 'field_paragraph_settings_layout_reverse_order', $spec);
+}
