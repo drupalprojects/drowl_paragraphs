@@ -33,7 +33,7 @@
               }
 
               // Scroll related animations
-              didScroll = false;
+              didScroll = true;
               switch (animationEvent) {
                 case 'enter-viewport':
                   setInterval(function () {
@@ -45,7 +45,7 @@
                         animatedParagraph.addClass('in-scope');
 
                         // Add the deservered animation
-                        Drupal.behaviors.drowl_paragraphs_frontend(animationName, animationDelay);
+                        Drupal.behaviors.drowl_paragraphs_frontend.animate(animationName, animationDelay);
                       }
                     }
                   }, 250);
@@ -58,7 +58,7 @@
                         // Only run if the element was in scope before
                         // Otherwise we'd never know if  the element has not
                         // been visible yet.
-                        Drupal.behaviors.drowl_paragraphs_frontend(animationName, animationDelay);
+                        Drupal.behaviors.drowl_paragraphs_frontend.animate(animationName, animationDelay);
                         animatedParagraph.removeClass('was-in-scope');
                       }
                     }
@@ -66,7 +66,7 @@
                   break;
                 case 'hover':
                   $animatedParagraph.mouseenter(function () {
-                    Drupal.behaviors.drowl_paragraphs_frontend(animationName, animationDelay);
+                    Drupal.behaviors.drowl_paragraphs_frontend.animate(animationName, animationDelay);
                   });
                   break;
               }
