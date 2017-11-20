@@ -13,8 +13,8 @@
   "require": {
     "ryanve/verge": "master"
   },
-  "repositories": {
-    "ryanve/verge": {
+  "repositories": [
+    {
       "type": "package",
       "package": {
         "name": "ryanve/verge",
@@ -29,5 +29,5 @@
         }
       }
     }
-  }
+  ]
 }
