@@ -38,8 +38,10 @@
                 case 'enter-viewport':
                   setInterval(function () {
                     if (didScroll) {
+                      console.log('enter-vieport > didScroll');
                       // Check if in viewport
                       if (!animatedParagraph.hasClass('in-scope') && verge.inViewport(animatedParagraph.get(0), animationOffsetPx)) {
+                        console.log('enter-vieport > didScroll > inScope & offset > animated');
                         // We always have to set an indicator if the element was
                         // in scope to detect leave-viewport
                         animatedParagraph.addClass('in-scope');
@@ -53,8 +55,10 @@
                 case 'leave-viewport':
                   setInterval(function () {
                     if (didScroll) {
+                      console.log('leave-vieport > didScroll');
                       // Check if no more in viewport
                       if (animatedParagraph.hasClass('was-in-scope') && !verge.inViewport(animatedParagraph.get(0), animationOffsetPx)) {
+                        console.log('leave-vieport > didScroll > outScope & offset > animated');
                         // Only run if the element was in scope before
                         // Otherwise we'd never know if  the element has not
                         // been visible yet.
@@ -66,6 +70,7 @@
                   break;
                 case 'hover':
                   $animatedParagraph.mouseenter(function () {
+                    console.log('hover > hovered > animated');
                     Drupal.behaviors.drowl_paragraphs_frontend.animate(animationName, animationDelay);
                   });
                   break;

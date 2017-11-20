@@ -448,7 +448,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
           <li><strong>' . $this->t('Entering the viewport') . ':</strong> ' . $this->t('Animates if the element enters the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Leaving the viewport') . ':</strong> ' . $this->t('Animates if the element leaves the viewport (by scrolling).') . '</li>
           <li><strong>' . $this->t('Hover the element') . ':</strong> ' . $this->t('Animation starts when entering the element with the cursor.') . '</li>
-          <li><strong>' . $this->t('Hover the (outer) section') . ':</strong> ' . $this->t('Animation starts when entering the outer section with the cursor.') . '</li>
         </ul>',
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-events'),
       ];
@@ -569,7 +568,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#description' => $this->t('Choose the animation to run on the event.'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '"]' => ['filled' => TRUE],
+            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => ['filled' => TRUE],
           ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
@@ -585,7 +584,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '_events"]' => [
+            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => [
               'value' => [
                 'enter-viewport',
                 'leave-viewport',
@@ -606,7 +605,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s)'),
         '#states' => [
           'visible' => [
-            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i . '"]' => ['filled' => TRUE],
+            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => ['filled' => TRUE],
           ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
