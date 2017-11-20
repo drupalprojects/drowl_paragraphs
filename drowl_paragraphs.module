@@ -149,7 +149,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           }
           if (!empty($animations)) {
             $variables['attributes']->addClass('animated');
-            $variables['attributes']->setAttribute('data-animations', '[' . \Drupal\Component\Serialization\Json::encode($animations) . ']');
+            $variables['attributes']->setAttribute('data-animations', \Drupal\Component\Serialization\Json::encode($animations));
           }
 
           if (!empty($ps['layout_min_height'])) {

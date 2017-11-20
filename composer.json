@@ -11,20 +11,16 @@
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
   "require": {
-    "ryanve/verge": "^1.10.2"
+    "ryanve/verge": "master"
   },
   "repositories": {
     "font-awesome": {
       "type": "package",
       "package": {
         "name": "ryanve/verge",
-        "version": "v1.10.2",
         "type": "drupal-library",
-        "extra": {
-          "installer-name": "fontawesome"
-        },
         "dist": {
-          "url": "https://github.com/ryanve/verge/archive/1.10.2.zip",
+          "url": "https://github.com/ryanve/verge/archive/master.zip",
           "type": "zip"
         },
         "require": {

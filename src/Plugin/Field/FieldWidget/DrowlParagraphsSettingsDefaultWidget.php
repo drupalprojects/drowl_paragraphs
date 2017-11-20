@@ -174,9 +174,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-reverse-indent form-item--inline'),
     ];
-    //
-    //
-    //    // Medium Devices
+
+    // Medium Devices
     $element['layout']['md'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-tablet" aria-hidden="true"></i><span class="tab-label">' . $this->t('Medium devices') . '</span>',
@@ -216,8 +215,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-reverse-indent form-item--inline'),
     ];
-    //
-    //    // Large Devices
+
+    // Large Devices
     $element['layout']['lg'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-desktop" aria-hidden="true"></i><span class="tab-label">' . $this->t('Large devices') . '</span>',
@@ -386,21 +385,17 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     //    // ===================================
     //    // Styling group
     //    // ===================================
-
-
     $element['style'] = array(
       '#type' => 'horizontal_tabs',
       '#theme_wrappers' => array('horizontal_tabs'),
       '#title' => $this->t('Style'),
       '#tree' => TRUE,
     );
-
     $element['style']['style_boxstyle'] = array(
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-paint-brush" aria-hidden="true"></i><span class="tab-label">' . $this->t('Box Style') . '</span>',
       '#group' => 'style'
     );
-
     $element['style']['style_boxstyle']['style_boxstyle'] = [
       '#type' => 'select',
       '#title' => $this->t('Box style'),
@@ -435,7 +430,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#type' => 'details',
         '#title' => $this->t('Animation') . ' ' . $i,
       ];
-
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_events'] = [
         '#type' => 'select',
         '#title' => $this->t('Event'),
@@ -572,6 +566,11 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#empty_option' => $this->t('- None -'),
         '#default_value' => isset($item->{'style_animation_'.$i.'_animation'}) ? $item->{'style_animation_'.$i.'_animation'} : '',
         '#description' => $this->t('Choose the animation to run on the event.'),
+        '#states' => [
+          'visible' => [
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'"]' => ['filled' => TRUE]
+          ]
+        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
       ];
 
@@ -585,12 +584,10 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
         '#states' => [
           'visible' => [
-            'select[name="field_vt_style_animations_events"]' => [
-              'value' => [
-                'enter_viewport',
-                'leave_viewport'
-              ]
-            ]
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'_events"]' => ['value' => [
+              'enter_viewport',
+              'leave_viewport'
+            ]]
           ]
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
@@ -604,6 +601,11 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#default_value' => isset($item->{'style_animation_'.$i.'_delay'}) ? $item->{'style_animation_'.$i.'_delay'} : 0,
         '#field_suffix' => 'ms',
         '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s)'),
+        '#states' => [
+          'visible' => [
+            'select[name="field_style_animations_style_animation_' . $i . '][style_animation_' . $i .'"]' => ['filled' => TRUE]
+          ]
+        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
     }
