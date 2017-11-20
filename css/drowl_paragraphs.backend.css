@@ -192,3 +192,30 @@
   left: 10px;
   margin-top: -14px !important;
 }
+
+/* Paragraphs reference field */
+.paragraph-type-title{
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+.paragraph-type-title .paragraph-type-icon{
+  width:95px;
+  height:50px;
+}
+.paragraph-type-title .paragraph-type-label{
+  display:none;
+  position:absolute;
+  top:110%;
+  left:0;
+  z-index:999;
+  font-size:10px;
+  background:#0074bd;
+  color:white;
+  padding:4px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+.paragraph-type-title:hover .paragraph-type-label{
+  display:block;
+}

@@ -5,11 +5,11 @@
 */
 (function ($, Drupal) {
 
-  Drupal.behaviors.drowl_paragraphs_backend = {
-    attach: function (context, settings) {
-      $( document ).ready(function() {
-          console.log('paragraphs backend scripts!');
-      });
-    },
-  }
+  // Drupal.behaviors.drowl_paragraphs_backend = {
+  //   attach: function (context, settings) {
+  //     $( document ).ready(function() {
+  //         console.log('paragraphs backend scripts!');
+  //     });
+  //   },
+  // }
 })(jQuery, Drupal);

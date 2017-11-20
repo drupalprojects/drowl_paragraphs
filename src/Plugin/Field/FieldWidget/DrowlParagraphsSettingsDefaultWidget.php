@@ -434,7 +434,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       ];
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_events'] = [
         '#type' => 'select',
-        '#title' => $this->t('Event'),
+        '#title' => $this->t('Event trigger'),
         '#options' => [
           'enter-viewport' => $this->t('Entering the viewport'),
           'leave-viewport' => $this->t('Leaving the viewport'),
@@ -450,6 +450,40 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
           <li><strong>' . $this->t('Hover the element') . ':</strong> ' . $this->t('Animation starts when entering the element with the cursor.') . '</li>
         </ul>',
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-events'),
+      ];
+
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_offset'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Viewport animation event trigger offset'),
+        '#options' => [
+          '0' => '0',
+          '10' => $this->t('@percent% visible', ['@percent' => '10']),
+          '20' => $this->t('@percent% visible', ['@percent' => '20']),
+          '30' => $this->t('@percent% visible', ['@percent' => '30']),
+          '40' => $this->t('@percent% visible', ['@percent' => '40']),
+          '50' => $this->t('@percent% visible', ['@percent' => '50']),
+          '60' => $this->t('@percent% visible', ['@percent' => '60']),
+          '70' => $this->t('@percent% visible', ['@percent' => '70']),
+          '80' => $this->t('@percent% visible', ['@percent' => '80']),
+          '90' => $this->t('@percent% visible', ['@percent' => '90']),
+          '100' => $this->t('@percent% visible', ['@percent' => '100']),
+        ],
+        '#default_value' => isset($item->{'style_animation_' . $i . '_offset'}) ? $item->{'style_animation_' . $i . '_offset'} : 0,
+        '#empty_option' => $this->t('- None -'),
+        '#empty_value' => 0,
+        '#required' => FALSE,
+        '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
+        '#states' => [
+          'visible' => [
+            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => [
+              'value' => [
+                'enter-viewport',
+                'leave-viewport',
+              ],
+            ],
+          ],
+        ],
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
       ];
 
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_animation'] = [
@@ -572,27 +606,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
           ],
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
-      ];
-
-      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_offset'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Viewport animation offset trigger'),
-        '#options' => array_merge($percentage_negative_options, ['0' => '0'], $percentage_options),
-        '#default_value' => isset($item->{'style_animation_' . $i . '_offset'}) ? $item->{'style_animation_' . $i . '_offset'} : 0,
-        '#empty_option' => $this->t('- None -'),
-        '#required' => FALSE,
-        '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
-        '#states' => [
-          'visible' => [
-            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => [
-              'value' => [
-                'enter-viewport',
-                'leave-viewport',
-              ],
-            ],
-          ],
-        ],
-        '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
       ];
 
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_delay'] = [
