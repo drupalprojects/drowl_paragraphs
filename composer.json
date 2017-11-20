@@ -21,7 +21,7 @@
       "package": {
         "name": "ryanve-verge",
         "type": "drupal-library",
-        "version": "1.10.2",
+        "version": "v1.10.2",
         "dist": {
           "url": "https://github.com/ryanve/verge/archive/1.10.2.zip",
           "type": "zip"
