@@ -12,7 +12,7 @@
           if ($(this).data('animations')) {
             // It really has animations ;):
             var $animatedParagraph = $(this);
-            var animations = animatedParagraph.data('animations');
+            var animations = $animatedParagraph.data('animations');
             var animationCount = animations.length;
             for (var i = 0; i < animationCount; i++) {
               // Animation data array variables:
