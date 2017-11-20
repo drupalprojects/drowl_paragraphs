@@ -13,7 +13,7 @@
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
   "require": {
-    "ryanve/verge": "master"
+    "ryanve/verge": "^1.10"
   },
   "repositories": [
     {
@@ -21,9 +21,9 @@
       "package": {
         "name": "ryanve/verge",
         "type": "drupal-library",
-        "version": "master",
+        "version": "1.10.2",
         "dist": {
-          "url": "https://github.com/ryanve/verge/archive/master.zip",
+          "url": "https://github.com/ryanve/verge/archive/1.10.2.zip",
           "type": "zip"
         },
         "require": {
