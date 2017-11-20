@@ -17,7 +17,7 @@ drowl-paragraphs-frontend:
     component:
       /libraries/font-awesome/css/font-awesome.min.css: {}
   js:
-    /libraries/scrollMonitor/scrollMonitor.js: {}
+    /libraries/ryanve/verge/verge.min.js: {}
     js/drowl_paragraphs.frontend.js: {}
   dependencies:
     - core/jquery
