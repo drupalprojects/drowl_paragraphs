@@ -40,11 +40,11 @@
                     if (didScroll) {
                       console.log('enter-vieport > didScroll');
                       // Check if in viewport
-                      if (!animatedParagraph.hasClass('in-scope') && verge.inViewport(animatedParagraph.get(0), animationOffsetPx)) {
+                      if (!$animatedParagraph.hasClass('in-scope') && verge.inViewport($animatedParagraph.get(0), animationOffsetPx)) {
                         console.log('enter-vieport > didScroll > inScope & offset > animated');
                         // We always have to set an indicator if the element was
                         // in scope to detect leave-viewport
-                        animatedParagraph.addClass('in-scope');
+                        $animatedParagraph.addClass('in-scope');
 
                         // Add the deservered animation
                         Drupal.behaviors.drowl_paragraphs_frontend.animate(animationName, animationDelay);
