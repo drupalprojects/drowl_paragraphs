@@ -13,13 +13,13 @@
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
   "require": {
-    "ryanve/verge": "^1.10"
+    "ryanve-verge": "^1.10"
   },
   "repositories": [
     {
       "type": "package",
       "package": {
-        "name": "ryanve/verge",
+        "name": "ryanve-verge",
         "type": "drupal-library",
         "version": "1.10.2",
         "dist": {
