@@ -10,9 +10,6 @@
     "issues": "https://www.drupal.org/project/issues/drowl_paragraphs",
     "source": "http://cgit.drupalcode.org/drowl_paragraphs"
   },
-  "require": {
-    "ryanve/verge": "dev-master"
-  },
   "repositories": [
     {
       "type": "package",
@@ -29,5 +26,8 @@
         }
       }
     }
-  ]
+  ],
+  "require": {
+    "ryanve/verge": "dev-master"
+  }
 }
