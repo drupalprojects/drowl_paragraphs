@@ -640,10 +640,10 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         'text-justify' => $this->t('Justified'),
         'lead' => $this->t('Lead'),
         $this->t('Columns')->__toString() => array(
-          'text-columns--2' => t('2 Spalten'),
-          'text-columns--3' => t('3 Spalten'),
-          'text-columns--4' => t('4 Spalten'),
-          'text-columns--5' => t('5 Spalten'),
+          'text-columns--2' => t('2 Columns'),
+          'text-columns--3' => t('3 Columns'),
+          'text-columns--4' => t('4 Columns'),
+          'text-columns--5' => t('5 Columns'),
         ),
       ],
       '#required' => FALSE,
@@ -666,7 +666,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#title' => t('Additional classes'),
       '#type' => 'textfield',
       '#default_value' => isset($item->classes_additional) ? $item->classes_additional : '',
-      '#description' => $this->t('<strong>Experts:</strong> Enter special CSS classes to apply separated by space.'),
+      '#description' => $this->t('<strong>Experts:</strong> Enter special CSS classes to apply, separated by space.'),
       '#wrapper_attributes' => array('class' => 'form-item--classes-additional'),
     );
 

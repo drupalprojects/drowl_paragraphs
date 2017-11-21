@@ -219,3 +219,25 @@
 .paragraph-type-title:hover .paragraph-type-label{
   display:block;
 }
+/* -- Add paragraph layer */
+ul.paragraphs-add-dialog-list{
+  display:flex;
+  flex-wrap:wrap;
+  max-width:450px;
+}
+ul.paragraphs-add-dialog-list .paragraphs-add-dialog-row{
+  flex: 1 1 33.333%;
+  max-width:50%;
+}
+ul.paragraphs-add-dialog-list input.field-add-more-submit{
+  background-position: center 5px;
+  background-size: 95px 50px;
+  padding: 55px 10px 10px;
+  text-align: center;
+  display:block;
+  height:100%;
+  min-width:0;
+  white-space:normal;
+  line-height:1.1em;
+  vertical-align: top;
+}
