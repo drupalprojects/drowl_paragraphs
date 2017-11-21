@@ -8,5 +8,5 @@ dependencies:
   - field
   - paragraphs
   - field_group
-
+  - fontawesome_iconpicker
 php: 7.0
