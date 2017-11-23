@@ -599,7 +599,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#multiple' => FALSE,
         '#empty_option' => $this->t('- None -'),
         '#default_value' => isset($item->{'style_animation_' . $i . '_animation'}) ? $item->{'style_animation_' . $i . '_animation'} : '',
-        '#description' => $this->t('Choose the animation to run on the event.'),
+        '#description' => $this->t('Choose the animation to run on the event.' . '<br><a style="margin-left:0" class="button" href="https://daneden.github.io/animate.css/" target="_balnk">' . $this->t('Preview') . '</a>'),
         '#states' => [
           'visible' => [
             'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => ['filled' => TRUE],
