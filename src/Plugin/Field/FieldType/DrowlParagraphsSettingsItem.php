@@ -258,7 +258,7 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_section_width'] = DataDefinition::create('string')
       ->setLabel(t('Section width'))
       ->setRequired(FALSE);
-    $properties['layout_reverse_order'] = DataDefinition::create('string')
+    $properties['layout_reverse_order'] = DataDefinition::create('boolean')
       ->setLabel(t('Reverse order'))
       ->setRequired(FALSE);
     $properties['style_boxstyle'] = DataDefinition::create('string')
