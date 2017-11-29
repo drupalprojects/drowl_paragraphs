@@ -118,6 +118,10 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
         'type' => 'varchar',
         'length' => 64,
       );
+      $output['columns']['style_animation_' . $i . '_animation'] = array(
+        'type' => 'varchar',
+        'length' => 64,
+      );
       $output['columns']['style_animation_' . $i . '_offset'] = array(
         'type' => 'int',
         'size' => 'tiny',
@@ -127,9 +131,10 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
         'size' => 'small',
         'unsigned' => TRUE,
       );
-      $output['columns']['style_animation_' . $i . '_animation'] = array(
-        'type' => 'varchar',
-        'length' => 64,
+      $output['columns']['style_animation_' . $i . '_transition_duration'] = array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
       );
     }
 
@@ -239,8 +244,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       $properties['style_animation_' . $i . '_offset'] = DataDefinition::create('string')
         ->setLabel(t('Viewport animation offset trigger'))
         ->setRequired(FALSE);
-      $properties['style_animation_' . $i . '_delay'] = DataDefinition::create('string')
+      $properties['style_animation_' . $i . '_delay'] = DataDefinition::create('integer')
         ->setLabel(t('Animation delay (ms)'))
+        ->setRequired(FALSE);
+      $properties['style_animation_' . $i . '_transition_duration'] = DataDefinition::create('integer')
+        ->setLabel(t('Transition duration (ms)'))
         ->setRequired(FALSE);
     }
 

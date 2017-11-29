@@ -5,14 +5,22 @@
  */
 use Drupal\Core\Template\Attribute;
 
-function drowl_paragraphs_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
-  $field_definition = $context['items']->getFieldDefinition();
-  if ($context['widget']->getPluginId() == 'paragraphs') {
-    // Add backend css / js libraries:
-    $element['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-backend';
-  }
+/**
+ * Prepares variables for modal form add widget template.
+ *
+ * Default template: paragraphs-add-dialog.html.twig
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - buttons: An array of buttons to display in the modal form.
+ */
+function drowl_paragraphs_preprocess_paragraphs_add_dialog(&$variables) {
+  $variables['add']['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-backend';
 }
 
+/**
+ * Prepared variables for paragraph output:
+ */
 function drowl_paragraphs_preprocess_paragraph(&$variables) {
   // Add frontend library for paragraphs display:
   $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-frontend';
@@ -28,51 +36,6 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           ->getValue();
         if (!empty($paragraphSettingsArray[0])) {
           $ps = $paragraphSettingsArray[0];
-
-          /*
-           * EXAMPLE:
-          array(
-            'layout_sm_columns' => '12',
-            'layout_sm_indent' => '2',
-            'layout_sm_reverse_indent' => '3',
-            'layout_md_columns' => '4',
-            'layout_md_indent' => '5',
-            'layout_md_reverse_indent' => '6',
-            'layout_lg_columns' => '7',
-            'layout_lg_indent' => '8',
-            'layout_lg_reverse_indent' => '9',
-            'layout_margin_top' => 'xxs',
-            'layout_margin_right' => 'xs',
-            'layout_margin_bottom' => 's',
-            'layout_margin_left' => 'm',
-            'layout_padding_top' => 'l',
-            'layout_padding_right' => 'xl',
-            'layout_padding_bottom' => 'xxl',
-            'layout_padding_left' => 'xxs',
-            'style_animation_1_events' => 'enter_viewport',
-            'style_animation_1_offset' => '1',
-            'style_animation_1_delay' => '4',
-            'style_animation_1_animation' => 'bounce',
-            'style_animation_2_events' => 'leave_viewport',
-            'style_animation_2_offset' => '17',
-            'style_animation_2_delay' => '5',
-            'style_animation_2_animation' => 'bounceInDown',
-            'style_animation_3_events' => 'hover_section',
-            'style_animation_3_offset' => '0',
-            'style_animation_3_delay' => '6',
-            'style_animation_3_animation' => 'tada',
-            'style_animation_4_events' => 'hover_element',
-            'style_animation_4_offset' => '0',
-            'style_animation_4_delay' => '87',
-            'style_animation_4_animation' => 'bounceInDown',
-            'layout_min_height' => '10',
-            'layout_section_width' => 'viewport_width',
-            'style_boxstyle' => 'default',
-            'style_textstyle' => 'lead',
-            'classes_additional' => 'class-123 abc',
-          );
-          */
-
 
           $variables['layout_attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['layout_attributes']) ? $variables['layout_attributes'] : array());
           $variables['attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['attributes']) ? $variables['attributes'] : array());
@@ -144,6 +107,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
                 'animation' => $ps['style_animation_' . $i . '_animation'],
                 'offset' => $ps['style_animation_' . $i . '_offset'],
                 'delay' => $ps['style_animation_' . $i . '_delay'],
+                'transition_duration' => $ps['style_animation_' . $i . '_transition_duration'],
               );
             }
           }
@@ -195,11 +159,13 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
         if (!empty($subParagraphsER)) {
           $subParagraphs = $subParagraphsER->referencedEntities();
           foreach ($subParagraphs as $subParagraph) {
-            $subParagraphSettingsArray = $subParagraph->get('field_paragraph_settings')
-              ->getValue();
-            if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
-              $variables['is_row'] = 'TRUE';
-              $variables['attributes']->addClass('has-layout');
+            if ($subParagraph->hasField('field_paragraph_settings')) {
+              $subParagraphSettingsArray = $subParagraph->get('field_paragraph_settings')
+                ->getValue();
+              if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
+                $variables['is_row'] = 'TRUE';
+                $variables['attributes']->addClass('has-layout');
+              }
             }
           }
         }

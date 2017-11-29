@@ -1,4 +1,4 @@
-name: DROWL Paragraphs configuration and enhancements
+name: DROWL Paragraphs
 type: module
 description: 'DROWL Paragraphs enhancements like settings fields and other UX / UI / Helper stuff.'
 core: 8.x

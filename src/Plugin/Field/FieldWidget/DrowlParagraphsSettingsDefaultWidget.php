@@ -623,6 +623,22 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
+
+      $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_transition_duration'] = [
+        '#title' => t('Transition duration'),
+        '#type' => 'number',
+        '#min' => '0',
+        '#step' => '1',
+        '#default_value' => isset($item->{'style_animation_' . $i . '_delay'}) ? $item->{'style_animation_' . $i . '_transition_duration'} : 0,
+        '#field_suffix' => 'ms',
+        '#description' => $this->t('Duration of the transition. Value in milliseconds (1000ms = 1s)'),
+        '#states' => [
+          'visible' => [
+            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events"]' => ['filled' => TRUE],
+          ],
+        ],
+        '#wrapper_attributes' => array('class' => 'form-item--style-animation-transition-duration'),
+      ];
     }
 
     $element['style']['style_textstyle'] = array(
