@@ -28,6 +28,7 @@
                 var animationName = animationObj.animation;
                 var animationOffset = animationObj.offset;
                 var animationDelay = animationObj.delay;
+                var animationDuration = animationObj.transition_duration;
 
                 // Calculated values:
                 var animationOffsetPx = 0;
@@ -48,7 +49,7 @@
                         $animatedParagraph.addClass('in-scope');
 
                         // Add the deservered animation
-                        Drupal.behaviors.drowl_paragraphs_frontend.animate($animatedParagraph, animationName, animationDelay);
+                        Drupal.behaviors.drowl_paragraphs_frontend.animate($animatedParagraph, animationName, animationDelay, animationDuration);
                       }
                       else if ($animatedParagraph.hasClass('in-scope') && !verge.inViewport($animatedParagraph.get(0), animationOffsetPx)) {
                         // No more in scope:
@@ -76,7 +77,7 @@
                 }
                 else if (animationEvent === 'hover') {
                   $animatedParagraph.mouseenter(function () {
-                    Drupal.behaviors.drowl_paragraphs_frontend.animate($animatedParagraph, animationName, animationDelay);
+                    Drupal.behaviors.drowl_paragraphs_frontend.animate($animatedParagraph, animationName, animationDelay, animationDuration);
                   });
                 }
               })(i, $animatedParagraph, animationObj);
@@ -96,11 +97,16 @@
         }, 200);
       });
     },
-    animate: function ($container, animationName, animationDelay, callback) {
+    animate: function ($container, animationName, animationDelay, animationDuration, callback) {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       animationDelay = (typeof animationDelay === 'undefined') ? 0 : animationDelay;
+      animationDurationOverridden = ((typeof animationDuration === 'undefined') && animationDuration == 0) ? false : true;
+      if(animationDurationOverridden){
+        $container.css('animation-duration', animationDuration + 'ms');
+      }
       setTimeout(function () {
-        $container.addClass('animated ' + animationName).one(animationEnd, function () {
+        $container.addClass('animated ' + animationName);
+        $container.one(animationEnd, function () {
           $(this).removeClass('animated ' + animationName);
           if (callback) {
             callback();
