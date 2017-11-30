@@ -9,4 +9,5 @@ dependencies:
   - paragraphs
   - field_group
   - fontawesome_iconpicker
+  - slick_paragraphs
 php: 7.0
