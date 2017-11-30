@@ -1,0 +1,93 @@
+<?php
+/**
+ * @file
+ * DROWL paragraphs types.
+ */
+
+
+/**
+ * Prepared variables for paragraph output:
+ */
+function drowl_paragraphs_types_preprocess_paragraph(&$variables) {
+  // Add frontend library for paragraphs display:
+  $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-types';
+}
+
+/**
+ * Implements HOOK_theme_suggestions_HOOK_alter
+ */
+function drowl_paragraphs_types_theme_suggestions_paragraph_alter(&$suggestions, $variables){
+  $entity              = $variables['elements']['#paragraph'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $type                = $entity->getType();
+
+  $drowl_paragraphs_suggestions = [];
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types';
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type;
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type . '__' . $sanitized_view_mode;
+
+  // Our override should be more general than the theme suggestion:
+  $suggestions = array_merge($drowl_paragraphs_suggestions, $suggestions);
+}
+
+
+// Preparation for default templates:
+///**
+// * Implements hook_theme()
+// *
+// * Register a theme for each paragraph type
+// *
+// */
+//function drowl_paragraphs_types_theme(){
+//
+//  $theme_templates  = [];
+//  $paragraph_types  = drowl_paragraphs_get_paragraph_types();
+//
+//  foreach ($paragraph_types as $type){
+//    $theme_templates['paragraph__drowl_paragraphs__' . $type] = [
+//      'base hook' => 'paragraph'
+//    ];
+//  }
+//
+//  $theme_templates['paragraph__drowl_paragraphs'] = [
+//    'base hook' => 'paragraph'
+//  ];
+//
+//  return $theme_templates;
+//}
+//
+//
+///**
+// * Implements hook_theme_registry_alter()
+// *
+// */
+//function drowl_paragraphs_types_theme_registry_alter(&$theme_registry) {
+//  $module_path      = drupal_get_path('module', 'drowl_paragraphs');
+//  $template_objects = drupal_find_theme_templates($theme_registry, '.html.twig', $module_path);
+//  $paragraph_types  = drowl_paragraphs_get_paragraph_types();
+//
+//  // 1. Loop through the paragraph types
+//  // 2. Check if each paragraph exists in the `$template_objects` array
+//  // 3. If it doesn't exist, remove it from the registry so we don't get any errors
+//  foreach ($paragraph_types as $type){
+//    $template = 'paragraph__drowl_paragraphs__' . $type;
+//    if(!isset($template_objects[$template])){
+//      unset($theme_registry['paragraph__drowl_paragraphs__' . $type]);
+//    }
+//  }
+//
+//  if(!isset($template_objects['paragraph__drowl_paragraphs'])){
+//    unset($theme_registry['paragraph__drowl_paragraphs']);
+//  }
+//}
+//
+//
+///**
+// * Helper function to get a list of paragraph types by machine name
+// *
+// * @return array
+// */
+//function drowl_paragraphs_types_get_paragraph_types(){
+//  $paragraph_bundles = \Drupal::service('entity_type.bundle.info')->getBundleInfo('paragraph');
+//  return array_keys($paragraph_bundles);
+//}

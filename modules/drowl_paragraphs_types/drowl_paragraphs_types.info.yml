@@ -1,0 +1,12 @@
+name: DROWL Paragraphs Types
+type: module
+description: 'Provides standard DROWL Paragraphs Types'
+core: 8.x
+
+# Dependencies
+dependencies:
+  - drowl_paragraphs
+  - slick_paragraphs
+  - fontawesome_iconpicker
+  - drowl_media
+php: 7.0

@@ -1,0 +1,11 @@
+drowl-paragraphs-types:
+  version: 1.x
+  css:
+    theme:
+      css/drowl_paragraphs_types.css: {}
+    component:
+      /libraries/font-awesome/css/font-awesome.min.css: {}
+  js:
+    js/drowl_paragraphs_types.js: {}
+  dependencies:
+    - core/jquery
