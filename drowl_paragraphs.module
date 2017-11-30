@@ -28,6 +28,11 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
   // Create classes from paragraph_settings field
   if (!empty($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
+
+    $variables['layout_attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['layout_attributes']) ? $variables['layout_attributes'] : array());
+    $variables['layout_wrapper_attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['layout_wrapper_attributes']) ? $variables['layout_wrapper_attributes'] : array());
+    $variables['attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['attributes']) ? $variables['attributes'] : array());
+
     if ($paragraph->hasField('field_paragraph_settings')) {
       if ($paragraph->get('field_paragraph_settings')
           ->getFieldDefinition()
@@ -36,9 +41,6 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           ->getValue();
         if (!empty($paragraphSettingsArray[0])) {
           $ps = $paragraphSettingsArray[0];
-
-          $variables['layout_attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['layout_attributes']) ? $variables['layout_attributes'] : array());
-          $variables['attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['attributes']) ? $variables['attributes'] : array());
 
           if (!empty($ps['layout_sm_columns'])) {
             $variables['layout_attributes']->addClass('columns');
@@ -122,14 +124,15 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           if (!empty($ps['layout_section_width'])) {
             $variables['layout_attributes']->addClass($ps['layout_section_width']);
           }
+
           if (!empty($ps['layout_reverse_order'])) {
-            $variables['attributes']->addClass('reverse-layout-order');
+            $variables['layout_wrapper_attributes']->addClass('flex-dir-row-reverse');
           }
           if (!empty($ps['layout_align_children_vertical'])) {
-            $variables['attributes']->addClass('align-' . $ps['layout_align_children_vertical']);
+            $variables['layout_wrapper_attributes']->addClass('align-' . $ps['layout_align_children_vertical']);
           }
           if (!empty($ps['layout_align_children_horizontal'])) {
-            $variables['attributes']->addClass('align-' . $ps['layout_align_children_horizontal']);
+            $variables['layout_wrapper_attributes']->addClass('align-' . $ps['layout_align_children_horizontal']);
           }
 
 
@@ -174,6 +177,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
               if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
                 $variables['is_row'] = 'TRUE';
                 $variables['attributes']->addClass('has-layout');
+                $variables['layout_wrapper_attributes']->addClass('row');
               }
             }
           }
