@@ -374,6 +374,34 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#description' => $this->t('Overrides the container width, ignoring the parent container width. Viewport width = screen width, Page width = content width.'),
       '#wrapper_attributes' => array('class' => 'form-item--layout-section-width'),
     ];
+    $element['layout']['other']['layout_align_children_vertical'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Children vertical alignment'),
+      '#options' => [
+        'top' => $this->t('Top'),
+        'middle' => $this->t('Middle'),
+        'bottom' => $this->t('Bottom'),
+      ],
+      '#default_value' => isset($item->layout_align_children_vertical) ? $item->layout_align_children_vertical : NULL,
+      '#empty_option' => $this->t('- None -'),
+      '#required' => FALSE,
+      '#description' => $this->t('Aligns the children elements vertically. In some cases this setting may have no effect.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-align-children-vertical'),
+    ];
+    $element['layout']['other']['layout_align_children_horizontal'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Children horizontal alignment'),
+      '#options' => [
+        'left' => $this->t('Left'),
+        'center' => $this->t('Center'),
+        'right' => $this->t('Right'),
+      ],
+      '#default_value' => isset($item->layout_align_children_horizontal) ? $item->layout_align_children_horizontal : NULL,
+      '#empty_option' => $this->t('- None -'),
+      '#required' => FALSE,
+      '#description' => $this->t('Aligns the children elements horizontally. In some cases this setting may have no effect.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-align-children-horizontal'),
+    ];
     $element['layout']['other']['layout_reverse_order'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Reverse order'),

@@ -147,6 +147,14 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'varchar',
       'length' => 64,
     );
+    $output['columns']['layout_align_children_vertical'] = array(
+      'type' => 'varchar',
+      'length' => 32,
+    );
+    $output['columns']['layout_align_children_horizontal'] = array(
+      'type' => 'varchar',
+      'length' => 32,
+    );
     $output['columns']['layout_reverse_order'] = array(
       'type' => 'int',
       'size' => 'tiny',
@@ -257,6 +265,12 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       ->setRequired(FALSE);
     $properties['layout_section_width'] = DataDefinition::create('string')
       ->setLabel(t('Section width'))
+      ->setRequired(FALSE);
+    $properties['layout_align_children_vertical'] = DataDefinition::create('string')
+      ->setLabel(t('Children vertical alignment'))
+      ->setRequired(FALSE);
+    $properties['layout_align_children_horizontal'] = DataDefinition::create('string')
+      ->setLabel(t('Children horizontal alignment'))
       ->setRequired(FALSE);
     $properties['layout_reverse_order'] = DataDefinition::create('boolean')
       ->setLabel(t('Reverse order'))
