@@ -473,16 +473,16 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#empty_value' => 0,
         '#required' => FALSE,
         '#description' => $this->t('Entering the viewport') . '/' . $this->t('Leaving the viewport') . ': ' . $this->t('Offset for the animation to start if the element is visible for x %.'),
-        '#states' => [
-          'visible' => [
-            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"' => [
-              'value' => [
-                'enter-viewport',
-                'leave-viewport',
-              ],
-            ],
-          ],
-        ],
+//        '#states' => [
+//          'visible' => [
+//            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"]:first' => [
+//              'value' => [
+//                'enter-viewport',
+//                'leave-viewport',
+//              ],
+//            ],
+//          ],
+//        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-offset'),
       ];
 
@@ -600,11 +600,11 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#empty_option' => $this->t('- None -'),
         '#default_value' => isset($item->{'style_animation_' . $i . '_animation'}) ? $item->{'style_animation_' . $i . '_animation'} : '',
         '#description' => $this->t('Choose the animation to run on the event.' . '<br><a style="margin-left:0" class="button" href="https://daneden.github.io/animate.css/" target="_balnk">' . $this->t('Preview') . '</a>'),
-        '#states' => [
-          'visible' => [
-            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"' => ['filled' => TRUE],
-          ],
-        ],
+//        '#states' => [
+//          'visible' => [
+//            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"]:first' => ['filled' => TRUE],
+//          ],
+//        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-animation'),
       ];
 
@@ -615,28 +615,28 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         '#step' => '1',
         '#default_value' => isset($item->{'style_animation_' . $i . '_delay'}) ? $item->{'style_animation_' . $i . '_delay'} : 0,
         '#field_suffix' => 'ms',
-        '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s)'),
-        '#states' => [
-          'visible' => [
-            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"' => ['filled' => TRUE],
-          ],
-        ],
+        '#description' => $this->t('Delay the animation start. Value in milliseconds (1000ms = 1s).'),
+//        '#states' => [
+//          'visible' => [
+//            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"]:first' => ['filled' => TRUE],
+//          ],
+//        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-delay'),
       ];
 
       $element['style']['animations']['style_animation_' . $i]['style_animation_' . $i . '_transition_duration'] = [
-        '#title' => t('Transition duration'),
+        '#title' => t('Duration'),
         '#type' => 'number',
         '#min' => '0',
         '#step' => '1',
         '#default_value' => isset($item->{'style_animation_' . $i . '_transition_duration'}) ? $item->{'style_animation_' . $i . '_transition_duration'} : 0,
         '#field_suffix' => 'ms',
-        '#description' => $this->t('Duration of the transition. Value in milliseconds (1000ms = 1s)'),
-        '#states' => [
-          'visible' => [
-            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"' => ['filled' => TRUE],
-          ],
-        ],
+        '#description' => $this->t('Duration of the animation transition. Value in milliseconds (1000ms = 1s).'),
+//        '#states' => [
+//          'visible' => [
+//            'select[name$="[style][animations][style_animation_' . $i . '][style_animation_' . $i . '_events]"]:first' => ['filled' => TRUE],
+//          ],
+//        ],
         '#wrapper_attributes' => array('class' => 'form-item--style-animation-transition-duration'),
       ];
     }
