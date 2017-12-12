@@ -15,19 +15,16 @@
       "type": "package",
       "package": {
         "name": "ryanve/verge",
+        "version": "master",
         "type": "drupal-library",
-        "version": "dev-master",
         "dist": {
           "url": "https://github.com/ryanve/verge/archive/master.zip",
           "type": "zip"
-        },
-        "require": {
-          "composer/installers": "~1.0"
         }
       }
     }
   ],
   "require": {
-    "ryanve/verge": "dev-master"
+    "ryanve/verge": "master"
   }
 }
