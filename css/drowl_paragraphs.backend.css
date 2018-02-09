@@ -223,11 +223,12 @@
 ul.paragraphs-add-dialog-list{
   display:flex;
   flex-wrap:wrap;
-  max-width:450px;
+  max-width:850px;
 }
 ul.paragraphs-add-dialog-list .paragraphs-add-dialog-row{
-  flex: 1 1 33.333%;
+  flex: 1 0 25%;
   max-width:50%;
+  box-sizing: border-box;
 }
 ul.paragraphs-add-dialog-list input.field-add-more-submit{
   background-position: center 5px;

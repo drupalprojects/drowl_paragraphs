@@ -15,6 +15,7 @@ use Drupal\Core\Template\Attribute;
  *   - buttons: An array of buttons to display in the modal form.
  */
 function drowl_paragraphs_preprocess_paragraphs_add_dialog(&$variables) {
+  // Add backend library form to EXPERIMENTAL WIDGET:
   $variables['add']['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-backend';
 }
 
@@ -52,6 +53,13 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           if (!empty($ps['layout_sm_reverse_indent'])) {
             $variables['layout_attributes']->addClass('small-rev-offset-' . $ps['layout_sm_reverse_indent']);
           }
+          if (!empty($ps['layout_sm_collapse'])) {
+            $variables['layout_attributes']->addClass('small-collapse');
+          }
+          if (!empty($ps['layout_sm_uncollapse'])) {
+            $variables['layout_attributes']->addClass('small-uncollapse');
+          }
+
           if (!empty($ps['layout_md_columns'])) {
             $variables['layout_attributes']->addClass('columns');
             $variables['layout_attributes']->addClass('medium-' . $ps['layout_md_columns']);
@@ -62,6 +70,13 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           if (!empty($ps['layout_md_reverse_indent'])) {
             $variables['layout_attributes']->addClass('medium-rev-offset-' . $ps['layout_md_reverse_indent']);
           }
+          if (!empty($ps['layout_md_collapse'])) {
+            $variables['layout_attributes']->addClass('medium-collapse');
+          }
+          if (!empty($ps['layout_md_uncollapse'])) {
+            $variables['layout_attributes']->addClass('medium-uncollapse');
+          }
+
           if (!empty($ps['layout_lg_columns'])) {
             $variables['layout_attributes']->addClass('columns');
             $variables['layout_attributes']->addClass('large-' . $ps['layout_lg_columns']);
@@ -71,6 +86,12 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           }
           if (!empty($ps['layout_lg_reverse_indent'])) {
             $variables['layout_attributes']->addClass('large-rev-offset-' . $ps['layout_lg_reverse_indent']);
+          }
+          if (!empty($ps['layout_lg_collapse'])) {
+            $variables['layout_attributes']->addClass('large-collapse');
+          }
+          if (!empty($ps['layout_lg_uncollapse'])) {
+            $variables['layout_attributes']->addClass('large-uncollapse');
           }
 
           if (!empty($ps['layout_margin_top'])) {
@@ -145,11 +166,20 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           if (!empty($ps['style_boxstyle'])) {
             $variables['attributes']->addClass('box-style box-style--' . $ps['style_boxstyle']);
           }
+          if (!empty($ps['style_cutline'])) {
+            $variables['attributes']->addClass('cutline cutline--' . $ps['style_cutline']);
+          }
 
           // #webksde-TF: content_attributes not used inside regular paragraph templates?
           // $variables['content_attributes'] = new \Drupal\Core\Template\Attribute(isset($variables['content_attributes']) ? $variables['content_attributes'] : array());
+          if (!empty($ps['style_textalign'])) {
+            $variables['attributes']->addClass($ps['style_textalign']);
+          }
           if (!empty($ps['style_textstyle'])) {
             $variables['attributes']->addClass($ps['style_textstyle']);
+          }
+          if (!empty($ps['style_textcolumns'])) {
+            $variables['attributes']->addClass($ps['style_textcolumns']);
           }
 
           if (!empty($ps['classes_additional'])) {

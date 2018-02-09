@@ -4,6 +4,24 @@
  * DROWL paragraphs types.
  */
 
+use Drupal\Component\Serialization\Json;
+
+/**
+ * Implements HOOK_theme_suggestions_HOOK_alter
+ */
+function drowl_paragraphs_types_theme_suggestions_paragraph_alter(&$suggestions, $variables) {
+  $entity = $variables['elements']['#paragraph'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $type = $entity->getType();
+
+  $drowl_paragraphs_suggestions = [];
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types';
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type;
+  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type . '__' . $sanitized_view_mode;
+
+  // Our override should be more general than the theme suggestion:
+  $suggestions = array_merge($drowl_paragraphs_suggestions, $suggestions);
+}
 
 /**
  * Prepared variables for paragraph output:
@@ -13,21 +31,108 @@ function drowl_paragraphs_types_preprocess_paragraph(&$variables) {
   $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-types';
 }
 
-/**
- * Implements HOOK_theme_suggestions_HOOK_alter
- */
-function drowl_paragraphs_types_theme_suggestions_paragraph_alter(&$suggestions, $variables){
-  $entity              = $variables['elements']['#paragraph'];
-  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
-  $type                = $entity->getType();
+function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variables) {
+  if (!empty($variables['paragraph'])) {
+    $paragraph = $variables['paragraph'];
+    if ($paragraph->hasField('field_paragraphs_slide_amount_sm')) {
+      $slide_amount_sm = $paragraph->get('field_paragraphs_slide_amount_sm')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_amount_md')) {
+      $slide_amount_md = $paragraph->get('field_paragraphs_slide_amount_md')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_amount_lg')) {
+      $slide_amount_lg = $paragraph->get('field_paragraphs_slide_amount_lg')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_adaptiveh')) {
+      $adaptiveheight = $paragraph->get('field_paragraphs_slide_adaptiveh')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_autoplay')) {
+      $autoplay = $paragraph->get('field_paragraphs_slide_autoplay')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_arrows')) {
+      $arrows = $paragraph->get('field_paragraphs_slide_arrows')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_dots')) {
+      $dots = $paragraph->get('field_paragraphs_slide_dots')->value;
+    }
+    if ($paragraph->hasField('field_paragraphs_slide_infinite')) {
+      $infinite = $paragraph->get('field_paragraphs_slide_infinite')->value;
+    }
 
-  $drowl_paragraphs_suggestions = [];
-  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types';
-  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type;
-  $drowl_paragraphs_suggestions[] = 'paragraph__drowl_paragraphs_types__' . $type . '__' . $sanitized_view_mode;
+    kint(array(
+      'adaptiveheight' => $adaptiveheight,
+      'autoplay' => $autoplay,
+      'arrows' => $arrows,
+      'dots' => $dots,
+      'infinite' => $infinite,
+      'slide_amount_sm' => $slide_amount_sm,
+      'slide_amount_md' => $slide_amount_md,
+      'slide_amount_lg' => $slide_amount_lg,
+    ));
 
-  // Our override should be more general than the theme suggestion:
-  $suggestions = array_merge($drowl_paragraphs_suggestions, $suggestions);
+    $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
+    $optionset->setThirdPartySetting('drowl_paragraphs_types', 'settings_override', array(
+      'adaptiveheight' => $adaptiveheight,
+      'autoplay' => $autoplay,
+      'arrows' => $arrows,
+      'dots' => $dots,
+      'infinite' => $infinite,
+    ));
+    $optionset->setThirdPartySetting('drowl_paragraphs_types', 'settings_responsive_override', array(
+      'slide_amount_sm' => $slide_amount_sm,
+      'slide_amount_md' => $slide_amount_md,
+      'slide_amount_lg' => $slide_amount_lg,
+    ));
+  }
+}
+
+function drowl_paragraphs_types_preprocess_slick(&$variables) {
+  // Get the overrides:
+  $overrides = $variables['element']['#optionset']->getThirdPartySettings('drowl_paragraphs_types');
+  // General settings
+  if (!empty($overrides['settings_override'])) {
+    $settings_override = $overrides['settings_override'];
+  }
+  else {
+    $settings_override = array();
+  }
+
+
+
+  // Media Query / size based settings:
+  if (!empty($overrides['settings_responsive_override'])) {
+    $settings_responsive_override = $overrides['settings_responsive_override'];
+  }
+  else {
+    $settings_responsive_override = array();
+  }
+  if (!empty($settings_responsive_override)) {
+    $data_slick = $variables['content_attributes']->offsetGet('data-slick');
+    if (!empty($data_slick)) {
+      $data_slick = Json::decode($data_slick->value());
+      if (!empty($data_slick['responsive'])) {
+        foreach ($data_slick['responsive'] as $key => $responsive_setting) {
+          // TODO - Change by breakpoints set:
+          if (isset($responsive_setting['breakpoint'])) {
+            if (!empty($settings_responsive_override['slide_amount_sm']) && $responsive_setting['breakpoint'] == 640) {
+              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_sm'];
+              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_sm'];
+            }
+            elseif (!empty($settings_responsive_override['slide_amount_md']) && $responsive_setting['breakpoint'] == 1024) {
+              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_md'];
+              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_md'];
+            }
+            elseif (!empty($settings_responsive_override['slide_amount_lg']) && $responsive_setting['breakpoint'] == 1200) {
+              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_lg'];
+              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_lg'];
+            }
+          }
+        }
+      }
+      $data_slick = Json::encode($data_slick);
+      $variables['content_attributes']->setAttribute('data-slick', $data_slick);
+    }
+  }
 }
 
 

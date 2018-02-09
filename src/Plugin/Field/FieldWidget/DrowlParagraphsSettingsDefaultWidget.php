@@ -65,9 +65,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     // $item is where the current saved values are stored.
     $item =& $items[$delta];
 
+    // Attach backend library:
+    $form['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-backend';
+
     // Common options:
     $cols_options = [
-      'auto' => $this->t('automatic'),
+      '0' => $this->t('automatic'),
       '1' => '1',
       '2' => '2',
       '3' => '3',
@@ -109,6 +112,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
 
     $distance_options = [
+      'none' => '0', // used for reset / override purposes
       'xxs' => 'xxs',
       'xs' => 'xs',
       'sm' => 's',
@@ -176,6 +180,22 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-reverse-indent form-item--inline'),
     ];
+    $element['layout']['sm']['layout_sm_collapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('No grid spaces'),
+      '#default_value' => !empty($item->layout_sm_collapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Removes the spaces between the grid columns.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-sm-collapse'),
+    ];
+    $element['layout']['sm']['layout_sm_uncollapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('(Re)add grid spaces'),
+      '#default_value' => !empty($item->layout_sm_uncollapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-sm-uncollapse'),
+    ];
 
     // Medium Devices
     $element['layout']['md'] = array(
@@ -217,6 +237,22 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-reverse-indent form-item--inline'),
     ];
+    $element['layout']['md']['layout_md_collapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('No grid spaces'),
+      '#default_value' => !empty($item->layout_md_collapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Removes the spaces between the grid columns.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-md-collapse'),
+    ];
+    $element['layout']['md']['layout_md_uncollapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('(Re)add grid spaces'),
+      '#default_value' => !empty($item->layout_md_uncollapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-md-uncollapse'),
+    ];
 
     // Large Devices
     $element['layout']['lg'] = array(
@@ -257,6 +293,22 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#required' => FALSE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-reverse-indent form-item--inline'),
+    ];
+    $element['layout']['lg']['layout_lg_collapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('No grid spaces'),
+      '#default_value' => !empty($item->layout_lg_collapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Removes the spaces between the grid columns.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-collapse'),
+    ];
+    $element['layout']['lg']['layout_lg_uncollapse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('(Re)add grid spaces'),
+      '#default_value' => !empty($item->layout_lg_uncollapse) ? 1 : 0,
+      '#required' => FALSE,
+      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-uncollapse'),
     ];
 
 
@@ -366,6 +418,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#title' => $this->t('Section width'),
       '#options' => [
         'viewport-width' => $this->t('Viewport width'),
+        'viewport-width-cp' => $this->t('Viewport width > Contents Page Width'),
         'page-width' => $this->t('Page width'),
       ],
       '#default_value' => isset($item->layout_section_width) ? $item->layout_section_width : NULL,
@@ -436,10 +489,14 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
         'default' => $this->t('Default'),
         'primary' => $this->t('Primary'),
         'secondary' => $this->t('Secondary'),
+        'grey-light' => $this->t('Grey Light'),
+        'grey-dark' => $this->t('Grey Dark'),
         'light' => $this->t('Light'),
         'dark' => $this->t('Dark'),
-        'transparent-light' => $this->t('Transparent light'),
-        'transparent-dark' => $this->t('Transparent dark'),
+        'transparent-light' => $this->t('Transparent (100%), text light'),
+        'transparent-dark' => $this->t('Transparent (100%), text dark'),
+        'light-glass' => $this->t('Transparent light, text dark'),
+        'dark-glass' => $this->t('Transparent dark, text light'),
         'info' => $this->t('Info'),
         'warning' => $this->t('Warning'),
         'alert' => $this->t('Alarm'),
@@ -449,6 +506,18 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#default_value' => isset($item->style_boxstyle) ? $item->style_boxstyle : '',
       '#description' => $this->t('Predefined styling of this container.'),
       '#wrapper_attributes' => array('class' => 'form-item--style-boxstyle'),
+    ];
+    $element['style']['style_boxstyle']['style_cutline'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Cutline'),
+      '#options' => [
+        'top' => $this->t('Top'),
+        'bottom' => $this->t('Bottom'),
+      ],
+      '#empty_option' => $this->t('- None -'),
+      '#default_value' => isset($item->style_cutline) ? $item->style_cutline : '',
+      '#description' => $this->t('Add a cutline on top or bottom of this Paragraph.'),
+      '#wrapper_attributes' => array('class' => 'form-item--style-cutline'),
     ];
 
     $element['style']['animations'] = array(
@@ -677,28 +746,59 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#title' => '<i class="fa fa-2x fa-align-left" aria-hidden="true"></i><span class="tab-label">' . $this->t('Text Style') . '</span>',
       '#group' => 'style',
     );
-    $element['style']['style_textstyle']['style_textstyle'] = [
+    $element['style']['style_textstyle']['style_textalign'] = [
       '#type' => 'select',
-      '#title' => $this->t('Text alignment / style'),
+      '#title' => $this->t('Text alignment'),
       '#options' => [
         'text-left' => $this->t('Left aligned'),
         'text-right' => $this->t('Right aligned'),
         'text-center' => $this->t('Centered'),
         'text-justify' => $this->t('Justified'),
+        // Eg.: Structured selects
+        // $this->t('Columns')->__toString() => array(
+        //   'text-columns--2' => t('2 Columns'),
+        //   'text-columns--3' => t('3 Columns'),
+        //   'text-columns--4' => t('4 Columns'),
+        //   'text-columns--5' => t('5 Columns'),
+        // ),
+      ],
+      '#required' => FALSE,
+      '#multiple' => FALSE,
+      '#empty_option' => $this->t('Default'),
+      '#default_value' => isset($item->style_textalign) ? $item->style_textalign : '',
+      '#description' => $this->t('The text alignment.'),
+      '#wrapper_attributes' => array('class' => 'form-item--style-textalign'),
+    ];
+
+    $element['style']['style_textstyle']['style_textstyle'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Text Style'),
+      '#options' => [
         'lead' => $this->t('Lead'),
-        $this->t('Columns')->__toString() => array(
-          'text-columns--2' => t('2 Columns'),
-          'text-columns--3' => t('3 Columns'),
-          'text-columns--4' => t('4 Columns'),
-          'text-columns--5' => t('5 Columns'),
-        ),
       ],
       '#required' => FALSE,
       '#multiple' => FALSE,
       '#empty_option' => $this->t('Default'),
       '#default_value' => isset($item->style_textstyle) ? $item->style_textstyle : '',
-      '#description' => $this->t('The text alignment / style, if this element contains text.'),
+      '#description' => $this->t('The text style, if this element contains text.'),
       '#wrapper_attributes' => array('class' => 'form-item--style-textstyle'),
+    ];
+
+    $element['style']['style_textstyle']['style_textcolumns'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Text Columns'),
+      '#options' => [
+        'text-columns--2' => t('2 Columns'),
+        'text-columns--3' => t('3 Columns'),
+        'text-columns--4' => t('4 Columns'),
+        'text-columns--5' => t('5 Columns'),
+      ],
+      '#required' => FALSE,
+      '#multiple' => FALSE,
+      '#empty_option' => $this->t('Default'),
+      '#default_value' => isset($item->style_textcolumns) ? $item->style_textcolumns : '',
+      '#description' => $this->t('Structure text in columns, if this element contains text.'),
+      '#wrapper_attributes' => array('class' => 'form-item--style-textcolumns'),
     ];
 
     // ===================================
