@@ -1,0 +1,15 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: paragraph.container_slides
+target_entity_type_id: paragraph
+target_bundle: container_slides
+default_langcode: current_interface
+language_alterable: true

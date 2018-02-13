@@ -1,0 +1,28 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_webform
+    - paragraphs.paragraphs_type.webform
+  module:
+    - webform
+id: paragraph.webform.field_paragraph_webform
+field_name: field_paragraph_webform
+entity_type: paragraph
+bundle: webform
+label: Webformular
+description: 'Wählen Sie das Webformular, das Sie im Absatz anzeigen möchten. <a href="admin/structure/webform">Neue Webformulare können Sie hier anlegen</a> (sofern Ihre Berechtigungen dies erlauben).'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  default_data: ''
+  status: open
+  open: ''
+  close: ''
+field_type: webform

@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_link
+    - paragraphs.paragraphs_type.container
+  module:
+    - link
+id: paragraph.container.field_paragraphs_link
+field_name: field_paragraphs_link
+entity_type: paragraph
+bundle: container
+label: 'Link Overlay Ziel'
+description: 'Überlagert die gesamte Containerfläche mit einem Link-Overlay. So kann der gesamte Containerbereich mit einer Zielseite verknüpft werden.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

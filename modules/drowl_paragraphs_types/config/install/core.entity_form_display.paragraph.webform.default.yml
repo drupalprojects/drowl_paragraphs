@@ -1,0 +1,38 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.webform.field_paragraph_settings
+    - field.field.paragraph.webform.field_paragraph_webform
+    - paragraphs.paragraphs_type.webform
+  module:
+    - drowl_paragraphs
+    - field_layout
+    - layout_discovery
+    - webform
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.webform.default
+targetEntityType: paragraph
+bundle: webform
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 1
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraph_webform:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: webform_entity_reference_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

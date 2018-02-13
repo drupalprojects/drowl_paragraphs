@@ -1,0 +1,36 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.anchor.field_paragraphs_anchor_id
+    - field.field.paragraph.anchor.field_paragraphs_anchor_title
+    - paragraphs.paragraphs_type.anchor
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.anchor.default
+targetEntityType: paragraph
+bundle: anchor
+mode: default
+content:
+  field_paragraphs_anchor_id:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_paragraphs_anchor_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

@@ -1,0 +1,53 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container_tabs_accordion.field_paragraph_settings
+    - field.field.paragraph.container_tabs_accordion.field_paragraphs_paragraphs
+    - field.field.paragraph.container_tabs_accordion.field_paragraphs_tabs_acc_type
+    - paragraphs.paragraphs_type.container_tabs_accordion
+  module:
+    - drowl_paragraphs
+    - field_layout
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.container_tabs_accordion.default
+targetEntityType: paragraph
+bundle: container_tabs_accordion
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 2
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_paragraphs:
+    weight: 0
+    settings:
+      title: Reiter
+      title_plural: Reiter
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: container_tabs_accordeon_subtab
+    third_party_settings: {  }
+    type: paragraphs
+    region: content
+  field_paragraphs_tabs_acc_type:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:13be3621-2a44-4fbf-93b5-a7c77c5b9811'
+id: view
+label: 'View / Ansicht (dynamische Auflistung)'
+icon_uuid: 13be3621-2a44-4fbf-93b5-a7c77c5b9811
+description: 'Bettet eine Drupal Ansicht ("View" = materialisierter SELECT) ein, mit dem dynamische Auflistungen mit Filtern, Sortierfunktion usw. erstellt werden können.'
+behavior_plugins: {  }

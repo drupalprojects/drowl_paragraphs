@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:164f5b37-5026-412e-8cee-70bcb21ed1c9'
+id: anchor
+label: Sprungmarke
+icon_uuid: 164f5b37-5026-412e-8cee-70bcb21ed1c9
+description: "Erstellen Sie einen Absatz, der selbst unsichtbar ist, aber als Sprungmarke dient. Auf die angegebene Sprungmarken-ID kann per <a href=\"https://de.wikipedia.org/wiki/Anker_(HTML)\">HTML Anker</a> (#anker) verwiesen werden.\r\nZudem werden Sprungmarken bei Onepage / Single-Page Darstellungen häufig als On-Site Menüpunkte eingesetzt."
+behavior_plugins: {  }

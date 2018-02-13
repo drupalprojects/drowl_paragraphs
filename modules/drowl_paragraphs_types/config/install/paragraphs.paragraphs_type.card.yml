@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:0cd0b849-05c5-4058-bd50-011e8bc07508'
+id: card
+label: 'Bild + Text - Kachel ("Card / Tile")'
+icon_uuid: 0cd0b849-05c5-4058-bd50-011e8bc07508
+description: "Erstellen Sie Kacheln, die typischerweise auf andere Inhalte verlinken.\r\nKachen werden idR. innerhalb von Containern verwendet und dort mittels \"Einstellungen\" konfiguriert."
+behavior_plugins: {  }

@@ -1,0 +1,115 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.symbol.field_paragraph_settings
+    - field.field.paragraph.symbol.field_paragraphs_icon
+    - field.field.paragraph.symbol.field_paragraphs_icon_ci_color
+    - field.field.paragraph.symbol.field_paragraphs_icon_options
+    - field.field.paragraph.symbol.field_paragraphs_icon_position
+    - field.field.paragraph.symbol.field_paragraphs_item_color
+    - field.field.paragraph.symbol.field_paragraphs_item_size
+    - field.field.paragraph.symbol.field_paragraphs_link
+    - field.field.paragraph.symbol.field_paragraphs_subtitle
+    - field.field.paragraph.symbol.field_paragraphs_text
+    - field.field.paragraph.symbol.field_paragraphs_title
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - field_layout
+    - layout_discovery
+    - link
+    - options
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.symbol.default
+targetEntityType: paragraph
+bundle: symbol
+mode: default
+content:
+  field_paragraphs_icon:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_paragraphs_icon_ci_color:
+    type: entity_reference_entity_view
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_paragraphs_icon_options:
+    type: list_key
+    weight: 6
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_paragraphs_icon_position:
+    type: list_key
+    weight: 7
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_paragraphs_item_color:
+    type: entity_reference_entity_view
+    weight: 9
+    region: content
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_paragraphs_item_size:
+    type: list_key
+    weight: 8
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_paragraphs_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link_separate
+    region: content
+  field_paragraphs_subtitle:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_paragraphs_text:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraphs_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_paragraph_settings: true

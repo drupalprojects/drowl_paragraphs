@@ -1,0 +1,115 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - block_content.type.card
+    - field.storage.paragraph.field_paragraphs_entityreference
+    - media_entity.bundle.document
+    - media_entity.bundle.image
+    - media_entity.bundle.instagram
+    - media_entity.bundle.slide
+    - media_entity.bundle.tweet
+    - media_entity.bundle.video
+    - node.type.news_neuigkeit
+    - node.type.page
+    - paragraphs.paragraphs_type.entityreference
+    - taxonomy.vocabulary.tags
+  module:
+    - dynamic_entity_reference
+id: paragraph.entityreference.field_paragraphs_entityreference
+field_name: field_paragraphs_entityreference
+entity_type: paragraph
+bundle: entityreference
+label: Inhaltsreferenz
+description: "Wählen Sie einen Inhalt oder eine andere Entität aus, die Sie auf der Seite in Vorschau-Ansicht (Teaser) darstellen möchten. Die Darstellung erfolgt automatisch anhand von Festlegungen in der jeweiligen Entität.<br />\r\nGeben Sie den Titel des gewünschten Inhalts ein, um per Autovervollständigung nach ihm zu suchen."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  user:
+    handler: 'default:user'
+    handler_settings:
+      include_anonymous: false
+      filter:
+        type: _none
+      target_bundles: null
+      sort:
+        field: _none
+      auto_create: false
+  block_content:
+    handler: 'default:block_content'
+    handler_settings:
+      target_bundles:
+        card: card
+        basic: basic
+      sort:
+        field: _none
+      auto_create: null
+      auto_create_bundle: null
+  file:
+    handler: 'default:file'
+    handler_settings:
+      target_bundles: null
+      sort:
+        field: _none
+      auto_create: false
+  node:
+    handler: 'default:node'
+    handler_settings:
+      target_bundles:
+        news_neuigkeit: news_neuigkeit
+        page: page
+      sort:
+        field: _none
+      auto_create: false
+      auto_create_bundle: news_neuigkeit
+  media:
+    handler: 'default:media'
+    handler_settings:
+      target_bundles:
+        image: image
+        document: document
+        instagram: instagram
+        slide: slide
+        tweet: tweet
+        video: video
+      sort:
+        field: _none
+      auto_create: false
+      auto_create_bundle: image
+  taxonomy_term:
+    handler: 'default:taxonomy_term'
+    handler_settings:
+      target_bundles:
+        tags: tags
+      sort:
+        field: _none
+      auto_create: false
+      auto_create_bundle: ''
+  paragraph:
+    handler: 'default:paragraph'
+    handler_settings: {  }
+  menu_link_content:
+    handler: 'default:menu_link_content'
+    handler_settings: {  }
+  token_custom:
+    handler: 'default:token_custom'
+    handler_settings: {  }
+  simple_mega_menu:
+    handler: 'default:simple_mega_menu'
+    handler_settings: {  }
+  redirect:
+    handler: 'default:redirect'
+    handler_settings: {  }
+  shortcut:
+    handler: 'default:shortcut'
+    handler_settings: {  }
+  webform_submission:
+    handler: 'default:webform_submission'
+    handler_settings: {  }
+  crop:
+    handler: 'default:crop'
+    handler_settings: {  }
+field_type: dynamic_entity_reference

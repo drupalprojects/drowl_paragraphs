@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:67c4acbd-e247-4410-9ce0-ad79280d53c7'
+id: image
+label: Bild
+icon_uuid: 67c4acbd-e247-4410-9ce0-ad79280d53c7
+description: 'Erstellen Sie einen Absatz, der aus einem Bild besteht.'
+behavior_plugins: {  }

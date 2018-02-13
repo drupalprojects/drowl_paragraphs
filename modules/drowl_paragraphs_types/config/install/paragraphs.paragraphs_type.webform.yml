@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:7c052d45-bed7-4a4a-beb5-6c7bb233ecf8'
+id: webform
+label: Webformular
+icon_uuid: 7c052d45-bed7-4a4a-beb5-6c7bb233ecf8
+description: 'Erstellen Sie einen Absatz, der ein Webformular beinhaltet. Erstellen Sie mit Webforms schnell und einfach Formulare zur Datenerfassung, zum Beispiel als Kontaktformular, Produktanfragen, etc..'
+behavior_plugins: {  }

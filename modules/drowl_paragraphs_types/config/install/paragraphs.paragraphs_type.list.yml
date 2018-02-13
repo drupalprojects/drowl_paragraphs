@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:b9cf3bee-fb8a-441b-a3e9-616278bbad3c'
+id: list
+label: 'Liste (Text)'
+icon_uuid: b9cf3bee-fb8a-441b-a3e9-616278bbad3c
+description: 'Erstellen Sie einen Absatz, der eine Liste von Stichpunkten enthält. Erlaubt zudem die Auswahl der Darstellung der Listenpunkte als Aufzählung, Punkte, Häkchen o.Ä..'
+behavior_plugins: {  }

@@ -1,0 +1,27 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_gallery
+    - media_entity.bundle.slide
+    - paragraphs.paragraphs_type.slideshow
+id: paragraph.slideshow.field_paragraphs_gallery
+field_name: field_paragraphs_gallery
+entity_type: paragraph
+bundle: slideshow
+label: Slideshow-Slides
+description: 'Wählen Sie hier Ihre Slides aus. Ein Slide enthält in der Regel ein Bild. Optional kann ein Text angegeben werden, welcher unter dem Bild angezeigt wird (Bildbeschreibung).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      slide: slide
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

@@ -1,0 +1,29 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_paragraphs_bgimage_options
+field_name: field_paragraphs_bgimage_options
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: background_fixed
+      label: 'Fixierter Hintergrund (überscrollen)'
+    -
+      value: background_parallax
+      label: 'Parallax Effekt (verlangsamtes überscrollen)'
+    -
+      value: background_blurred
+      label: 'Unscharf darstellen'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

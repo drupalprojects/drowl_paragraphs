@@ -1,0 +1,62 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.list.field_paragraph_settings
+    - field.field.paragraph.list.field_paragraphs_list_text
+    - field.field.paragraph.list.field_paragraphs_list_type
+    - paragraphs.paragraphs_type.list
+  module:
+    - drowl_paragraphs
+    - field_group
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+  field_group:
+    group_paragraphs_list_options:
+      children:
+        - field_paragraphs_list_type
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: false
+        open: false
+      label: 'Listen Optionen'
+      region: content
+id: paragraph.list.default
+targetEntityType: paragraph
+bundle: list
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 3
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_list_text:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_paragraphs_list_type:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

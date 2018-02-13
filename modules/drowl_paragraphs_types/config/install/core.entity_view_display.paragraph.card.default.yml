@@ -1,0 +1,96 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card.field_paragraph_settings
+    - field.field.paragraph.card.field_paragraphs_image
+    - field.field.paragraph.card.field_paragraphs_link
+    - field.field.paragraph.card.field_paragraphs_subtitle
+    - field.field.paragraph.card.field_paragraphs_text
+    - field.field.paragraph.card.field_paragraphs_title
+    - paragraphs.paragraphs_type.card
+  module:
+    - fences
+    - field_formatter
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - link
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.card.default
+targetEntityType: paragraph
+bundle: card
+mode: default
+content:
+  field_paragraphs_image:
+    weight: 2
+    label: hidden
+    settings:
+      field_name: field_image
+      label: hidden
+      type: image
+      settings:
+        image_style: thumbnail_md_crop
+        image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: field_formatter_with_inline_settings
+    region: content
+  field_paragraphs_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_paragraphs_subtitle:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_paragraphs_text:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: text_default
+    region: content
+  field_paragraphs_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_paragraph_settings: true

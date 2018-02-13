@@ -1,0 +1,40 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.block_reference.field_paragraph_block_reference
+    - field.field.paragraph.block_reference.field_paragraph_settings
+    - paragraphs.paragraphs_type.block_reference
+  module:
+    - drowl_paragraphs
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.block_reference.default
+targetEntityType: paragraph
+bundle: block_reference
+mode: default
+content:
+  field_paragraph_block_reference:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_paragraph_settings:
+    weight: 1
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:09e45029-d36b-4bbd-a339-03dcd6991600'
+id: bild_text
+label: 'Bild + Text'
+icon_uuid: 09e45029-d36b-4bbd-a339-03dcd6991600
+description: 'Erstellen Sie einen Absatz, der aus einem Bild und einem Text besteht.'
+behavior_plugins: {  }

@@ -1,0 +1,76 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container_slides.field_paragraph_settings
+    - field.field.paragraph.container_slides.field_paragraphs_controlsoutside
+    - field.field.paragraph.container_slides.field_paragraphs_paragraphs
+    - field.field.paragraph.container_slides.field_paragraphs_slide_adaptiveh
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_lg
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_md
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_sm
+    - field.field.paragraph.container_slides.field_paragraphs_slide_arrows
+    - field.field.paragraph.container_slides.field_paragraphs_slide_autoplay
+    - field.field.paragraph.container_slides.field_paragraphs_slide_dots
+    - field.field.paragraph.container_slides.field_paragraphs_slide_infinite
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - fences
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - slick_paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.container_slides.default
+targetEntityType: paragraph
+bundle: container_slides
+mode: default
+content:
+  field_paragraphs_paragraphs:
+    weight: 0
+    label: hidden
+    settings:
+      optionset: paragraphs_slide_container
+      skin: default
+      view_mode: default
+      cache: 0
+      current_view_mode: default
+      override: false
+      overridables:
+        arrows: '0'
+        autoplay: '0'
+        dots: '0'
+        draggable: '0'
+        infinite: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      skin_arrows: ''
+      skin_dots: ''
+      style: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: slick_paragraphs_vanilla
+    region: content
+hidden:
+  field_paragraph_settings: true
+  field_paragraphs_controlsoutside: true
+  field_paragraphs_slide_adaptiveh: true
+  field_paragraphs_slide_amount_lg: true
+  field_paragraphs_slide_amount_md: true
+  field_paragraphs_slide_amount_sm: true
+  field_paragraphs_slide_arrows: true
+  field_paragraphs_slide_autoplay: true
+  field_paragraphs_slide_dots: true
+  field_paragraphs_slide_infinite: true

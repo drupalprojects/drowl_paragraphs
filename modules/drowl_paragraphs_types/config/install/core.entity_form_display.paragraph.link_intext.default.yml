@@ -1,0 +1,98 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.link_intext.field_paragraph_settings
+    - field.field.paragraph.link_intext.field_paragraphs_button_options
+    - field.field.paragraph.link_intext.field_paragraphs_icon
+    - field.field.paragraph.link_intext.field_paragraphs_item_color
+    - field.field.paragraph.link_intext.field_paragraphs_item_size
+    - field.field.paragraph.link_intext.field_paragraphs_link
+    - paragraphs.paragraphs_type.link_intext
+  module:
+    - drowl_paragraphs
+    - field_group
+    - field_layout
+    - fontawesome_iconpicker
+    - layout_discovery
+    - link_attributes
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+  field_group:
+    group_paragraphs_button_options:
+      children:
+        - field_paragraphs_icon
+        - field_paragraphs_item_size
+        - field_paragraphs_item_color
+        - field_paragraphs_button_options
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: false
+        open: false
+      label: 'Link / Button Optionen'
+      region: content
+id: paragraph.link_intext.default
+targetEntityType: paragraph
+bundle: link_intext
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 2
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_button_options:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_paragraphs_icon:
+    weight: 3
+    settings:
+      type: default
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+    type: fontawesome_iconpicker
+    region: content
+  field_paragraphs_item_color:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_item_size:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_link:
+    weight: 0
+    settings:
+      placeholder_url: 'z.B. /node/123 oder https://www.example.com'
+      placeholder_title: ''
+      enabled_attributes:
+        name: true
+        target: true
+        rel: true
+        class: true
+        id: false
+        accesskey: false
+    third_party_settings: {  }
+    type: link_attributes
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

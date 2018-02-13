@@ -1,0 +1,81 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.link_intext.field_paragraph_settings
+    - field.field.paragraph.link_intext.field_paragraphs_button_options
+    - field.field.paragraph.link_intext.field_paragraphs_icon
+    - field.field.paragraph.link_intext.field_paragraphs_item_color
+    - field.field.paragraph.link_intext.field_paragraphs_item_size
+    - field.field.paragraph.link_intext.field_paragraphs_link
+    - paragraphs.paragraphs_type.link_intext
+  module:
+    - fences
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - link
+    - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.link_intext.default
+targetEntityType: paragraph
+bundle: link_intext
+mode: default
+content:
+  field_paragraphs_button_options:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  field_paragraphs_icon:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_paragraphs_item_color:
+    type: entity_reference_entity_view
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_paragraphs_item_size:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  field_paragraphs_link:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: link_separate
+    region: content
+hidden:
+  field_paragraph_settings: true

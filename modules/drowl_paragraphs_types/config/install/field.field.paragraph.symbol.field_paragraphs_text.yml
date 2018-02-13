@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_text
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - text
+id: paragraph.symbol.field_paragraphs_text
+field_name: field_paragraphs_text
+entity_type: paragraph
+bundle: symbol
+label: Text
+description: 'Optionaler Text, der zum Symbol angezeigt wird.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

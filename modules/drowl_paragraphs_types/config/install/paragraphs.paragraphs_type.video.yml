@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:fc7eaae7-8f0c-45b5-b415-d85434f3df2f'
+id: video
+label: Video
+icon_uuid: fc7eaae7-8f0c-45b5-b415-d85434f3df2f
+description: 'Erstellen Sie einen Absatz, der aus einem Video besteht.'
+behavior_plugins: {  }

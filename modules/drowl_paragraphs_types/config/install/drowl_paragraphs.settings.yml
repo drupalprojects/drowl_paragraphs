@@ -1,0 +1,78 @@
+breakpoint_group: webksdct
+breakpoints:
+  webksdct:
+    small:
+      1x:
+        size_mapping: sm
+    medium:
+      1x:
+        size_mapping: md
+    large:
+      1x:
+        size_mapping: lg
+    xlarge:
+      1x:
+        size_mapping: sm
+    xxlarge:
+      1x:
+        size_mapping: sm
+breakpoint_mapping:
+  webksdct:
+    small:
+      1x:
+        size_mapping: sm
+    medium:
+      1x:
+        size_mapping: md
+    large:
+      1x:
+        size_mapping: lg
+    xlarge:
+      1x:
+        size_mapping: lg
+    xxlarge:
+      1x:
+        size_mapping: lg
+breakpoint_mapping_minmax: null
+breakpoint_mapping_sizes:
+  sm:
+    max-width:
+      mediaQuery: 'all and (max-width: 639px)'
+      type: max-width
+      size: '639'
+      unit: px
+    min-width:
+      mediaQuery: 'all and (max-width: 639px)'
+      type: min-width
+      size: 0
+      unit: px
+  md:
+    min-width:
+      mediaQuery: 'all and (min-width: 640px) and (max-width: 1023px)'
+      type: min-width
+      size: '640'
+      unit: px
+    max-width:
+      mediaQuery: 'all and (min-width: 640px) and (max-width: 1023px)'
+      type: max-width
+      size: '1023'
+      unit: px
+  lg:
+    min-width:
+      mediaQuery: 'all and (min-width: 1024px) and (max-width: 1199px)'
+      type: min-width
+      size: '1024'
+      unit: px
+    max-width:
+      mediaQuery: 'all and (min-width: 1440px)'
+      type: max-width
+      size: 99999999
+      unit: px
+defaults:
+  container_slides:
+    default_slide_amount_sm: '1'
+    default_slide_amount_md: '2'
+    default_slide_amount_lg: '3'
+  breakpoint_mapping_sizes_fallback:
+    md: '640'
+    lg: '1024'

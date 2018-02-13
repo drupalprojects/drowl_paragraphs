@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_icon
+    - paragraphs.paragraphs_type.link_intext
+id: paragraph.link_intext.field_paragraphs_icon
+field_name: field_paragraphs_icon
+entity_type: paragraph
+bundle: link_intext
+label: Symbol
+description: "Wählen Sie das darzustellende Symbol aus der Liste. Im Bereich \"Darstellung\" können Sie die Farbe, Größe usw. bestimmen.<br>\r\nDie Liste der Symbole wird von Ihrem Anbieter bereitgestellt. Treten Sie mit ihm in Kontakt, um weitere Symbole hinzufügen zu lassen."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

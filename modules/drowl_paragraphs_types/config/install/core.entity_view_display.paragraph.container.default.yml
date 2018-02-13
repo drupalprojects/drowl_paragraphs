@@ -1,0 +1,68 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container.field_paragraph_settings
+    - field.field.paragraph.container.field_paragraphs_background_img
+    - field.field.paragraph.container.field_paragraphs_bgimage_options
+    - field.field.paragraph.container.field_paragraphs_link
+    - field.field.paragraph.container.field_paragraphs_paragraphs
+    - paragraphs.paragraphs_type.container
+  module:
+    - entity_reference_revisions
+    - fences
+    - field_formatter
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.container.default
+targetEntityType: paragraph
+bundle: container
+mode: default
+content:
+  field_paragraphs_background_img:
+    weight: 1
+    label: hidden
+    settings:
+      field_name: field_image
+      label: hidden
+      type: responsive_image
+      settings:
+        responsive_image_style: page_width
+        image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: field_formatter_with_inline_settings
+    region: content
+  field_paragraphs_bgimage_options:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_key
+    region: content
+  field_paragraphs_paragraphs:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_paragraph_settings: true
+  field_paragraphs_link: true

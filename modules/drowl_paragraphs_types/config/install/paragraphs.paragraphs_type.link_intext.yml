@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:11227923-0660-4988-ba14-c644b0dfe935'
+id: link_intext
+label: 'Button / Call-to-action (CTA) / Verknüpfung'
+icon_uuid: 11227923-0660-4988-ba14-c644b0dfe935
+description: 'Erstellen Sie einen Absatz, der eine CTA-Schaltfläche (Call-to-action) bereitstellt, mit der auf andere Inhalte verknüpft werden kann.'
+behavior_plugins: {  }

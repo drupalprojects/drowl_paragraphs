@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:76fc377f-64f8-4a85-bfbf-53882767fd6d'
+id: simple_map
+label: Karte
+icon_uuid: 76fc377f-64f8-4a85-bfbf-53882767fd6d
+description: 'Bettet eine einfache Karte mit einem Marker ein.'
+behavior_plugins: {  }

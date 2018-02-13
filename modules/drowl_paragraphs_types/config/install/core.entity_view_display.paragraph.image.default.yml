@@ -1,0 +1,46 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image.field_paragraph_settings
+    - field.field.paragraph.image.field_paragraphs_image
+    - paragraphs.paragraphs_type.image
+  module:
+    - fences
+    - field_formatter
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.image.default
+targetEntityType: paragraph
+bundle: image
+mode: default
+content:
+  field_paragraphs_image:
+    weight: 0
+    label: hidden
+    settings:
+      field_name: field_image
+      label: hidden
+      type: responsive_image
+      settings:
+        responsive_image_style: page_width
+        image_link: ''
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: field_formatter_with_inline_settings
+    region: content
+hidden:
+  field_paragraph_settings: true

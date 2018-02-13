@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_slide_amount_md
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - options
+id: paragraph.container_slides.field_paragraphs_slide_amount_md
+field_name: field_paragraphs_slide_amount_md
+entity_type: paragraph
+bundle: container_slides
+label: 'Sichtbare Elemente (Mittlere Geräte)'
+description: 'Zeitgleich sichtbare Elemente pro Slide auf großen Geräten (<a href="admin/config/system/drowl-paragraphs" target="_blank">Standardwert anpassen</a>).'
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

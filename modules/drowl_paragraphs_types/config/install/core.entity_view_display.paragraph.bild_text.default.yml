@@ -1,0 +1,57 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.bild_text.field_paragraph_settings
+    - field.field.paragraph.bild_text.field_paragraphs_image
+    - field.field.paragraph.bild_text.field_paragraphs_text
+    - paragraphs.paragraphs_type.bild_text
+  module:
+    - fences
+    - field_formatter
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.bild_text.default
+targetEntityType: paragraph
+bundle: bild_text
+mode: default
+content:
+  field_paragraphs_image:
+    weight: 0
+    label: hidden
+    settings:
+      field_name: field_image
+      label: hidden
+      type: photoswipe_field_formatter
+      settings:
+        photoswipe_node_style: thumbnail_lg_scale
+        photoswipe_image_style: zoomed_image_lg
+        photoswipe_caption: title
+        photoswipe_view_mode: _custom
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: field_formatter_with_inline_settings
+    region: content
+  field_paragraphs_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  field_paragraph_settings: true

@@ -1,0 +1,29 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text.field_paragraph_settings
+    - field.field.paragraph.text.field_paragraphs_text
+    - paragraphs.paragraphs_type.text
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.text.default
+targetEntityType: paragraph
+bundle: text
+mode: default
+content:
+  field_paragraphs_text:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  field_paragraph_settings: true

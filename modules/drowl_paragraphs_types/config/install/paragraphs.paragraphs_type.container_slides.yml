@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:ad6787fe-678a-4afc-b1e4-db2a314e5d70'
+id: container_slides
+label: 'Container: Slides'
+icon_uuid: ad6787fe-678a-4afc-b1e4-db2a314e5d70
+description: "Container / Verschachtelungen für Absätze. Container beinhalten Absätze und gruppieren diese somit.\r\nAls Besonderheit des \"Slides\" Container wird jedes direkte Kindelement als Slide dargestellt, sodass der Container auch mit mehreren Inhalten stets einer Höheneinheit entspricht."
+behavior_plugins: {  }

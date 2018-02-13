@@ -1,0 +1,38 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container_tabs_accordeon_subtab.field_paragraphs_paragraphs
+    - field.field.paragraph.container_tabs_accordeon_subtab.field_paragraphs_title
+    - paragraphs.paragraphs_type.container_tabs_accordeon_subtab
+  module:
+    - entity_reference_revisions
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.container_tabs_accordeon_subtab.default
+targetEntityType: paragraph
+bundle: container_tabs_accordeon_subtab
+mode: default
+content:
+  field_paragraphs_paragraphs:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_paragraphs_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

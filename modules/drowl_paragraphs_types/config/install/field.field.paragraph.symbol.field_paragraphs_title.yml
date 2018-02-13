@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_title
+    - paragraphs.paragraphs_type.symbol
+id: paragraph.symbol.field_paragraphs_title
+field_name: field_paragraphs_title
+entity_type: paragraph
+bundle: symbol
+label: 'Titel / Überschrift'
+description: 'Sie können optional eine Bezeichnung / Überschrift zum Symbol angeben.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

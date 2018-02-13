@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:2c27aa7f-19d9-4a67-9313-1f2d4197a491'
+id: attachments
+label: 'Dateien / Downloads'
+icon_uuid: 2c27aa7f-19d9-4a67-9313-1f2d4197a491
+description: 'Erstellen Sie einen Absatz, der Dateien / Dokumente als Download für Benutzer bereitstellt.'
+behavior_plugins: {  }

@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_settings
+    - paragraphs.paragraphs_type.text
+  module:
+    - drowl_paragraphs
+id: paragraph.text.field_paragraph_settings
+field_name: field_paragraph_settings
+entity_type: paragraph
+bundle: text
+label: Einstellungen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: drowl_paragraphs_settings

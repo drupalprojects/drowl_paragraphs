@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_anchor_id
+    - paragraphs.paragraphs_type.anchor
+id: paragraph.anchor.field_paragraphs_anchor_id
+field_name: field_paragraphs_anchor_id
+entity_type: paragraph
+bundle: anchor
+label: ID
+description: 'Die technische ID der Sprungmarke. Wird als Wert des HTML Element "id"-attributs gesetzt und als Ziel dieses Ankers (#id) verwendet. Die ID darf nur aus alphanummerischen Zeichen und "-" bestehen.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

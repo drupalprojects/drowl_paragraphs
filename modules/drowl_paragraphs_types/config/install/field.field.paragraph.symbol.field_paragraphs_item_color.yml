@@ -1,0 +1,28 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_item_color
+    - paragraphs.paragraphs_type.symbol
+    - taxonomy.vocabulary.system_design_colors
+id: paragraph.symbol.field_paragraphs_item_color
+field_name: field_paragraphs_item_color
+entity_type: paragraph
+bundle: symbol
+label: Symbol-Farbe
+description: 'Wählen Sie aus einer vordefinierten Farbpalette die Farbe des Symbols aus. Wird kein Wert gewählt, wird die im Design festgelegte Standardfarbe verwendet.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      system_design_colors: system_design_colors
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

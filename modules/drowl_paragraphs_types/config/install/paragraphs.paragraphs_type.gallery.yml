@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:80fe3a95-f6c0-4586-967b-125a5693c792'
+id: gallery
+label: Galerie
+icon_uuid: 80fe3a95-f6c0-4586-967b-125a5693c792
+description: "Erstellen Sie einen Absatz, der eine Bildergalerie mit beliebig vielen Bildern beinhaltet.\r\nDie Bilder werden automatisch als Galerie positioniert und können per Klick in einem Layer vergrößert werden."
+behavior_plugins: {  }

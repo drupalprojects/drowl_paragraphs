@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_slide_adaptiveh
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - options
+id: paragraph.container_slides.field_paragraphs_slide_adaptiveh
+field_name: field_paragraphs_slide_adaptiveh
+entity_type: paragraph
+bundle: container_slides
+label: 'Automatische Höhe'
+description: 'Bestimmt die Höhe der Slides dynamisch je Slide. Sind die Slides unterschiedlich hoch, ändert sich die Slideshow-Höhe und der nachfolgende Inhalt verschiebt sich automatisch  (<a href="admin/config/media/slick/paragraphs_slide_container" target="_blank">Standardwert anpassen</a>).'
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

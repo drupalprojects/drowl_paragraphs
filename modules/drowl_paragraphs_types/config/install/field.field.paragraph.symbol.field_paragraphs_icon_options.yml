@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_icon_options
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - options
+id: paragraph.symbol.field_paragraphs_icon_options
+field_name: field_paragraphs_icon_options
+entity_type: paragraph
+bundle: symbol
+label: Symbol-Optionen
+description: 'Zusätzliche Optionen zur Darstellung des Symbols.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

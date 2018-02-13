@@ -1,0 +1,46 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container_tabs_accordeon_subtab.field_paragraphs_paragraphs
+    - field.field.paragraph.container_tabs_accordeon_subtab.field_paragraphs_title
+    - paragraphs.paragraphs_type.container_tabs_accordeon_subtab
+  module:
+    - field_layout
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.container_tabs_accordeon_subtab.default
+targetEntityType: paragraph
+bundle: container_tabs_accordeon_subtab
+mode: default
+content:
+  field_paragraphs_paragraphs:
+    weight: 1
+    settings:
+      title: Absatz
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    type: paragraphs
+    region: content
+  field_paragraphs_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

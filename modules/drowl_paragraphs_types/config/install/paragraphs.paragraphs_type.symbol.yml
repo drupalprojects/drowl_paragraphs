@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:99b7eab7-9e86-496a-8081-ce5ab01f57a3'
+id: symbol
+label: Symbol
+icon_uuid: 99b7eab7-9e86-496a-8081-ce5ab01f57a3
+description: 'Erstellen Sie einen Absatz, der aus einem ausgewählten Vektor-Symbol besteht. Im Gegensatz zu einem Bild ist ein Symbol dynamisch skalierbar und wird somit auf großen und kleinen Geräten optimal und scharf dargestellt.'
+behavior_plugins: {  }

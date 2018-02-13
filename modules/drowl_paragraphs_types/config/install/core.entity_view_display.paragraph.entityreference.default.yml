@@ -1,0 +1,76 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.entityreference.field_paragraph_settings
+    - field.field.paragraph.entityreference.field_paragraphs_entityreference
+    - paragraphs.paragraphs_type.entityreference
+  module:
+    - dynamic_entity_reference
+    - fences
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.entityreference.default
+targetEntityType: paragraph
+bundle: entityreference
+mode: default
+content:
+  field_paragraphs_entityreference:
+    weight: 0
+    label: hidden
+    settings:
+      user:
+        view_mode: compact
+      block_content:
+        view_mode: default
+      file:
+        view_mode: default
+      node:
+        view_mode: teaser
+      media:
+        view_mode: lightbox
+      taxonomy_term:
+        view_mode: default
+      paragraph:
+        view_mode: default
+        link: false
+      menu_link_content:
+        view_mode: default
+        link: false
+      token_custom:
+        view_mode: default
+        link: false
+      simple_mega_menu:
+        view_mode: default
+        link: false
+      redirect:
+        view_mode: default
+        link: false
+      shortcut:
+        view_mode: default
+        link: false
+      webform_submission:
+        view_mode: default
+        link: false
+      crop:
+        view_mode: default
+        link: false
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: dynamic_entity_reference_entity_view
+    region: content
+hidden:
+  field_paragraph_settings: true

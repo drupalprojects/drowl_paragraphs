@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:15c8483c-97a2-4ae8-a8e4-b6f80e1560ea'
+id: entityreference
+label: 'Inhaltsreferenz (Vorschau)'
+icon_uuid: 15c8483c-97a2-4ae8-a8e4-b6f80e1560ea
+description: 'Erstellen Sie einen Absatz, der andere Inhalte als Vorschau darstellt. Wählen Sie z.B. einen anderen Inhalt wie eine News, welche als Anrisstext-Vorschau dargestellt wird.'
+behavior_plugins: {  }

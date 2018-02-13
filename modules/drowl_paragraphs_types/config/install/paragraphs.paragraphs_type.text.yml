@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:5bcf2e89-6f5e-4d77-bcda-29cdd71f7e69'
+id: text
+label: Text
+icon_uuid: 5bcf2e89-6f5e-4d77-bcda-29cdd71f7e69
+description: 'Erstellen Sie einen Absatz, der nur aus einem Text besteht.'
+behavior_plugins: {  }

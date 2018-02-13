@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_slide_autoplay
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - options
+id: paragraph.container_slides.field_paragraphs_slide_autoplay
+field_name: field_paragraphs_slide_autoplay
+entity_type: paragraph
+bundle: container_slides
+label: 'Automatisch abspielen'
+description: 'Spielt die Slideshow automatisch ab. Ist diese Option deaktiviert, muss der Benutzer manuell weiterschalten (<a href="admin/config/media/slick/paragraphs_slide_container" target="_blank">Standardwert anpassen</a>).'
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

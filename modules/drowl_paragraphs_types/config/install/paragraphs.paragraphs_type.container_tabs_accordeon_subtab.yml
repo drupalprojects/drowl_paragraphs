@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:75168b41-43d3-43c2-a03a-6a17d40535d5'
+id: container_tabs_accordeon_subtab
+label: 'Container: Tabs / Accordeon > Tab / Accordeon'
+icon_uuid: 75168b41-43d3-43c2-a03a-6a17d40535d5
+description: "NUR innerhalb von Container: Tabs / Accordeon als Subparagraph einsetzen!\r\nRepräsentiert einen einzelnen Tab mit Titel und Subtabs."
+behavior_plugins: {  }

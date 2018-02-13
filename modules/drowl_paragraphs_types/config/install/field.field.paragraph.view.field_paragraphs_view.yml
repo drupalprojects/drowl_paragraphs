@@ -1,0 +1,56 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_view
+    - paragraphs.paragraphs_type.view
+  module:
+    - viewsreference
+id: paragraph.view.field_paragraphs_view
+field_name: field_paragraphs_view
+entity_type: paragraph
+bundle: view
+label: Ansicht
+description: 'Wählen Sie die Ansicht ("View") aus, die Sie einbinden möchten. Optional können Sie Parameter an die Ansicht übergeben.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: 0
+  plugin_types:
+    default: default
+    page: page
+    block: block
+    attachment: attachment
+    feed: feed
+    entity_browser: 0
+  preselect_views:
+    admin_header_slides: 0
+    block_content: 0
+    content: 0
+    content_recent: 0
+    files: 0
+    frontpage: 0
+    glossary: 0
+    media_library: 0
+    redirect: 0
+    redirect_404: 0
+    scheduler_scheduled_content: 0
+    taxonomy_term: 0
+    user_admin_people: 0
+    user_profile_display: 0
+    watchdog: 0
+    webks_inhalt_unterseiten: 0
+    who_s_new: 0
+    who_s_online: 0
+  enabled_settings:
+    argument: argument
+    offset: 0
+    limit: 0
+    pager: 0
+    title: title
+field_type: viewsreference

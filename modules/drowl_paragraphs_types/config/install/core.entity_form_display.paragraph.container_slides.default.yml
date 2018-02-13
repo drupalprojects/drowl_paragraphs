@@ -1,0 +1,139 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.container_slides.field_paragraph_settings
+    - field.field.paragraph.container_slides.field_paragraphs_controlsoutside
+    - field.field.paragraph.container_slides.field_paragraphs_paragraphs
+    - field.field.paragraph.container_slides.field_paragraphs_slide_adaptiveh
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_lg
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_md
+    - field.field.paragraph.container_slides.field_paragraphs_slide_amount_sm
+    - field.field.paragraph.container_slides.field_paragraphs_slide_arrows
+    - field.field.paragraph.container_slides.field_paragraphs_slide_autoplay
+    - field.field.paragraph.container_slides.field_paragraphs_slide_dots
+    - field.field.paragraph.container_slides.field_paragraphs_slide_infinite
+    - paragraphs.paragraphs_type.container_slides
+  module:
+    - drowl_paragraphs
+    - field_group
+    - field_layout
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+  field_group:
+    group_paragraphs_slideshow_opt:
+      children:
+        - field_paragraphs_slide_amount_sm
+        - field_paragraphs_slide_amount_md
+        - field_paragraphs_slide_amount_lg
+        - field_paragraphs_slide_autoplay
+        - field_paragraphs_slide_adaptiveh
+        - field_paragraphs_slide_arrows
+        - field_paragraphs_slide_dots
+        - field_paragraphs_slide_infinite
+        - field_paragraphs_controlsoutside
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        label: 'Slideshow-Optionen übersteuern'
+        id: ''
+        classes: ''
+        open: false
+        required_fields: false
+      label: 'Slideshow-Optionen übersteuern'
+      region: content
+id: paragraph.container_slides.default
+targetEntityType: paragraph
+bundle: container_slides
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 1
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_controlsoutside:
+    weight: 11
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_paragraphs_paragraphs:
+    weight: 0
+    settings:
+      title: Slide
+      title_plural: Slides
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+    type: paragraphs
+    region: content
+  field_paragraphs_slide_adaptiveh:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_amount_lg:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_amount_md:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_amount_sm:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_arrows:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_autoplay:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_dots:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_slide_infinite:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  translation:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

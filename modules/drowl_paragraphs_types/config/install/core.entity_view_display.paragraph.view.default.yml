@@ -1,0 +1,47 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.view.field_paragraph_settings
+    - field.field.paragraph.view.field_paragraphs_view
+    - paragraphs.paragraphs_type.view
+  module:
+    - fences
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+    - viewsreference
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.view.default
+targetEntityType: paragraph
+bundle: view
+mode: default
+content:
+  field_paragraphs_view:
+    weight: 0
+    label: hidden
+    settings:
+      plugin_types:
+        default: default
+        block: block
+        attachment: attachment
+        feed: feed
+        page: 0
+        entity_browser: 0
+    third_party_settings:
+      fences:
+        fences_field_tag: none
+        fences_field_classes: ''
+        fences_field_item_tag: none
+        fences_field_item_classes: ''
+        fences_label_tag: none
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: viewsreference_formatter
+    region: content
+hidden:
+  field_paragraph_settings: true

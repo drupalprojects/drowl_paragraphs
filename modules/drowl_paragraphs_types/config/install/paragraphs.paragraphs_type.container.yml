@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:fb8381de-218e-4eb7-be61-d9da27903231'
+id: container
+label: 'Container: Gruppierung (Standard)'
+icon_uuid: fb8381de-218e-4eb7-be61-d9da27903231
+description: "Container / Verschachtelungen für Absätze. Container beinhalten Absätze und gruppieren diese somit zeilenweise.\r\nMithilfe der \"Einstellungen\" eines Containers können die Unterabsätze beispielsweise geräteabhängig in Spalten aufgeteilt werden."
+behavior_plugins: {  }

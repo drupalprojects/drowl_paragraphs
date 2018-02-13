@@ -1,0 +1,62 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_settings
+    - paragraphs.paragraphs_type.container
+  module:
+    - drowl_paragraphs
+id: paragraph.container.field_paragraph_settings
+field_name: field_paragraph_settings
+entity_type: paragraph
+bundle: container
+label: Einstellungen
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_value_input__field_paragraph_settings__0__layout__active_tab: edit-default-value-input-field-paragraph-settings-0-layout-sm
+    default_value_input__field_paragraph_settings__0__style__active_tab: edit-default-value-input-field-paragraph-settings-0-style-style-boxstyle
+    layout_sm_columns: 0
+    layout_sm_indent: 0
+    layout_sm_reverse_indent: 0
+    layout_md_columns: 0
+    layout_md_indent: 0
+    layout_md_reverse_indent: 0
+    layout_lg_columns: 0
+    layout_lg_indent: 0
+    layout_lg_reverse_indent: 0
+    layout_margin_top: ''
+    layout_margin_right: ''
+    layout_margin_bottom: md
+    layout_margin_left: ''
+    layout_padding_top: ''
+    layout_padding_right: ''
+    layout_padding_bottom: ''
+    layout_padding_left: ''
+    style_animation_1_events: ''
+    style_animation_1_animation: ''
+    style_animation_1_offset: 0
+    style_animation_1_delay: '0'
+    style_animation_2_events: ''
+    style_animation_2_animation: ''
+    style_animation_2_offset: 0
+    style_animation_2_delay: '0'
+    style_animation_3_events: ''
+    style_animation_3_animation: ''
+    style_animation_3_offset: 0
+    style_animation_3_delay: '0'
+    style_animation_4_events: ''
+    style_animation_4_animation: ''
+    style_animation_4_offset: 0
+    style_animation_4_delay: '0'
+    layout_min_height: 0
+    layout_section_width: ''
+    layout_reverse_order: 0
+    style_boxstyle: ''
+    style_textstyle: ''
+    classes_additional: ''
+default_value_callback: ''
+settings: {  }
+field_type: drowl_paragraphs_settings

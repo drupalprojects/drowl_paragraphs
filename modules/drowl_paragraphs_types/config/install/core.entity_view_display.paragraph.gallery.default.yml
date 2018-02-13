@@ -1,0 +1,48 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.gallery.field_paragraph_settings
+    - field.field.paragraph.gallery.field_paragraphs_gallery
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - fences
+    - field_formatter
+    - field_formatter_class
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.gallery.default
+targetEntityType: paragraph
+bundle: gallery
+mode: default
+content:
+  field_paragraphs_gallery:
+    weight: 0
+    label: hidden
+    settings:
+      field_name: field_image
+      label: hidden
+      type: photoswipe_field_formatter
+      settings:
+        photoswipe_node_style: thumbnail_md_crop
+        photoswipe_image_style: zoomed_image_lg
+        photoswipe_caption: title
+        photoswipe_view_mode: _custom
+    third_party_settings:
+      fences:
+        fences_field_tag: div
+        fences_field_classes: photoswipe-gallery
+        fences_field_item_tag: div
+        fences_field_item_classes: ''
+        fences_label_tag: div
+        fences_label_classes: ''
+      field_formatter_class:
+        class: ''
+    type: field_formatter_with_inline_settings
+    region: content
+hidden:
+  field_paragraph_settings: true

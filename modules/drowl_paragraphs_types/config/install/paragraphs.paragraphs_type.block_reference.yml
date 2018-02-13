@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:89d826a3-6b50-493d-8273-76ff35677133'
+id: block_reference
+label: 'Block Referenz'
+icon_uuid: 89d826a3-6b50-493d-8273-76ff35677133
+description: 'Ermöglicht das Einbinden von Drupal Blöcken. Diese können direkt von Drupal stammen (z.B. "Benutzer online" oder "Beliebteste Artikel"), oder auch von Modulen bereitgestellt werden (z.B. Newsletter Anmeldung per Simplenews Modul).'
+behavior_plugins: {  }

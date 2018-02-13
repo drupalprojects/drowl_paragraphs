@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_icon_position
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - options
+id: paragraph.symbol.field_paragraphs_icon_position
+field_name: field_paragraphs_icon_position
+entity_type: paragraph
+bundle: symbol
+label: 'Symbol Position'
+description: 'Position des Symbols in Relation zum Text.'
+required: true
+translatable: true
+default_value:
+  -
+    value: ico_position_top
+default_value_callback: ''
+settings: {  }
+field_type: list_string

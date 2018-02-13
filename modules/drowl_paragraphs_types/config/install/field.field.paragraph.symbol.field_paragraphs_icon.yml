@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_icon
+    - paragraphs.paragraphs_type.symbol
+id: paragraph.symbol.field_paragraphs_icon
+field_name: field_paragraphs_icon
+entity_type: paragraph
+bundle: symbol
+label: Symbol
+description: 'Klicken Sie in das Textfeld um ein Symbol auszuwählen. Sie können auch selber eine entsprechende CSS Klasse eingeben.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

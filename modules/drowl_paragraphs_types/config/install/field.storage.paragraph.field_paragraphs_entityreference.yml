@@ -1,0 +1,32 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - block_content
+    - dynamic_entity_reference
+    - file
+    - media_entity
+    - node
+    - paragraphs
+    - taxonomy
+    - user
+id: paragraph.field_paragraphs_entityreference
+field_name: field_paragraphs_entityreference
+entity_type: paragraph
+type: dynamic_entity_reference
+settings:
+  exclude_entity_types: false
+  entity_type_ids:
+    user: user
+    block_content: block_content
+    file: file
+    node: node
+    media: media
+    taxonomy_term: taxonomy_term
+module: dynamic_entity_reference
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

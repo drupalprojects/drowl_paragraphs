@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_tabs_acc_type
+    - paragraphs.paragraphs_type.container_tabs_accordion
+  module:
+    - options
+id: paragraph.container_tabs_accordion.field_paragraphs_tabs_acc_type
+field_name: field_paragraphs_tabs_acc_type
+entity_type: paragraph
+bundle: container_tabs_accordion
+label: 'Tabs / Accordeon Optionen'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: tabs
+default_value_callback: ''
+settings: {  }
+field_type: list_string

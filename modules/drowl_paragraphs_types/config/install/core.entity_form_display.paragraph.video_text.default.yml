@@ -1,0 +1,57 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_browser_video
+    - field.field.paragraph.video_text.field_paragraph_settings
+    - field.field.paragraph.video_text.field_paragraphs_text
+    - field.field.paragraph.video_text.field_paragraphs_video
+    - paragraphs.paragraphs_type.video_text
+  module:
+    - drowl_paragraphs
+    - entity_browser
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.video_text.default
+targetEntityType: paragraph
+bundle: video_text
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 2
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_text:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_paragraphs_video:
+    weight: 1
+    settings:
+      entity_browser: media_browser_video
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: media_library
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

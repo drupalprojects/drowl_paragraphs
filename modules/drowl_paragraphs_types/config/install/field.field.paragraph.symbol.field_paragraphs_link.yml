@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_link
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - link
+id: paragraph.symbol.field_paragraphs_link
+field_name: field_paragraphs_link
+entity_type: paragraph
+bundle: symbol
+label: Link
+description: "Legen Sie optional eine die Zielseite (Hyperlink) für das Element fest. Wenn angegeben wird das Element mit diesem internen (z.B. /node123) oder externen (https://...) Ziel verknüpft.<br />\r\nWenn Sie einen Titel angeben, wird dieser als Schaltflächen-Text ausgegeben. Wenn nicht, wird das Element selbst verknüpft."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

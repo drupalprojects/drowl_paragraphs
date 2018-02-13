@@ -1,0 +1,32 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_paragraphs_icon_position
+field_name: field_paragraphs_icon_position
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: ico_position_top
+      label: 'Symbol Position: Oben'
+    -
+      value: ico_position_bottom
+      label: 'Symbol Position: Unten'
+    -
+      value: ico_position_left
+      label: 'Symbol Position: Links'
+    -
+      value: ico_position_right
+      label: 'Symbol Position: Rechts'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

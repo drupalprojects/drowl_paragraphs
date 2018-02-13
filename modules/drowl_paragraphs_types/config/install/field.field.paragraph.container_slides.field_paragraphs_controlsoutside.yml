@@ -1,0 +1,22 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_controlsoutside
+    - paragraphs.paragraphs_type.container_slides
+id: paragraph.container_slides.field_paragraphs_controlsoutside
+field_name: field_paragraphs_controlsoutside
+entity_type: paragraph
+bundle: container_slides
+label: 'Bedienelemente außerhalb anzeigen'
+description: 'Zeigt die Bedienelemente (Pfeile / Punkte) außerhalb des Sliders an, um den Inhalt nicht zu verdecken.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Ja
+  off_label: Nein
+field_type: boolean

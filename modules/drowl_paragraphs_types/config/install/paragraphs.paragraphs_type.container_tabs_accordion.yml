@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:abde6bef-60a1-490a-ab17-74c9be54f11d'
+id: container_tabs_accordion
+label: 'Container: Tabs / Accordeon'
+icon_uuid: abde6bef-60a1-490a-ab17-74c9be54f11d
+description: "Container / Verschachtelungen für Absätze. Container beinhalten Absätze und gruppieren diese somit zeilenweise.\r\nAls Besonderheit dieses Containers werden die Unterabsätze als Tabs oder Accordeon dargestellt und können somit entsprechend gruppiert werden."
+behavior_plugins: {  }

@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:ac381236-e108-463e-8786-67930859ad98'
+id: slideshow
+label: Slideshow
+icon_uuid: ac381236-e108-463e-8786-67930859ad98
+description: 'Erstellen Sie einen Absatz, der eine Slideshow von Bildern enthält.'
+behavior_plugins: {  }

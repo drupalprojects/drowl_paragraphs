@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_subtitle
+    - paragraphs.paragraphs_type.card
+id: paragraph.card.field_paragraphs_subtitle
+field_name: field_paragraphs_subtitle
+entity_type: paragraph
+bundle: card
+label: Untertitel
+description: 'Sie können optional einen Untertitel der Kachel angeben.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

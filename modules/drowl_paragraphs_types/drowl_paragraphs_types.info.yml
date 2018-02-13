@@ -2,11 +2,40 @@ name: DROWL Paragraphs Types
 type: module
 description: 'Provides standard DROWL Paragraphs Types'
 core: 8.x
-
-# Dependencies
 dependencies:
-  - drowl_paragraphs
-  - slick_paragraphs
-  - fontawesome_iconpicker
   - drowl_media
+  - block
+  - block_content
+  - content_translation
+  - drowl_paragraphs
+  - dynamic_entity_reference
+  - entity_browser
+  - entity_reference_revisions
+  - fences
+  - field
+  - field_formatter
+  - field_formatter_class
+  - field_group
+  - field_layout
+  - file
+  - fontawesome_iconpicker
+  - language
+  - layout_discovery
+  - link
+  - link_attributes
+  - media_entity
+  - node
+  - options
+  - paragraphs
+  - simple_gmap
+  - slick
+  - slick_media
+  - slick_paragraphs
+  - taxonomy
+  - text
+  - user
+  - views
+  - viewsreference
+  - webform
+version: 8.x-1.1
 php: 7.0

@@ -1,0 +1,18 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_simple_gmap
+    - paragraphs.paragraphs_type.simple_map
+id: paragraph.simple_map.field_paragraphs_simple_gmap
+field_name: field_paragraphs_simple_gmap
+entity_type: paragraph
+bundle: simple_map
+label: 'Anschrift (Marker auf Karte)'
+description: 'Eine für Google Maps auswertbare, eindeutige Anschrift. Beispielsweise im Format: "<em>Muster GmbH, Beispielweg 98, 12345 Musterstadt</em>"'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

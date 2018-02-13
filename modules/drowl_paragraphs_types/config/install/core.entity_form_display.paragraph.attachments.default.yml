@@ -1,0 +1,47 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_browser_document
+    - field.field.paragraph.attachments.field_paragraph_settings
+    - field.field.paragraph.attachments.field_paragraphs_attachments
+    - paragraphs.paragraphs_type.attachments
+  module:
+    - drowl_paragraphs
+    - entity_browser
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.attachments.default
+targetEntityType: paragraph
+bundle: attachments
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 1
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_attachments:
+    type: entity_browser_entity_reference
+    weight: 0
+    region: content
+    settings:
+      entity_browser: media_browser_document
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: media_library
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

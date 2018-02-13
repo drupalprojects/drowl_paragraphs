@@ -1,0 +1,142 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.symbol.field_paragraph_settings
+    - field.field.paragraph.symbol.field_paragraphs_icon
+    - field.field.paragraph.symbol.field_paragraphs_icon_ci_color
+    - field.field.paragraph.symbol.field_paragraphs_icon_options
+    - field.field.paragraph.symbol.field_paragraphs_icon_position
+    - field.field.paragraph.symbol.field_paragraphs_item_color
+    - field.field.paragraph.symbol.field_paragraphs_item_size
+    - field.field.paragraph.symbol.field_paragraphs_link
+    - field.field.paragraph.symbol.field_paragraphs_subtitle
+    - field.field.paragraph.symbol.field_paragraphs_text
+    - field.field.paragraph.symbol.field_paragraphs_title
+    - paragraphs.paragraphs_type.symbol
+  module:
+    - drowl_paragraphs
+    - field_group
+    - field_layout
+    - fontawesome_iconpicker
+    - layout_discovery
+    - link_attributes
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+  field_group:
+    group_paragraphs_conf:
+      children:
+        - field_paragraphs_item_size
+        - field_paragraphs_item_color
+        - field_paragraphs_icon_position
+        - field_paragraphs_icon_options
+        - field_paragraphs_icon_ci_color
+      parent_name: ''
+      weight: 8
+      format_type: details
+      format_settings:
+        label: 'Symbol Optionen'
+        description: ''
+        id: ''
+        classes: ''
+        required_fields: false
+        open: false
+      label: 'Symbol Optionen'
+      region: content
+id: paragraph.symbol.default
+targetEntityType: paragraph
+bundle: symbol
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 9
+    settings:
+      open: false
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_icon:
+    weight: 0
+    settings:
+      type: default
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+    type: fontawesome_iconpicker
+    region: content
+  field_paragraphs_icon_ci_color:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_icon_options:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_paragraphs_icon_position:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_paragraphs_item_color:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_item_size:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs_link:
+    weight: 4
+    settings:
+      placeholder_url: 'z.B. /node/123 oder https://www.example.com'
+      placeholder_title: ''
+      enabled_attributes:
+        name: true
+        target: true
+        rel: true
+        class: true
+        id: false
+        accesskey: false
+    third_party_settings: {  }
+    type: link_attributes
+    region: content
+  field_paragraphs_subtitle:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_paragraphs_text:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_paragraphs_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,39 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text.field_paragraph_settings
+    - field.field.paragraph.text.field_paragraphs_text
+    - paragraphs.paragraphs_type.text
+  module:
+    - drowl_paragraphs
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: paragraph.text.default
+targetEntityType: paragraph
+bundle: text
+mode: default
+content:
+  field_paragraph_settings:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: drowl_paragraphs_settings_default
+    region: content
+  field_paragraphs_text:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

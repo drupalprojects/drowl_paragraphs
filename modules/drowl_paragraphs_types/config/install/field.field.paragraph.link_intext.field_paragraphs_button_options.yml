@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_button_options
+    - paragraphs.paragraphs_type.link_intext
+  module:
+    - options
+id: paragraph.link_intext.field_paragraphs_button_options
+field_name: field_paragraphs_button_options
+entity_type: paragraph
+bundle: link_intext
+label: Button-Optionen
+description: 'Zusätzliche Optionen zur Darstellung der Schaltfläche.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

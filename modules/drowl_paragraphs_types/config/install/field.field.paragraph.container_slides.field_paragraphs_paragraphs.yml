@@ -1,0 +1,90 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs_paragraphs
+    - paragraphs.paragraphs_type.container_slides
+    - paragraphs.paragraphs_type.container_tabs_accordeon_subtab
+    - paragraphs.paragraphs_type.slideshow
+  module:
+    - entity_reference_revisions
+id: paragraph.container_slides.field_paragraphs_paragraphs
+field_name: field_paragraphs_paragraphs
+entity_type: paragraph
+bundle: container_slides
+label: Unter-Absätze
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 1
+    target_bundles:
+      slideshow: slideshow
+      container_slides: container_slides
+      container_tabs_accordeon_subtab: container_tabs_accordeon_subtab
+    target_bundles_drag_drop:
+      text:
+        weight: -41
+        enabled: false
+      list:
+        weight: -40
+        enabled: false
+      image:
+        weight: -39
+        enabled: false
+      gallery:
+        weight: -38
+        enabled: false
+      video:
+        weight: -37
+        enabled: false
+      attachments:
+        weight: -36
+        enabled: false
+      symbol:
+        weight: -35
+        enabled: false
+      link_intext:
+        weight: -34
+        enabled: false
+      bild_text:
+        weight: -33
+        enabled: false
+      video_text:
+        weight: -32
+        enabled: false
+      card:
+        weight: -31
+        enabled: false
+      slideshow:
+        enabled: true
+        weight: -30
+      entityreference:
+        weight: -29
+        enabled: false
+      view:
+        weight: -28
+        enabled: false
+      webform:
+        weight: -27
+        enabled: false
+      anchor:
+        weight: -26
+        enabled: false
+      container:
+        weight: -25
+        enabled: false
+      container_slides:
+        enabled: true
+        weight: -24
+      container_tabs_accordion:
+        weight: -23
+        enabled: false
+      container_tabs_accordeon_subtab:
+        enabled: true
+        weight: -22
+field_type: entity_reference_revisions

@@ -1,0 +1,10 @@
+langcode: de
+status: true
+dependencies:
+  content:
+    - 'file:file:0eb6c4c8-1158-414d-82b2-4811b083ec44'
+id: video_text
+label: 'Video + Text'
+icon_uuid: 0eb6c4c8-1158-414d-82b2-4811b083ec44
+description: 'Erstellen Sie einen Absatz, der aus einem Video und einem Text besteht.'
+behavior_plugins: {  }
