@@ -31,106 +31,203 @@ function drowl_paragraphs_types_preprocess_paragraph(&$variables) {
   $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-types';
 }
 
+/**
+ * Modifies overridable options to re-use one optionset.
+ *
+ * @see \Drupal\slick\Form\SlickAdmin::getOverridableOptions()
+ *
+ * @ingroup slick_api
+ */
+function drowl_paragraphs_types_slick_overridable_options_info_alter(&$options) {
+  //  $options['adaptiveHeight'] = t('Adaptive height');
+  //  $options['autoplay'] = t('Autoplay');
+  //  $options['arrows'] = t('Arrows');
+  //  $options['dots'] = t('Dots');
+  //  $options['infinite'] = t('Infinite');
+}
+
 function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variables) {
   if (!empty($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
+    $options_override = array();
+    $settings_responsive_override = array();
+
+    $drowl_paragraphs_config = \Drupal::config('drowl_paragraphs.settings'); // at the top of the method
+    $drowl_paragraphs_config_defaults = $drowl_paragraphs_config->get('defaults');
+
     if ($paragraph->hasField('field_paragraphs_slide_amount_sm')) {
       $slide_amount_sm = $paragraph->get('field_paragraphs_slide_amount_sm')->value;
+      if (!empty($slide_amount_sm) && $slide_amount_sm != 'default') {
+        $settings_responsive_override['slide_amount_sm'] = $slide_amount_sm;
+      } else {
+        $settings_responsive_override['slide_amount_sm'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_sm'];
+      }
     }
     if ($paragraph->hasField('field_paragraphs_slide_amount_md')) {
       $slide_amount_md = $paragraph->get('field_paragraphs_slide_amount_md')->value;
+      if (!empty($slide_amount_md) && $slide_amount_md != 'default') {
+        $settings_responsive_override['slide_amount_md'] = $slide_amount_md;
+      } else {
+        $settings_responsive_override['slide_amount_md'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_md'];
+      }
     }
     if ($paragraph->hasField('field_paragraphs_slide_amount_lg')) {
       $slide_amount_lg = $paragraph->get('field_paragraphs_slide_amount_lg')->value;
+      if (!empty($slide_amount_lg) && $slide_amount_lg != 'default') {
+        $settings_responsive_override['slide_amount_lg'] = $slide_amount_lg;
+      } else {
+        $settings_responsive_override['slide_amount_lg'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_lg'];
+      }
     }
     if ($paragraph->hasField('field_paragraphs_slide_adaptiveh')) {
-      $adaptiveheight = $paragraph->get('field_paragraphs_slide_adaptiveh')->value;
+      $adaptiveHeight = $paragraph->get('field_paragraphs_slide_adaptiveh')->value;
+      if ($adaptiveHeight !== NULL && $adaptiveHeight != 'default') {
+        $options_override['adaptiveHeight'] = (bool) $adaptiveHeight;
+      }
+      // Else uses defaults set in paragraphs_slide_container
     }
     if ($paragraph->hasField('field_paragraphs_slide_autoplay')) {
       $autoplay = $paragraph->get('field_paragraphs_slide_autoplay')->value;
+      if ($autoplay !== NULL && $autoplay != 'default') {
+        $options_override['autoplay'] = (bool) $autoplay;
+      }
+      // Else uses defaults set in paragraphs_slide_container
     }
     if ($paragraph->hasField('field_paragraphs_slide_arrows')) {
       $arrows = $paragraph->get('field_paragraphs_slide_arrows')->value;
+      if ($arrows !== NULL && $arrows != 'default') {
+        $options_override['arrows'] = (bool) $arrows;
+      }
+      // Else uses defaults set in paragraphs_slide_container
     }
     if ($paragraph->hasField('field_paragraphs_slide_dots')) {
       $dots = $paragraph->get('field_paragraphs_slide_dots')->value;
+      if ($dots !== NULL && $dots != 'default') {
+        $options_override['dots'] = (bool) $dots;
+      }
+      // Else uses defaults set in paragraphs_slide_container
     }
     if ($paragraph->hasField('field_paragraphs_slide_infinite')) {
       $infinite = $paragraph->get('field_paragraphs_slide_infinite')->value;
+      if ($infinite !== NULL && $infinite != 'default') {
+        $options_override['infinite'] = (bool) $infinite;
+      }
+      // Else uses defaults set in paragraphs_slide_container
     }
 
-    kint(array(
-      'adaptiveheight' => $adaptiveheight,
-      'autoplay' => $autoplay,
-      'arrows' => $arrows,
-      'dots' => $dots,
-      'infinite' => $infinite,
-      'slide_amount_sm' => $slide_amount_sm,
-      'slide_amount_md' => $slide_amount_md,
-      'slide_amount_lg' => $slide_amount_lg,
-    ));
-
+    // Set the values in the field to make them available to later hooks:
     $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
-    $optionset->setThirdPartySetting('drowl_paragraphs_types', 'settings_override', array(
-      'adaptiveheight' => $adaptiveheight,
-      'autoplay' => $autoplay,
-      'arrows' => $arrows,
-      'dots' => $dots,
-      'infinite' => $infinite,
-    ));
-    $optionset->setThirdPartySetting('drowl_paragraphs_types', 'settings_responsive_override', array(
-      'slide_amount_sm' => $slide_amount_sm,
-      'slide_amount_md' => $slide_amount_md,
-      'slide_amount_lg' => $slide_amount_lg,
-    ));
+    $optionset->set('drowl_paragraphs_options_override', $options_override);
+    $optionset->set('drowl_paragraphs_settings_responsive_override', $settings_responsive_override);
   }
 }
 
 function drowl_paragraphs_types_preprocess_slick(&$variables) {
-  // Get the overrides:
-  $overrides = $variables['element']['#optionset']->getThirdPartySettings('drowl_paragraphs_types');
-  // General settings
-  if (!empty($overrides['settings_override'])) {
-    $settings_override = $overrides['settings_override'];
-  }
-  else {
-    $settings_override = array();
-  }
-
-
-
-  // Media Query / size based settings:
-  if (!empty($overrides['settings_responsive_override'])) {
-    $settings_responsive_override = $overrides['settings_responsive_override'];
-  }
-  else {
-    $settings_responsive_override = array();
-  }
-  if (!empty($settings_responsive_override)) {
+  if ($variables['settings']['optionset'] == 'paragraphs_slide_container') {
+    // Only for paragraphs_slide_container slideshows:
     $data_slick = $variables['content_attributes']->offsetGet('data-slick');
-    if (!empty($data_slick)) {
+    $options_override = $variables['element']['#optionset']->get('drowl_paragraphs_options_override');
+    $settings_responsive_override = $variables['element']['#optionset']->get('drowl_paragraphs_settings_responsive_override');
+
+    // Get the overrides:
+    if (!empty($data_slick) && !empty($options_override) || !empty($settings_responsive_override)) {
+      // This has  overrides:
       $data_slick = Json::decode($data_slick->value());
-      if (!empty($data_slick['responsive'])) {
-        foreach ($data_slick['responsive'] as $key => $responsive_setting) {
-          // TODO - Change by breakpoints set:
-          if (isset($responsive_setting['breakpoint'])) {
-            if (!empty($settings_responsive_override['slide_amount_sm']) && $responsive_setting['breakpoint'] == 640) {
-              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_sm'];
-              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_sm'];
+
+//      if(!empty($data_slick['responsive'])){
+//        throw new Exception('!!!!');
+//      }
+
+
+      if (!empty($options_override)) {
+        $data_slick = array_merge($data_slick, $options_override);
+      }
+
+
+      if (!empty($settings_responsive_override)) {
+        $drowl_paragraphs_config = \Drupal::config('drowl_paragraphs.settings'); // at the top of the method
+        $drowl_paragraphs_breakpoint_mapping_sizes = $drowl_paragraphs_config->get('breakpoint_mapping_sizes');
+        $drowl_paragraphs_breakpoint_mapping_sizes_defaults = [
+          'sm' => [
+            'min-width' => [
+              'size' => 0,
+            ],
+            'max-width' => [
+              'size' => 639,
+            ],
+          ],
+          'md' => [
+            'min-width' => [
+              'size' => 640,
+            ],
+            'max-width' => [
+              'size' => 1023,
+            ],
+          ],
+          'lg' => [
+            'min-width' => [
+              'size' => 1024,
+            ],
+            'max-width' => [
+              'size' => 99999999,
+            ],
+          ],
+        ];
+        $drowl_paragraphs_breakpoint_mapping_sizes = array_merge($drowl_paragraphs_breakpoint_mapping_sizes_defaults, $drowl_paragraphs_breakpoint_mapping_sizes);
+        if (!empty($drowl_paragraphs_breakpoint_mapping_sizes)) {
+          if (!empty($settings_responsive_override['slide_amount_sm'])) {
+            if ($settings_responsive_override['slide_amount_sm'] != 'default') {
+              $min_width_sm = $drowl_paragraphs_breakpoint_mapping_sizes['sm']['min-width']['size'];
             }
-            elseif (!empty($settings_responsive_override['slide_amount_md']) && $responsive_setting['breakpoint'] == 1024) {
-              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_md'];
-              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_md'];
+            else {
+              $min_width_sm = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['sm']['min-width']['size'];
             }
-            elseif (!empty($settings_responsive_override['slide_amount_lg']) && $responsive_setting['breakpoint'] == 1200) {
-              $data_slick['responsive'][$key]['settings']['slidesToShow'] = $settings_responsive_override['slide_amount_lg'];
-              $data_slick['responsive'][$key]['settings']['slidesToScroll'] = $settings_responsive_override['slide_amount_lg'];
+            $settings_sm = [
+              'breakpoint' => (int) $min_width_sm,
+              'settings' => array_merge($options_override, [
+                'slidesToShow' => (int) $settings_responsive_override['slide_amount_sm'],
+                'slidesToScroll' => (int) $settings_responsive_override['slide_amount_sm'],
+              ]),
+            ];
+            $data_slick['responsive'][] = $settings_sm;
+          }
+          if (!empty($settings_responsive_override['slide_amount_md'])) {
+            if ($settings_responsive_override['slide_amount_md'] != 'default') {
+              $min_width_md = $drowl_paragraphs_breakpoint_mapping_sizes['md']['min-width']['size'];
             }
+            else {
+              $min_width_md = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['md']['min-width']['size'];
+            }
+            $settings_md = [
+              'breakpoint' => (int) $min_width_md,
+              'settings' => array_merge($options_override, [
+                'slidesToShow' => (int) $settings_responsive_override['slide_amount_md'],
+                'slidesToScroll' => (int) $settings_responsive_override['slide_amount_md'],
+              ]),
+            ];
+            $data_slick['responsive'][] = $settings_md;
+          }
+          if (!empty($settings_responsive_override['slide_amount_lg'])) {
+            if ($settings_responsive_override['slide_amount_lg'] != 'default') {
+              $min_width_lg = $drowl_paragraphs_breakpoint_mapping_sizes['lg']['min-width']['size'];
+            }
+            else {
+              $min_width_lg = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['lg']['min-width']['size'];
+            }
+            $settings_lg = [
+              'breakpoint' => (int) $min_width_lg,
+              'settings' => array_merge($options_override, [
+                'slidesToShow' => (int) $settings_responsive_override['slide_amount_lg'],
+                'slidesToScroll' => (int) $settings_responsive_override['slide_amount_lg'],
+              ]),
+            ];
+            $data_slick['responsive'][] = $settings_lg;
           }
         }
       }
-      $data_slick = Json::encode($data_slick);
-      $variables['content_attributes']->setAttribute('data-slick', $data_slick);
+
+      // Re-set the data-slick variable:
+      $variables['content_attributes']->setAttribute('data-slick', Json::encode($data_slick));
     }
   }
 }

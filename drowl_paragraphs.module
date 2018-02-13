@@ -45,7 +45,9 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_sm_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            $variables['layout_attributes']->addClass('small-' . $ps['layout_sm_columns']);
+            if($ps['layout_sm_columns'] >= 1){
+              $variables['layout_attributes']->addClass('small-' . $ps['layout_sm_columns']);
+            }
           }
           if (!empty($ps['layout_sm_indent'])) {
             $variables['layout_attributes']->addClass('small-offset-' . $ps['layout_sm_indent']);
@@ -62,7 +64,9 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_md_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            $variables['layout_attributes']->addClass('medium-' . $ps['layout_md_columns']);
+            if($ps['layout_md_columns'] >= 1){
+              $variables['layout_attributes']->addClass('medium-' . $ps['layout_md_columns']);
+            }
           }
           if (!empty($ps['layout_md_indent'])) {
             $variables['layout_attributes']->addClass('medium-offset-' . $ps['layout_md_indent']);
@@ -79,7 +83,9 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_lg_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            $variables['layout_attributes']->addClass('large-' . $ps['layout_lg_columns']);
+            if($ps['layout_lg_columns'] >= 1){
+              $variables['layout_attributes']->addClass('large-' . $ps['layout_lg_columns']);
+            }
           }
           if (!empty($ps['layout_lg_indent'])) {
             $variables['layout_attributes']->addClass('large-offset-' . $ps['layout_lg_indent']);

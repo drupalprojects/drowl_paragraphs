@@ -1,0 +1,5 @@
+drowl_paragraphs_settings:
+    title: 'DROWL Paragraphs'
+    description: 'Administer DROWL Paragraphs settings.'
+    parent: system.admin_config_content
+    route_name: drowl_paragraphs_settings

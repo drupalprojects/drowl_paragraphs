@@ -1,0 +1,5 @@
+# In my_module.permissions.yml file.
+access drowl_paragraphs settings:
+  title: 'Access DROWL Paragraphs settings'
+  description: 'Allows to access and change DROWL Paragraph general settings.'
+  restrict access: TRUE

@@ -30,7 +30,7 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $output['columns']['layout_sm_columns'] = array(
       'type' => 'int',
       'size' => 'tiny',
-      'unsigned' => TRUE,
+      'unsigned' => FALSE,
     );
     $output['columns']['layout_sm_indent'] = array(
       'type' => 'int',
@@ -47,7 +47,7 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $output['columns']['layout_md_columns'] = array(
       'type' => 'int',
       'size' => 'tiny',
-      'unsigned' => TRUE,
+      'unsigned' => FALSE,
     );
     $output['columns']['layout_md_indent'] = array(
       'type' => 'int',
@@ -63,8 +63,8 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $output['columns']['layout_lg_columns'] = array(
       'type' => 'int',
       'size' => 'tiny',
-      'unsigned' => TRUE,
-      
+      'unsigned' => FALSE,
+
     );
     $output['columns']['layout_lg_indent'] = array(
       'type' => 'int',
@@ -92,12 +92,12 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $output['columns']['layout_margin_left'] = array(
       'type' => 'varchar',
       'length' => 16,
-      
+
     );
     $output['columns']['layout_padding_top'] = array(
       'type' => 'varchar',
       'length' => 16,
-      
+
     );
     $output['columns']['layout_padding_right'] = array(
       'type' => 'varchar',
@@ -165,17 +165,23 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'varchar',
       'length' => 64,
     );
+    $output['columns']['style_textalign'] = array(
+      'type' => 'varchar',
+      'length' => 64,
+    );
     $output['columns']['style_textstyle'] = array(
       'type' => 'varchar',
       'length' => 64,
     );
-
+    $output['columns']['style_textcolumns'] = array(
+      'type' => 'varchar',
+      'length' => 64,
+    );
     $output['columns']['classes_additional'] = array(
       'type' => 'varchar',
       'length' => 255,
-      
-    );
 
+    );
     return $output;
 
   }
@@ -278,7 +284,13 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['style_boxstyle'] = DataDefinition::create('string')
       ->setLabel(t('Box style'))
       ->setRequired(FALSE);
+    $properties['style_textalign'] = DataDefinition::create('string')
+      ->setLabel(t('Text align'))
+      ->setRequired(FALSE);
     $properties['style_textstyle'] = DataDefinition::create('string')
+      ->setLabel(t('Text style'))
+      ->setRequired(FALSE);
+    $properties['style_textcolumns'] = DataDefinition::create('string')
       ->setLabel(t('Text style'))
       ->setRequired(FALSE);
     $properties['classes_additional'] = DataDefinition::create('string')

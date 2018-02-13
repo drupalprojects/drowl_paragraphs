@@ -8,4 +8,5 @@ dependencies:
   - field
   - paragraphs
   - field_group
+  - breakpoint
 php: 7.0

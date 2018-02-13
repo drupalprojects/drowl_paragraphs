@@ -70,7 +70,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
 
     // Common options:
     $cols_options = [
-      '0' => $this->t('automatic'),
       '1' => '1',
       '2' => '2',
       '3' => '3',
@@ -84,6 +83,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '11' => '11',
       '12' => '12',
     ];
+    $cols_options_auto = ['-1' => $this->t('Automatic')->__toString()] + $cols_options;
 
     $percentage_options = [
       '10' => '10%',
@@ -150,8 +150,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['layout']['sm']['layout_sm_columns'] = [
       '#type' => 'select',
       '#title' => $this->t('Columns'),
-      '#options' => $cols_options,
-      '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : NULL,
+      '#options' => $cols_options_auto,
+      '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : '-1',
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
@@ -207,8 +207,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['layout']['md']['layout_md_columns'] = [
       '#type' => 'select',
       '#title' => $this->t('Columns'),
-      '#options' => $cols_options,
-      '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : NULL,
+      '#options' => $cols_options_auto,
+      '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : '-1',
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
@@ -264,8 +264,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['layout']['lg']['layout_lg_columns'] = [
       '#type' => 'select',
       '#title' => $this->t('Columns'),
-      '#options' => $cols_options,
-      '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : NULL,
+      '#options' => $cols_options_auto,
+      '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : '-1',
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,

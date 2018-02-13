@@ -1,0 +1,7 @@
+drowl_paragraphs_settings:
+  path: '/admin/config/system/drowl-paragraphs'
+  defaults:
+    _form: '\Drupal\drowl_paragraphs\Form\DrowlParagraphsSettingsForm'
+    _title: 'DROWL Paragraphs'
+  requirements:
+    _permission: 'access drowl_paragraphs settings'
