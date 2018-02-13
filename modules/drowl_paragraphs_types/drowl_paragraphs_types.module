@@ -24,7 +24,7 @@ function drowl_paragraphs_types_theme_suggestions_paragraph_alter(&$suggestions,
 }
 
 /**
- * Prepared variables for paragraph output:
+ * Implements HOOK_preprocess_paragraph().
  */
 function drowl_paragraphs_types_preprocess_paragraph(&$variables) {
   // Add frontend library for paragraphs display:
@@ -32,27 +32,16 @@ function drowl_paragraphs_types_preprocess_paragraph(&$variables) {
 }
 
 /**
- * Modifies overridable options to re-use one optionset.
- *
- * @see \Drupal\slick\Form\SlickAdmin::getOverridableOptions()
- *
- * @ingroup slick_api
+ * Implements hook_preprocess_paragraph__container_Slides().
  */
-function drowl_paragraphs_types_slick_overridable_options_info_alter(&$options) {
-  //  $options['adaptiveHeight'] = t('Adaptive height');
-  //  $options['autoplay'] = t('Autoplay');
-  //  $options['arrows'] = t('Arrows');
-  //  $options['dots'] = t('Dots');
-  //  $options['infinite'] = t('Infinite');
-}
-
 function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variables) {
   if (!empty($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
     $options_override = array();
     $settings_responsive_override = array();
 
-    $drowl_paragraphs_config = \Drupal::config('drowl_paragraphs.settings'); // at the top of the method
+    // Get global drowl_paragraphs settings.
+    $drowl_paragraphs_config = \Drupal::config('drowl_paragraphs.settings');
     $drowl_paragraphs_config_defaults = $drowl_paragraphs_config->get('defaults');
 
     if ($paragraph->hasField('field_paragraphs_slide_amount_sm')) {
@@ -60,6 +49,7 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
       if (!empty($slide_amount_sm) && $slide_amount_sm != 'default') {
         $settings_responsive_override['slide_amount_sm'] = $slide_amount_sm;
       } else {
+        // Use global drowl_paragraphs default settings.
         $settings_responsive_override['slide_amount_sm'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_sm'];
       }
     }
@@ -68,6 +58,7 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
       if (!empty($slide_amount_md) && $slide_amount_md != 'default') {
         $settings_responsive_override['slide_amount_md'] = $slide_amount_md;
       } else {
+        // Use global drowl_paragraphs default settings.
         $settings_responsive_override['slide_amount_md'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_md'];
       }
     }
@@ -76,6 +67,7 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
       if (!empty($slide_amount_lg) && $slide_amount_lg != 'default') {
         $settings_responsive_override['slide_amount_lg'] = $slide_amount_lg;
       } else {
+        // Use global drowl_paragraphs default settings.
         $settings_responsive_override['slide_amount_lg'] = $drowl_paragraphs_config_defaults['container_slides']['default_slide_amount_lg'];
       }
     }
@@ -84,44 +76,60 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
       if ($adaptiveHeight !== NULL && $adaptiveHeight != 'default') {
         $options_override['adaptiveHeight'] = (bool) $adaptiveHeight;
       }
-      // Else uses defaults set in paragraphs_slide_container
+      // Else uses defaults set in paragraphs_slide_container slick configuration.
     }
     if ($paragraph->hasField('field_paragraphs_slide_autoplay')) {
       $autoplay = $paragraph->get('field_paragraphs_slide_autoplay')->value;
       if ($autoplay !== NULL && $autoplay != 'default') {
         $options_override['autoplay'] = (bool) $autoplay;
       }
-      // Else uses defaults set in paragraphs_slide_container
+      // Else uses defaults set in paragraphs_slide_container slick configuration.
     }
     if ($paragraph->hasField('field_paragraphs_slide_arrows')) {
       $arrows = $paragraph->get('field_paragraphs_slide_arrows')->value;
       if ($arrows !== NULL && $arrows != 'default') {
         $options_override['arrows'] = (bool) $arrows;
       }
-      // Else uses defaults set in paragraphs_slide_container
+      // Else uses defaults set in paragraphs_slide_container slick configuration.
     }
     if ($paragraph->hasField('field_paragraphs_slide_dots')) {
       $dots = $paragraph->get('field_paragraphs_slide_dots')->value;
       if ($dots !== NULL && $dots != 'default') {
         $options_override['dots'] = (bool) $dots;
       }
-      // Else uses defaults set in paragraphs_slide_container
+      // Else uses defaults set in paragraphs_slide_container slick configuration.
     }
     if ($paragraph->hasField('field_paragraphs_slide_infinite')) {
       $infinite = $paragraph->get('field_paragraphs_slide_infinite')->value;
       if ($infinite !== NULL && $infinite != 'default') {
         $options_override['infinite'] = (bool) $infinite;
       }
-      // Else uses defaults set in paragraphs_slide_container
+      // Else uses defaults set in paragraphs_slide_container slick configuration.
     }
 
-    // Set the values in the field to make them available to later hooks:
+    // Set the values in the field to make them available to later hook "drowl_paragraphs_types_preprocess_slick" where it can be set.
     $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
     $optionset->set('drowl_paragraphs_options_override', $options_override);
     $optionset->set('drowl_paragraphs_settings_responsive_override', $settings_responsive_override);
+
+    // Controls outside:
+    if ($paragraph->hasField('field_paragraphs_controlsoutside')) {
+      $controlsoutside = $paragraph->get('field_paragraphs_controlsoutside')->value;
+      if (!empty($controlsoutside)) {
+        // Add class for controls outside:
+        $variables['attributes']->addClass('paragraph--type--container-slides--controlsoutside');
+      }
+    }
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK.
+ *
+ * IMPORTANT: This curiously runs AFTER template_preprocess_slick in the slick module. So we can't prepare values.
+ *
+ * @throws \Exception
+ */
 function drowl_paragraphs_types_preprocess_slick(&$variables) {
   if ($variables['settings']['optionset'] == 'paragraphs_slide_container') {
     // Only for paragraphs_slide_container slideshows:
@@ -131,15 +139,16 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
 
     // Get the overrides:
     if (!empty($data_slick) && !empty($options_override) || !empty($settings_responsive_override)) {
-      // This has  overrides:
+      // This has overrides.
+      // Get the configuration from the JSON array:
       $data_slick = Json::decode($data_slick->value());
 
-//      if(!empty($data_slick['responsive'])){
-//        throw new Exception('!!!!');
-//      }
-
+      if(!empty($data_slick['responsive'])){
+        throw new Exception('Slick optionset "paragraphs_slide_container" may not have responsive (breakpoint) configuration. It will be set by drowl_paragraphs instead.');
+      }
 
       if (!empty($options_override)) {
+        // Set the general option overrides.
         $data_slick = array_merge($data_slick, $options_override);
       }
 
@@ -147,40 +156,33 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
       if (!empty($settings_responsive_override)) {
         $drowl_paragraphs_config = \Drupal::config('drowl_paragraphs.settings'); // at the top of the method
         $drowl_paragraphs_breakpoint_mapping_sizes = $drowl_paragraphs_config->get('breakpoint_mapping_sizes');
-        $drowl_paragraphs_breakpoint_mapping_sizes_defaults = [
+        $drowl_paragraphs_config_defaults = $drowl_paragraphs_config->get('defaults');
+
+        $drowl_paragraphs_breakpoint_mapping_sizes_fallbacks = [
           'sm' => [
             'min-width' => [
-              'size' => 0,
-            ],
-            'max-width' => [
-              'size' => 639,
-            ],
+              'size' => 0, // Fixed, this is always zero.
+            ]
           ],
           'md' => [
             'min-width' => [
-              'size' => 640,
-            ],
-            'max-width' => [
-              'size' => 1023,
-            ],
+              'size' => !empty($drowl_paragraphs_config_defaults['breakpoint_mapping_sizes_fallback']['md']) ? $drowl_paragraphs_config_defaults['breakpoint_mapping_sizes_fallback']['md'] : 640,
+            ]
           ],
           'lg' => [
             'min-width' => [
-              'size' => 1024,
-            ],
-            'max-width' => [
-              'size' => 99999999,
-            ],
+              'size' => !empty($drowl_paragraphs_config_defaults['breakpoint_mapping_sizes_fallback']['lg']) ? $drowl_paragraphs_config_defaults['breakpoint_mapping_sizes_fallback']['lg'] : 1024,
+            ]
           ],
         ];
-        $drowl_paragraphs_breakpoint_mapping_sizes = array_merge($drowl_paragraphs_breakpoint_mapping_sizes_defaults, $drowl_paragraphs_breakpoint_mapping_sizes);
+        $drowl_paragraphs_breakpoint_mapping_sizes = array_merge($drowl_paragraphs_breakpoint_mapping_sizes_fallbacks, $drowl_paragraphs_breakpoint_mapping_sizes);
         if (!empty($drowl_paragraphs_breakpoint_mapping_sizes)) {
           if (!empty($settings_responsive_override['slide_amount_sm'])) {
             if ($settings_responsive_override['slide_amount_sm'] != 'default') {
               $min_width_sm = $drowl_paragraphs_breakpoint_mapping_sizes['sm']['min-width']['size'];
             }
             else {
-              $min_width_sm = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['sm']['min-width']['size'];
+              $min_width_sm = $drowl_paragraphs_breakpoint_mapping_sizes_fallbacks['sm']['min-width']['size'];
             }
             $settings_sm = [
               'breakpoint' => (int) $min_width_sm,
@@ -196,7 +198,7 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
               $min_width_md = $drowl_paragraphs_breakpoint_mapping_sizes['md']['min-width']['size'];
             }
             else {
-              $min_width_md = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['md']['min-width']['size'];
+              $min_width_md = $drowl_paragraphs_breakpoint_mapping_sizes_fallbacks['md']['min-width']['size'];
             }
             $settings_md = [
               'breakpoint' => (int) $min_width_md,
@@ -212,7 +214,7 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
               $min_width_lg = $drowl_paragraphs_breakpoint_mapping_sizes['lg']['min-width']['size'];
             }
             else {
-              $min_width_lg = $drowl_paragraphs_breakpoint_mapping_sizes_defaults['lg']['min-width']['size'];
+              $min_width_lg = $drowl_paragraphs_breakpoint_mapping_sizes_fallbacks['lg']['min-width']['size'];
             }
             $settings_lg = [
               'breakpoint' => (int) $min_width_lg,
@@ -227,6 +229,7 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
       }
 
       // Re-set the data-slick variable:
+      // A separate hook would be better but doesn't seem to exist: see https://www.drupal.org/project/slick/issues/2944330
       $variables['content_attributes']->setAttribute('data-slick', Json::encode($data_slick));
     }
   }

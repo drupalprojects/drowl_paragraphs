@@ -3,6 +3,7 @@
  * @file
  * DROWL paragraphs enhancements.
  */
+
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -25,7 +26,7 @@ function drowl_paragraphs_preprocess_paragraphs_add_dialog(&$variables) {
 function drowl_paragraphs_preprocess_paragraph(&$variables) {
   // Add frontend library for paragraphs display:
   $variables['#attached']['library'][] = 'drowl_paragraphs/drowl-paragraphs-frontend';
-  #
+
   // Create classes from paragraph_settings field
   if (!empty($variables['paragraph'])) {
     $paragraph = $variables['paragraph'];
@@ -45,7 +46,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_sm_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            if($ps['layout_sm_columns'] >= 1){
+            if ($ps['layout_sm_columns'] >= 1) {
               $variables['layout_attributes']->addClass('small-' . $ps['layout_sm_columns']);
             }
           }
@@ -64,7 +65,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_md_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            if($ps['layout_md_columns'] >= 1){
+            if ($ps['layout_md_columns'] >= 1) {
               $variables['layout_attributes']->addClass('medium-' . $ps['layout_md_columns']);
             }
           }
@@ -83,7 +84,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
 
           if (!empty($ps['layout_lg_columns'])) {
             $variables['layout_attributes']->addClass('columns');
-            if($ps['layout_lg_columns'] >= 1){
+            if ($ps['layout_lg_columns'] >= 1) {
               $variables['layout_attributes']->addClass('large-' . $ps['layout_lg_columns']);
             }
           }
@@ -162,11 +163,16 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
             $variables['layout_wrapper_attributes']->addClass('align-' . $ps['layout_align_children_horizontal']);
           }
 
-
-
-          if(empty($ps['layout_sm_columns']) && (!empty($ps['layout_md_columns']) || !empty($ps['layout_lg_columns']))){
-            // add small-12 (full width on small devices) - otherwise the "auto width"-feature will
-            $variables['layout_attributes']->addClass('small-12');
+          if ($ps['layout_sm_columns'] == '-1' || $ps['layout_md_columns'] == '-1' || $ps['layout_lg_columns'] == '-1') {
+            // At least one has "automatic" set
+            $variables['layout_attributes']->addClass('flex-child-auto');
+          }
+          else {
+            // None is automatic:
+            if (empty($ps['layout_sm_columns']) && (!empty($ps['layout_md_columns']) || !empty($ps['layout_lg_columns']))) {
+              // add small-12 (full width on small devices)
+              $variables['layout_attributes']->addClass('small-12');
+            }
           }
 
           if (!empty($ps['style_boxstyle'])) {
@@ -187,7 +193,6 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           if (!empty($ps['style_textcolumns'])) {
             $variables['attributes']->addClass($ps['style_textcolumns']);
           }
-
           if (!empty($ps['classes_additional'])) {
             $variables['attributes']->addClass($ps['classes_additional']);
           }

@@ -74,6 +74,28 @@ class DrowlParagraphsSettingsForm extends ConfigFormBase {
       '#options' => $slide_amount_options,
     ];
 
+    $form['defaults']['breakpoint_mapping_sizes_fallback'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Breakpoint mapping fallbacks'),
+      '#description' => $this->t('Fallback values if breakpoint mappings can not be determined.'),
+    ];
+    $form['defaults']['breakpoint_mapping_sizes_fallback']['md'] = [
+      '#type' => 'textfield',
+      '#size' => 5,
+      '#title' => $this->t('Breakpoint fallback (Medium devices) in px'),
+      '#description' => $this->t('The fallback value to use when the breakpoint could not be determined from Drupal breakpoints.yml (Breakpoint mapping)'),
+      '#default_value' => !empty($settings['defaults']['breakpoint_mapping_sizes']['breakpoint_mapping_sizes_fallback_md']) ? $settings['defaults']['breakpoint_mapping_sizes']['breakpoint_mapping_sizes_fallback_md'] : 640,
+    ];
+
+    $form['defaults']['breakpoint_mapping_sizes_fallback']['lg'] = [
+      '#type' => 'textfield',
+      '#size' => 5,
+      '#title' => $this->t('Breakpoint fallback (Large devices) in px'),
+      '#description' => $this->t('The fallback value to use when the breakpoint could not be determined from Drupal breakpoints.yml (Breakpoint mapping)'),
+      '#default_value' => !empty($settings['defaults']['breakpoint_mapping_sizes']['breakpoint_mapping_sizes_fallback_lg']) ? $settings['defaults']['breakpoint_mapping_sizes']['breakpoint_mapping_sizes_fallback_lg'] : 1024,
+    ];
+
+
     // ===================== BREAKPOINTS ===================================
     $breakpointManager = \Drupal::service('breakpoint.manager');
     $breakpoint_group = $form_state->hasValue(array(
@@ -149,7 +171,6 @@ class DrowlParagraphsSettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-
   }
 
   /**
