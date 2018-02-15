@@ -138,7 +138,7 @@ function drowl_paragraphs_types_preprocess_slick(&$variables) {
     $settings_responsive_override = $variables['element']['#optionset']->get('drowl_paragraphs_settings_responsive_override');
 
     // Get the overrides:
-    if (!empty($data_slick) && !empty($options_override) || !empty($settings_responsive_override)) {
+    if (!empty($data_slick) && (!empty($options_override) || !empty($settings_responsive_override))) {
       // This has overrides.
       // Get the configuration from the JSON array:
       $data_slick = Json::decode($data_slick->value());
