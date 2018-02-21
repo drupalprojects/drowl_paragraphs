@@ -6,7 +6,6 @@ dependencies:
   - drowl_media
   - block
   - block_content
-  - content_translation
   - drowl_paragraphs
   - dynamic_entity_reference
   - entity_browser
