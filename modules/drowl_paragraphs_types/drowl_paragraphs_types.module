@@ -108,7 +108,14 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
     }
 
     // Set the values in the field to make them available to later hook "drowl_paragraphs_types_preprocess_slick" where it can be set.
-    $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
+    $moduleHandler = \Drupal::service('module_handler');
+    if ($moduleHandler->moduleExists('field_layout')){
+      // Different structure with field_layout module.
+      $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
+    } else {
+      // Default structure (fallback)
+      $optionset = $variables['elements']['field_paragraphs_paragraphs']['#build']['optionset'];
+    }
     $optionset->set('drowl_paragraphs_options_override', $options_override);
     $optionset->set('drowl_paragraphs_settings_responsive_override', $settings_responsive_override);
 

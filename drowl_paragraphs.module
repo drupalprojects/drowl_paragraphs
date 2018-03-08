@@ -216,9 +216,13 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
               $subParagraphSettingsArray = $subParagraph->get('field_paragraph_settings')
                 ->getValue();
               if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
-                $variables['is_row'] = 'TRUE';
+                $variables['is_row'] = TRUE;
                 $variables['attributes']->addClass('has-layout');
                 $variables['layout_wrapper_attributes']->addClass('row');
+              }
+              if ($subParagraphSettingsArray[0]['layout_sm_columns'] == '-1' || $subParagraphSettingsArray[0]['layout_md_columns'] == '-1' || $subParagraphSettingsArray[0]['layout_lg_columns'] == '-1') {
+                // At least one has "automatic" set
+                $variables['layout_wrapper_attributes']->addClass('large-unstack');
               }
             }
           }
@@ -227,6 +231,16 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
       else {
         trigger_error('Field field_paragraphs_paragraphs exists but its elements are not of type "paragraph". Ignoring.', E_USER_NOTICE);
       }
+    }
+
+    // Indicate subparagraph and type of parent paragraph for twig:
+    $parentEntity = $paragraph->getParentEntity();
+    if($parentEntity instanceof \Drupal\paragraphs\Entity\Paragraph){
+      $bundle = $parentEntity->bundle();
+      $variables['attributes']->addClass('is-subparagraph');
+      // $variables['attributes']->addClass('parent-bundle-' . $bundle);
+      $variables['is_subparagraph'] = TRUE;
+      $variables['parent_entity_bundle'] = $bundle;
     }
   }
 }

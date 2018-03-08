@@ -15,7 +15,6 @@ dependencies:
   - field_formatter
   - field_formatter_class
   - field_group
-  - field_layout
   - file
   - fontawesome_iconpicker
   - language
