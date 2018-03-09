@@ -116,8 +116,10 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
       // Default structure (fallback)
       $optionset = $variables['elements']['field_paragraphs_paragraphs']['#build']['optionset'];
     }
-    $optionset->set('drowl_paragraphs_options_override', $options_override);
-    $optionset->set('drowl_paragraphs_settings_responsive_override', $settings_responsive_override);
+    if(!empty($optionset)){
+      $optionset->set('drowl_paragraphs_options_override', $options_override);
+      $optionset->set('drowl_paragraphs_settings_responsive_override', $settings_responsive_override);
+    }
 
     // Controls outside:
     if ($paragraph->hasField('field_paragraphs_controlsoutside')) {

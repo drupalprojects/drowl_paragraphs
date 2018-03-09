@@ -18,7 +18,6 @@ dependencies:
   - file
   - fontawesome_iconpicker
   - language
-  - layout_discovery
   - link
   - link_attributes
   - media_entity
