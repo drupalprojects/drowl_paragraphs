@@ -13,7 +13,6 @@ dependencies:
   - fences
   - field
   - field_formatter
-  - field_formatter_class
   - field_group
   - file
   - fontawesome_iconpicker

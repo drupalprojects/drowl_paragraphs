@@ -111,7 +111,10 @@ function drowl_paragraphs_types_preprocess_paragraph__container_slides(&$variabl
     $moduleHandler = \Drupal::service('module_handler');
     if ($moduleHandler->moduleExists('field_layout')){
       // Different structure with field_layout module.
-      $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
+      if(!empty($variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build'])){
+        // TODO Unsure why but on cron runs this is being executed (WHY??) and empty.
+        $optionset = $variables['elements']['_field_layout']['content']['field_paragraphs_paragraphs']['#build']['optionset'];
+      }
     } else {
       // Default structure (fallback)
       $optionset = $variables['elements']['field_paragraphs_paragraphs']['#build']['optionset'];

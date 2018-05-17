@@ -487,6 +487,8 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     $element['style']['style_boxstyle']['style_boxstyle'] = [
       '#type' => 'select',
       '#title' => $this->t('Box style'),
+      // TODO: This values should come frome the system design colors taxonomy.
+      //       If the taxonomy is not defined we could provide some defaults.
       '#options' => [
         'default' => $this->t('Default'),
         'primary' => $this->t('Primary'),
