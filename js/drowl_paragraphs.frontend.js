@@ -100,10 +100,11 @@
     animate: function ($container, animationName, animationDelay, animationDuration, callback) {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
       animationDelay = (typeof animationDelay === 'undefined') ? 0 : animationDelay;
-      animationDurationOverridden = ((typeof animationDuration === 'undefined') && animationDuration == 0) ? false : true;
+      animationDurationOverridden = ((typeof animationDuration === 'undefined') || animationDuration == 0) ? false : true;
       if(animationDurationOverridden){
         $container.css('animation-duration', animationDuration + 'ms');
       }
+      
       setTimeout(function () {
         $container.addClass('animated ' + animationName);
         $container.one(animationEnd, function () {
