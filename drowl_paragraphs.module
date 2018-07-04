@@ -45,7 +45,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           $ps = $paragraphSettingsArray[0];
 
           if (!empty($ps['layout_sm_columns'])) {
-            $variables['layout_attributes']->addClass('columns');
+            $variables['layout_attributes']->addClass('cell');
             if ($ps['layout_sm_columns'] >= 1) {
               $variables['layout_attributes']->addClass('small-' . $ps['layout_sm_columns']);
             }
@@ -64,7 +64,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           }
 
           if (!empty($ps['layout_md_columns'])) {
-            $variables['layout_attributes']->addClass('columns');
+            $variables['layout_attributes']->addClass('cell');
             if ($ps['layout_md_columns'] >= 1) {
               $variables['layout_attributes']->addClass('medium-' . $ps['layout_md_columns']);
             }
@@ -83,7 +83,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
           }
 
           if (!empty($ps['layout_lg_columns'])) {
-            $variables['layout_attributes']->addClass('columns');
+            $variables['layout_attributes']->addClass('cell');
             if ($ps['layout_lg_columns'] >= 1) {
               $variables['layout_attributes']->addClass('large-' . $ps['layout_lg_columns']);
             }
@@ -150,7 +150,16 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
             $variables['attributes']->addClass('min-height-' . $ps['layout_min_height']);
           }
           if (!empty($ps['layout_section_width'])) {
-            $variables['layout_attributes']->addClass($ps['layout_section_width']);
+            if($ps['layout_section_width'] == 'viewport-width'){
+              $container_class = "viewport-width";
+            }elseif ($ps['layout_section_width'] == 'viewport-width-cp') {
+              $container_class = "viewport-width-cp";
+            }elseif($ps['layout_section_width'] == 'page-width'){
+              $container_class = "grid-container";
+            }
+            if(isset($container_class)){
+              $variables['layout_attributes']->addClass($container_class);
+            }
           }
 
           if (!empty($ps['layout_reverse_order'])) {
@@ -163,16 +172,15 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
             $variables['layout_wrapper_attributes']->addClass('align-' . $ps['layout_align_children_horizontal']);
           }
 
-          if ($ps['layout_sm_columns'] == '-1' || $ps['layout_md_columns'] == '-1' || $ps['layout_lg_columns'] == '-1') {
-            // At least one has "automatic" set
-            $variables['layout_attributes']->addClass('flex-child-auto');
+          // Add automatic sizing column / cell classes
+          if ($ps['layout_sm_columns'] == '-1') {
+            $variables['layout_attributes']->addClass('auto');
           }
-          else {
-            // None is automatic:
-            if (empty($ps['layout_sm_columns']) && (!empty($ps['layout_md_columns']) || !empty($ps['layout_lg_columns']))) {
-              // add small-12 (full width on small devices)
-              $variables['layout_attributes']->addClass('small-12');
-            }
+          if ($ps['layout_md_columns'] == '-1') {
+            $variables['layout_attributes']->addClass('medium-auto');
+          }
+          if ($ps['layout_lg_columns'] == '-1') {
+            $variables['layout_attributes']->addClass('large-auto');
           }
 
           if (!empty($ps['style_boxstyle'])) {
@@ -218,7 +226,7 @@ function drowl_paragraphs_preprocess_paragraph(&$variables) {
               if (!empty($subParagraphSettingsArray[0]['layout_sm_columns']) || !empty($subParagraphSettingsArray[0]['layout_md_columns']) || !empty($subParagraphSettingsArray[0]['layout_lg_columns'])) {
                 $variables['is_row'] = TRUE;
                 $variables['attributes']->addClass('has-layout');
-                $variables['layout_wrapper_attributes']->addClass('row');
+                $variables['layout_wrapper_attributes']->addClass(['grid-x', 'grid-margin-x']);
               }
               if ($subParagraphSettingsArray[0]['layout_sm_columns'] == '-1' || $subParagraphSettingsArray[0]['layout_md_columns'] == '-1' || $subParagraphSettingsArray[0]['layout_lg_columns'] == '-1') {
                 // At least one has "automatic" set
