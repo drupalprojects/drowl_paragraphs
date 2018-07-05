@@ -247,19 +247,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-indent form-item--inline'),
     ];
-    $element['layout']['lg']['layout_lg_reverse_indent'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation (deprecated)'),
-      '#options' => $cols_options,
-      '#default_value' => isset($item->layout_lg_reverse_indent) ? $item->layout_lg_reverse_indent : NULL,
-      '#empty_option' => $this->t('- None -'),
-      '#empty_value' => 0,
-      '#required' => FALSE,
-      '#disabled' => TRUE,
-      '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
-      '#description' => 'Deprecated! This option will be removed in future releases.',
-      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-reverse-indent form-item--inline'),
-    ];
     $element['layout']['lg']['layout_lg_collapse'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('No grid spaces'),
@@ -268,17 +255,6 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#description' => $this->t('Removes the spaces between the grid columns.'),
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-collapse'),
     ];
-    $element['layout']['lg']['layout_lg_uncollapse'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('(Re)add grid spaces (deprecated!)'),
-      '#default_value' => !empty($item->layout_lg_uncollapse) ? 1 : 0,
-      '#empty_value' => 0,
-      '#required' => FALSE,
-      '#disabled' => TRUE,
-      '#description' => 'Deprecated! This option will be removed in future releases.',
-      '#wrapper_attributes' => array('class' => 'form-item--layout-lg-uncollapse'),
-    ];
-
 
     $element['layout']['spacing'] = array(
       '#type' => 'details',
