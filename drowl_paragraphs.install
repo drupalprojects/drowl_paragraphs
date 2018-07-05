@@ -36,6 +36,8 @@ function drowl_paragraphs_update_8006() {
   return _field_type_schema_column_add_helper($field_type, $columns_to_add);
 }
 
+// TODO: Remove the columns: layout_sm_reverse_indent, layout_sm_uncollapse, layout_md_reverse_indent, layout_md_uncollapse, layout_lg_reverse_indent, layout_lg_uncollapse
+
 /**
  * Helper function for HOOK_Update to add columns to the field schema.
  *
