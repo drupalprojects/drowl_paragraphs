@@ -165,6 +165,10 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'varchar',
       'length' => 64,
     );
+    $output['columns']['style_cutline'] = array(
+      'type' => 'varchar',
+      'length' => 64,
+    );
     $output['columns']['style_textalign'] = array(
       'type' => 'varchar',
       'length' => 64,
@@ -284,6 +288,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['style_boxstyle'] = DataDefinition::create('string')
       ->setLabel(t('Box style'))
       ->setRequired(FALSE);
+    $properties['style_cutline'] = DataDefinition::create('string')
+      ->setLabel(t('Cutline'))
+      ->setRequired(false);
     $properties['style_textalign'] = DataDefinition::create('string')
       ->setLabel(t('Text align'))
       ->setRequired(FALSE);
