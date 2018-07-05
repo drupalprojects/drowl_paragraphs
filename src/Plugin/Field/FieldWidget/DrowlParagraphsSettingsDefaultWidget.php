@@ -139,7 +139,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-mobile" aria-hidden="true"></i><span class="tab-label">' . $this->t('Small devices') . '</span>',
       '#group' => 'layout',
-      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and (reverse) indentation for small and larger devices.'),
+      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and indentation for small and larger devices.'),
     );
 
     // $element['layout_help'] = [
@@ -153,7 +153,7 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#type' => 'select',
       '#title' => $this->t('Columns'),
       '#options' => $cols_options_auto,
-      '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : '-1',
+      '#default_value' => isset($item->layout_sm_columns) ? $item->layout_sm_columns : NULL,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
@@ -173,13 +173,15 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['sm']['layout_sm_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation (deprecated!)'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_sm_reverse_indent) ? $item->layout_sm_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
+      '#disabled' => TRUE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-reverse-indent form-item--inline'),
     ];
     $element['layout']['sm']['layout_sm_collapse'] = [
@@ -192,10 +194,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['sm']['layout_sm_uncollapse'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('(Re)add grid spaces'),
+      '#title' => $this->t('(Re)add grid spaces (deprecated!)'),
       '#default_value' => !empty($item->layout_sm_uncollapse) ? 1 : 0,
+      '#empty_value' => 0,
       '#required' => FALSE,
-      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#disabled' => TRUE,
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-sm-uncollapse'),
     ];
 
@@ -204,13 +208,13 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-tablet" aria-hidden="true"></i><span class="tab-label">' . $this->t('Medium devices') . '</span>',
       '#group' => 'layout',
-      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and (reverse) indentation for medium and larger devices.'),
+      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and indentation for medium and larger devices.'),
     );
     $element['layout']['md']['layout_md_columns'] = [
       '#type' => 'select',
       '#title' => $this->t('Columns'),
       '#options' => $cols_options_auto,
-      '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : '0',
+      '#default_value' => isset($item->layout_md_columns) ? $item->layout_md_columns : NULL,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
@@ -230,13 +234,15 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['md']['layout_md_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation (deprecated)'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_md_reverse_indent) ? $item->layout_md_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
+      '#disabled' => TRUE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-reverse-indent form-item--inline'),
     ];
     $element['layout']['md']['layout_md_collapse'] = [
@@ -249,10 +255,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['md']['layout_md_uncollapse'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('(Re)add grid spaces'),
+      '#title' => $this->t('(Re)add grid spaces (deprecated)'),
       '#default_value' => !empty($item->layout_md_uncollapse) ? 1 : 0,
+      '#empty_value' => 0,
       '#required' => FALSE,
-      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#disabled' => TRUE,
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-md-uncollapse'),
     ];
 
@@ -261,13 +269,13 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
       '#type' => 'details',
       '#title' => '<i class="fa fa-2x fa-desktop" aria-hidden="true"></i><span class="tab-label">' . $this->t('Large devices') . '</span>',
       '#group' => 'layout',
-      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and (reverse) indentation for large devices.'),
+      '#description' => '<i class="fa fa-info-circle" aria-hidden="true"></i> <strong>' . $this->t('Help') . ':</strong> ' . $this->t('Set width and indentation for large devices.'),
     );
     $element['layout']['lg']['layout_lg_columns'] = [
       '#type' => 'select',
       '#title' => $this->t('Columns'),
       '#options' => $cols_options_auto,
-      '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : '0',
+      '#default_value' => isset($item->layout_lg_columns) ? $item->layout_lg_columns : -1,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
@@ -287,13 +295,15 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['lg']['layout_lg_reverse_indent'] = [
       '#type' => 'select',
-      '#title' => $this->t('Reverse Indentation'),
+      '#title' => $this->t('Reverse Indentation (deprecated)'),
       '#options' => $cols_options,
       '#default_value' => isset($item->layout_lg_reverse_indent) ? $item->layout_lg_reverse_indent : NULL,
       '#empty_option' => $this->t('- None -'),
       '#empty_value' => 0,
       '#required' => FALSE,
+      '#disabled' => TRUE,
       '#field_suffix' => '<span class="form-item__suffix"> / 12</span>',
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-reverse-indent form-item--inline'),
     ];
     $element['layout']['lg']['layout_lg_collapse'] = [
@@ -306,10 +316,12 @@ class DrowlParagraphsSettingsDefaultWidget extends WidgetBase {
     ];
     $element['layout']['lg']['layout_lg_uncollapse'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('(Re)add grid spaces'),
+      '#title' => $this->t('(Re)add grid spaces (deprecated!)'),
       '#default_value' => !empty($item->layout_lg_uncollapse) ? 1 : 0,
+      '#empty_value' => 0,
       '#required' => FALSE,
-      '#description' => $this->t('Add the spaces between the grid columns after removed.'),
+      '#disabled' => TRUE,
+      '#description' => 'Deprecated! This option will be removed in future releases.',
       '#wrapper_attributes' => array('class' => 'form-item--layout-lg-uncollapse'),
     ];
 

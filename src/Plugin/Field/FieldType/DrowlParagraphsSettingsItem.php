@@ -42,6 +42,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'size' => 'tiny',
       'unsigned' => TRUE,
     );
+    $output['columns']['layout_sm_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
+    );
 
 
     $output['columns']['layout_md_columns'] = array(
@@ -59,12 +64,16 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'size' => 'tiny',
       'unsigned' => TRUE,
     );
+    $output['columns']['layout_md_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
+    );
 
     $output['columns']['layout_lg_columns'] = array(
       'type' => 'int',
       'size' => 'tiny',
       'unsigned' => FALSE,
-
     );
     $output['columns']['layout_lg_indent'] = array(
       'type' => 'int',
@@ -75,6 +84,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'int',
       'size' => 'tiny',
       'unsigned' => TRUE,
+    );
+    $output['columns']['layout_lg_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
     );
 
     $output['columns']['layout_margin_top'] = array(
@@ -165,6 +179,10 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'type' => 'varchar',
       'length' => 64,
     );
+    $output['columns']['style_cutline'] = array(
+      'type' => 'varchar',
+      'length' => 64,
+    );
     $output['columns']['style_textalign'] = array(
       'type' => 'varchar',
       'length' => 64,
@@ -200,6 +218,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_sm_reverse_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Reverse indent SM'))
       ->setRequired(FALSE);
+    $properties['layout_sm_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
 
     $properties['layout_md_columns'] = DataDefinition::create('integer')
       ->setLabel(t('Columns MD'))
@@ -210,6 +231,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_md_reverse_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Reverse indent MD'))
       ->setRequired(FALSE);
+    $properties['layout_md_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
 
     $properties['layout_lg_columns'] = DataDefinition::create('integer')
       ->setLabel(t('Columns LG'))
@@ -220,6 +244,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_lg_reverse_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Reverse indent LG'))
       ->setRequired(FALSE);
+    $properties['layout_lg_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
 
     $properties['layout_margin_top'] = DataDefinition::create('string')
       ->setLabel(t('Margin top'))
@@ -284,6 +311,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['style_boxstyle'] = DataDefinition::create('string')
       ->setLabel(t('Box style'))
       ->setRequired(FALSE);
+    $properties['style_cutline'] = DataDefinition::create('string')
+      ->setLabel(t('Cutline'))
+      ->setRequired(false);
     $properties['style_textalign'] = DataDefinition::create('string')
       ->setLabel(t('Text align'))
       ->setRequired(FALSE);
