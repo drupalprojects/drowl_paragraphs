@@ -2,7 +2,6 @@
 
 /**
  * Add further columns: style_textalign, style_textcolumns
- * Make columns signed: layout_sm_columns, layout_md_columns, layout_lg_columns
  */
 function drowl_paragraphs_update_8003() {
   $field_type = 'drowl_paragraphs_settings';
@@ -17,6 +16,24 @@ function drowl_paragraphs_update_8004() {
   $field_type = 'drowl_paragraphs_settings';
   $columns_changed = ['layout_sm_columns', 'layout_md_columns', 'layout_ld_columns'];
   return _field_type_schema_column_spec_change_helper($field_type, $columns_changed);
+}
+
+/**
+ * Add further columns: style_cutline
+ */
+function drowl_paragraphs_update_8005() {
+  $field_type = 'drowl_paragraphs_settings';
+  $columns_to_add = ['style_cutline'];
+  return _field_type_schema_column_add_helper($field_type, $columns_to_add);
+}
+
+/**
+ * Add further columns: layout_sm_collapse, layout_md_collapse, layout_lg_collapse
+ */
+function drowl_paragraphs_update_8006() {
+  $field_type = 'drowl_paragraphs_settings';
+  $columns_to_add = ['layout_sm_collapse', 'layout_md_collapse', 'layout_lg_collapse'];
+  return _field_type_schema_column_add_helper($field_type, $columns_to_add);
 }
 
 /**
