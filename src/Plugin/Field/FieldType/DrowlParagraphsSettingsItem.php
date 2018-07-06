@@ -32,6 +32,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'size' => 'tiny',
       'unsigned' => FALSE,
     );
+    $output['columns']['layout_sm_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
+    );
     $output['columns']['layout_sm_indent'] = array(
       'type' => 'int',
       'size' => 'tiny',
@@ -49,6 +54,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'size' => 'tiny',
       'unsigned' => FALSE,
     );
+    $output['columns']['layout_md_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
+    );
     $output['columns']['layout_md_indent'] = array(
       'type' => 'int',
       'size' => 'tiny',
@@ -65,6 +75,11 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
       'size' => 'tiny',
       'unsigned' => FALSE,
 
+    );
+    $output['columns']['layout_lg_collapse'] = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => true,
     );
     $output['columns']['layout_lg_indent'] = array(
       'type' => 'int',
@@ -198,6 +213,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_sm_columns'] = DataDefinition::create('integer')
       ->setLabel(t('Columns SM'))
       ->setRequired(FALSE);
+    $properties['layout_sm_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
     $properties['layout_sm_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Indent SM'))
       ->setRequired(FALSE);
@@ -208,6 +226,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_md_columns'] = DataDefinition::create('integer')
       ->setLabel(t('Columns MD'))
       ->setRequired(FALSE);
+    $properties['layout_md_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
     $properties['layout_md_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Indent MD'))
       ->setRequired(FALSE);
@@ -218,6 +239,9 @@ class DrowlParagraphsSettingsItem extends FieldItemBase implements FieldItemInte
     $properties['layout_lg_columns'] = DataDefinition::create('integer')
       ->setLabel(t('Columns LG'))
       ->setRequired(FALSE);
+    $properties['layout_lg_collapse'] = DataDefinition::create('boolean')
+      ->setLabel(t('No grid spaces'))
+      ->setRequired(false);
     $properties['layout_lg_indent'] = DataDefinition::create('integer')
       ->setLabel(t('Indent LG'))
       ->setRequired(FALSE);
